@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const PORT = process.env.PORT;
+
 let db_status = false;
 try {
     Connect(process.env.MONGODB_URI);

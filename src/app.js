@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import userRouter from './routes/userRoutes.js';
 
 const app = new express();
 
@@ -28,3 +29,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     res.send('Hello World');
 })
+
+app.use('/users', userRouter);
+
+export default app;
