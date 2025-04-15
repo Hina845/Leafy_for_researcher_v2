@@ -1,0 +1,300 @@
+@import url('../styles/tokens.css');
+
+/* Navigation Bar */
+
+.navigator {
+    min-width: 1280px;
+
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 98%;
+    background-color: var(--color-background-primary);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2px;
+    border-color: var(--color-brand-opacity15);
+    padding: 0 var(--spacing-4);
+    gap: var(--spacing-4);
+    font-size: 1em;
+    z-index: 1000;
+}
+
+.nav-navigator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-4);
+}
+
+.nav-search-bar {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--color-brand-opacity15);
+    gap: var(--spacing-1);
+    border-radius: 999px;
+    padding: var(--spacing-1) var(--spacing-2);
+    flex-grow: 1;
+}
+
+.nav-search-bar input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 1em;
+    color: var(--color-brand-primary);
+    flex-grow: 1;
+}
+
+.nav-search-bar input::placeholder {
+    color: var(--color-brand-opacity50);
+    font-size: 1em;
+}
+
+.nav-navigator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-4);
+}
+.nav-navigator a {
+    text-decoration: none;
+    color: var(--color-brand-opacity50);
+    font-size: 1em;
+    font-weight: 400;
+    padding: var(--spacing-2) var(--spacing-3);
+}
+
+.nav-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-1);
+    background-color: var(--color-brand-primary);
+    border-radius: var(--spacing-1);
+    padding: var(--spacing-1) var(--spacing-2);
+    font-size: var(--font-size-4);
+    border: none;
+    cursor: pointer;
+}
+.nav-navigator .nav-button:hover {
+    background-color: var(--color-brand-opacity50);
+}
+
+/* Still Tag Container */
+
+.still-tags-container {
+    justify-content: center; 
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) var(--spacing-2);
+    flex-wrap: wrap
+}
+
+.still-tags-container > a {
+    text-decoration: none;
+}
+
+.still-content-tag {
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+    border-radius: var(--spacing-1);
+    background-color: var(--color-brand-primary);
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--color-true-white);
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) var(--spacing-3);
+}
+
+.still-content-tag:hover {
+    background-color: var(--color-brand-opacity50);
+    cursor: pointer;
+}
+
+/* Content Tag */
+
+.tag-text {
+    position: relative;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.tag {
+    border-radius: 8px;
+    background-color: var(--color-brand-primary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px var(--spacing-1);
+}
+
+.tag-list {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 16px;
+    z-index: 0;
+}
+
+.image-icon {
+    width: 100%;
+    position: absolute;
+    margin: 0 !important;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    max-width: 100%;
+    overflow: hidden;
+    height: 250px;
+    flex-shrink: 0;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.title {
+    align-self: stretch;
+    position: relative;
+}
+
+.description {
+    align-self: stretch;
+    position: relative;
+    font-size: 14px;
+    line-height: var(--spacing-3);
+    color: var(--color-brand-low-contrast);
+    display: -webkit-inline-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+
+.content-text {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    z-index: 2;
+    font-size: 32px;
+    color: var(--color-brand-contrast);
+}
+
+.account-circle-icon {
+    width: 24px;
+    position: relative;
+    height: 24px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.footer-info {
+    position: relative;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    text-align: left;
+    font-size: 16px;
+    color: #87a706;
+    font-family: 'Roboto Serif';
+}
+
+.card-footer {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0px;
+    z-index: 3;
+    font-size: 16px;
+    color: var(--color-brand-primary);
+}
+
+.content-card {
+    width: 100%;
+    position: relative;
+    border-radius: 16px;
+    background-color: var(--color-background-primary);
+    border: 2px solid var(--color-brand-primary);
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 270px var(--spacing-3) var(--spacing-3);
+    gap: var(--spacing-2);
+    text-align: left;
+    font-size: 12px;
+    color: var(--color-true-white);
+    font-family: "Roboto Serif";
+}
+
+/** Footer **/
+.component-footer {
+    background-color: var(--color-brand-primary);
+    display: flex;
+    flex-direction: column;
+    color: var(--color-true-white);
+    width: 100%;
+    min-width: 1280px;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.component-footer .component-footer-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--spacing-4) var(--spacing-6);
+}
+
+.component-footer .naviagation-part {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    
+}
+
+.component-footer .naviagation-part ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    margin: 0;
+    padding: 0;
+}
+
+.component-footer .naviagation-part li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+}
+
+.component-footer .component-footer-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-4) var(--spacing-6);
+    background-color: var(--color-brand-primary-dark);
+}
