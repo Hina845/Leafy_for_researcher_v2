@@ -1,12 +1,16 @@
 import express from 'express';
-import { userLogin, userCreate, userLogout } from '../controllers/userController.js';
-import { verifyToken } from '../middlewares/authMiddleware.js';
+import { userLogin, userCreate, userLogout, resetPasswordSubmit, resetPassword } from '../controllers/userController.js';
+import { verifyToken, verifyPasswordChangeLink } from '../middlewares/authMiddleware.js';
 
 const userRouter = express.Router();
 
 userRouter.post('/register', userCreate);
 
 userRouter.post('/login', userLogin);
+
+userRouter.post('/reset-password-submit', resetPasswordSubmit);
+
+userRouter.post('/reset-password/', verifyPasswordChangeLink, resetPassword);
 
 userRouter.get('/logout', verifyToken, userLogout);
 

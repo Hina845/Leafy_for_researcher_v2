@@ -183,7 +183,7 @@
             <img src="assets/images/logo-type2.png" alt="logoLeafy">
         </div>
         <h2 id="welcome">Welcome back!</h2>
-        <p id="p1">Bạn chưa có tài khoản? <a href="3-sign-up.html">Tạo tại đây</a></p>
+        <p id="p1">Bạn chưa có tài khoản? <a href="signup">Tạo tại đây</a></p>
         <form class="form">
             <div>
                 <img src="assets/icons/icAccount.svg">
@@ -237,7 +237,7 @@
             response = await response.json();
 
             if (response.success) {
-                window.location.href = `${server}/public/`;
+                window.location.href = `${server}/`;
             } else {
                 document.getElementById("error-message-2").style.display = "none";
                 document.getElementById("error-message-1").style.display = "block";

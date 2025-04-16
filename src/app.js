@@ -1,8 +1,11 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import userRouter from './routes/userRoutes.js';
+import pageRouter from './routes/pageRouter.js';
+import { verifyPasswordChangeLink } from './middlewares/authMiddleware.js'; 
 
 const app = new express();
 
@@ -16,14 +19,23 @@ app.use(cors({
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
-app.use('/public', express.static('public'));
+
+app.use(express.static(path.join('public')));
 
 app.set('view engine', 'ejs');
-
-app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
     res.redirect(`${server}/public/`);
 })
+
+app.use('/', pageRouter);
+
+app.use('/user', userRouter);
+
+
+
+app.get('/public/forgot-password', verifyPasswordChangeLink, (req, res) => {
+    res.render('forgot-password', { server });
+});
 
 export default app;
