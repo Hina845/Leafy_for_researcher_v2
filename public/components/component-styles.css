@@ -3,7 +3,6 @@
 /* Navigation Bar */
 
 .navigator {
-    min-width: 1280px;
 
     display: flex;
     position: fixed;
@@ -255,7 +254,6 @@
     flex-direction: column;
     color: var(--color-true-white);
     width: 100%;
-    min-width: 1280px;
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -297,4 +295,42 @@
     align-items: center;
     padding: var(--spacing-4) var(--spacing-6);
     background-color: var(--color-brand-primary-dark);
+}
+
+li{
+    color: #d2e681;
+}
+li:hover{
+    color: var(--color-true-white);
+    cursor: pointer;
+}
+li a{
+    text-decoration: none;
+    color: #d2e681;
+}
+
+li a:hover{
+    color: var(--color-true-white);
+}
+
+@media screen and (max-width: 1079px) {
+    .component-footer .component-footer-navigation{
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-4)
+    }
+    
+    .naviagation-part {
+        align-items: center;
+        max-width: 400px;
+    }
+    .naviagation-part ul {
+        align-items: center;
+    }    
+    .component-footer .component-footer-information{
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-4)
+    }
+    
 }
