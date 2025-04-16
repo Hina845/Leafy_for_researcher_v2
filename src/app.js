@@ -6,19 +6,13 @@ import userRouter from './routes/userRoutes.js';
 
 const app = new express();
 
-const allowedOrigin = 'https://localhost:7777';
+const allowedOrigin = 'https://localhost:7777/*';
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-    origin: function (origin, callback) {
-      if (origin === allowedOrigin || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: allowedOrigin,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
