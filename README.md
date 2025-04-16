@@ -5,4 +5,9 @@ Backend bỏ trong src/
 
 ---
 
-Test
+Cách chạy server localhost:
+> npm install
+> npm start
+
+url: http://localhost:7777/
+
