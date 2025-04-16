@@ -33,8 +33,8 @@ const Schema = mongoose.Schema({
         default: [],
     },
     followers: {
-        type: Number,
-        default: 0,
+        type: Array,
+        default: [],
     },
     followed: {
         type: Array,
