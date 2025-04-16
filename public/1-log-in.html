@@ -165,19 +165,15 @@
 </head>
 
 <body>
-    <div class="left">
-        
+    <div class="left">        
         <img src="assets/images/tree-2.png" alt="Tree" id="tree">
     </div>
     <div class="right">
-
         <div class="logo">
             <img src="assets/images/logo-type2.png" alt="logoLeafy">
         </div>
-
         <h2 id="welcome">Welcome back!</h2>
         <p id="p1">Bạn chưa có tài khoản? <a href="3-sign-up.html">Tạo tại đây</a></p>
-
         <form class="form" action="/login" method="post">
             <div>
                 <img src="assets/icons/Account circle.png">
@@ -201,6 +197,16 @@
 
         </form>
     </div>
+    <script type = "module">
+        import {server} from './scripts/config.js'
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const submitButton = document.querySelector("button[type='submit']");
+
+        
+
+    </script>
 </body>
 
 </html>

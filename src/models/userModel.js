@@ -11,6 +11,15 @@ const Schema = mongoose.Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    notifiaction_email: {
+        type: String,
+        default: null,
+    },
     owned_posts: {
         type: Array,
         default: [],
