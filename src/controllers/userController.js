@@ -1,6 +1,13 @@
 import UserModel from '../models/userModel.js';
+import AuthTokenModel from '../models/authtokenModel.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import ejs from 'ejs';
+import path from 'path';
+import nodemailer from 'nodemailer';
+import { server } from '../config.js';
+
+const __dirname = path.resolve('src');
 
 async function userCreate(req, res) {
     try {
@@ -32,6 +39,7 @@ async function userCreate(req, res) {
 
 async function userLogin(req, res) {
     let user = await UserModel.findOne({ username: req.body.username });
+    if (!user) user = await UserModel.findOne({ email: req.body.username });
     if (!user) {
         return res.status(401).json({ success: false, message: 'Username or password is not correct!' });
     }
@@ -55,8 +63,57 @@ async function userLogout(req, res) {
     res.json({ success: true, message: 'Logout successful' });
 }
 
+async function resetPasswordSubmit(req, res) {
+    let user = await UserModel.findOne({ email: req.body.email });
+
+    if (!user) return res.status(401).json({ success: false, error: 'email-not-found' });
+
+    const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, { expiresIn: '15m' });
+    await AuthTokenModel.findOneAndUpdate({ email: req.body.email }, {$set: { token: token }, email: req.body.email}, { new: true, upsert: true });
+
+    const link = `${server}/change-password?token=${token}`;
+
+    const html = await ejs.renderFile(`${__dirname}/views/reset_password_mail.ejs`, { resetLink: link })
+        .catch(err => {
+            console.error(err);
+            return res.status(500).json({ success: false, error: 'Internal server error' });
+        });
+    if (!html) res.status(500).json({ success: false, error: 'Internal server error' });
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_PASSWORD,
+        },
+    });
+
+    const mailOptions = {
+        from: process.env.EMAIL,
+        to: req.body.email,
+        subject: 'Noreply: Password change request',
+        html: html,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) return res.status(500).json({ success: false, error: 'Internal server error' });
+        else return res.json({ success: true, message: 'Email sent' });
+    });
+}
+
+async function resetPassword(req, res) {
+    const email = req.email;
+
+    const new_password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+    await UserModel.findOneAndUpdate({ email: email }, { $set: { password: new_password } });
+
+    return res.json({ success: true, message: 'Password changed successfully' });
+}
+
 export {
     userCreate,
     userLogin,
-    userLogout
+    userLogout,
+    resetPasswordSubmit,
+    resetPassword,
 }

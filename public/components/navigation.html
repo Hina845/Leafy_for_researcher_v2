@@ -40,27 +40,9 @@
                 </svg>
                 <span style = "color: var(--color-true-white);">Thêm bài viết</span>
             </button>
-            <!-- Dynamic update this using JS after backend done -->
             <img id = 'profile-picture' src = "../assets/images/dummy_profile.PNG" alt="User" class="user-icon" style = "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
         </div>
     </div>
-    <!-- <script type = "module">
-        import { server } from '../frontend/config.js';
-
-        const profilePicture = document.getElementById('profile-picture');
-
-        fetch(`${server}/user/profile_picture`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.text())
-        .then(data => {
-            profilePicture.src = data;
-        }).catch(error => {
-            console.error('Error fetching profile picture:', error);
-        });
-    </script> -->
 
 </nav>
 

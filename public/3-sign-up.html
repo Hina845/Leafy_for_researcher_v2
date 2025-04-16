@@ -201,6 +201,7 @@
             const errorMessage = document.getElementById('error-message');
             if (password !== confirmPassword) {
                 errorMessage.style.display = 'block';
+                return;
             } else {
                 errorMessage.style.display = 'none';
             }
@@ -217,9 +218,8 @@
                 })
             });
             response = await response.json();
-            console.log(response);
             if (response.success) {
-                window.location.href = `${server}/public/1-log-in.html`;
+                window.location.href = `${server}/login`;
             } else {
                 if (response.error === 'username-exist') {
                     errorMessage.innerText = 'Username đã tồn tại. Vui lòng chọn username khác.';
