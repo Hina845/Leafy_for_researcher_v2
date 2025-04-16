@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Leafy</title>
-    <link rel="icon" type="favicon/icon" href="assets/icons/logo-type1.svg">
+    <link rel="icon" type="favicon/icon" href="assets/icons/icBrandLogo1.svg">
     <style>
         @import url("styles/tokens.css");
 
@@ -150,6 +150,11 @@
             color: var(--color-branch-contrast);
         }
 
+        .form img {
+            width: 32px;
+            margin-right: 8px;
+        }
+
         .right {
             width: 50vw;
             height: 100vh;
@@ -166,7 +171,7 @@
 
 <body>
     <div class="left">
-        
+
         <img src="assets/images/tree-2.png" alt="Tree" id="tree">
     </div>
     <div class="right">
@@ -180,12 +185,12 @@
 
         <form class="form" action="/login" method="post">
             <div>
-                <img src="assets/icons/Account circle.png">
+                <img src="assets/icons/icAccount.svg">
                 <input type="text" id="username" placeholder="Nhập username/email của bạn.." required>
             </div>
 
             <div>
-                <img src="assets/icons/Password.png">
+                <img src="assets/icons/icPass.svg">
                 <input type="password" id="password" placeholder="Nhập password của bạn..." required>
             </div>
 
