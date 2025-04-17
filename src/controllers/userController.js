@@ -28,6 +28,7 @@ async function userCreate(req, res) {
             username: req.body.username,
             email: req.body.email,
             password: hash,
+            display_name: req.body.username,
         });
         await user.save();
         return res.json({ success: true, message: 'User created' });

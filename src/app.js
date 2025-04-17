@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import userRouter from './routes/userRoutes.js';
 import pageRouter from './routes/pageRouter.js';
+import apiRouter from './routes/apiRouter.js';
 import { verifyPasswordChangeLink } from './middlewares/authMiddleware.js'; 
 
 const app = new express();
@@ -32,7 +33,7 @@ app.use('/', pageRouter);
 
 app.use('/user', userRouter);
 
-
+app.use('/api/v1', apiRouter);
 
 app.get('/public/forgot-password', verifyPasswordChangeLink, (req, res) => {
     res.render('forgot-password', { server });
