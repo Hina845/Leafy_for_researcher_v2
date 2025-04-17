@@ -2,6 +2,104 @@
 
 <head>
     <style>
+        @import url('../styles/tokens.css');
+        .navigator {
+            width: 100%;
+            position: absolute;
+            margin: 0 !important;
+            top: -2px;
+            right: -1442px;
+            left: -2px;
+            background-color: #f8f8e7;
+            border-bottom: 2px solid rgba(135, 167, 6, 0.2);
+            box-sizing: border-box;
+            height: 80px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0px 32px;
+            gap: 32px;
+            text-align: left;
+            font-size: 16px;
+            color: rgba(135, 167, 6, 0.5);
+            font-family: 'Roboto Serif';
+            z-index: 1000;
+        }
+
+        .nav-navigator {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .nav-search-bar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: var(--color-brand-opacity15);
+            gap: var(--spacing-1);
+            border-radius: 999px;
+            padding: var(--spacing-1) var(--spacing-2);
+            flex-grow: 1;
+        }
+
+        .nav-search-bar input {
+            border: none;
+            background-color: transparent;
+            outline: none;
+            font-size: 16px;
+            color: var(--color-brand-primary);
+            flex-grow: 1;
+        }
+
+        .nav-search-bar input::placeholder {
+            color: var(--color-brand-opacity50);
+            font-size: 1em;
+        }
+
+        .nav-navigator {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .nav-navigator a {
+            text-decoration: none;
+            color: var(--color-brand-opacity50);
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+        .nav-button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--spacing-1);
+            background-color: var(--color-brand-primary);
+            border-radius: var(--spacing-1);
+            padding: var(--spacing-1) var(--spacing-2);
+            font-size: var(--font-size-4);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .nav-navigator .nav-button:hover {
+            background-color: var(--color-brand-opacity50);
+        }
+
+
+        .account-circle-icon {
+            width: 24px;
+            position: relative;
+            height: 24px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
         .signed-in {
             display: none;
             gap: 32px;
@@ -79,8 +177,9 @@
                 background: none;
                 border: none;
             }
+
             .nav-navigator {
-                display:none !important;
+                display: none !important;
             }
 
         }
@@ -92,7 +191,6 @@
     <!-- Copy this part -->
 
     <nav>
-        <link rel="stylesheet" href="component-styles.css" />
         <div class='navigator'>
             <img src="../assets/images/logo-type2.png" alt="Logo" class="logo"
                 style="width: 100px; height: var(--spacing-4);">
