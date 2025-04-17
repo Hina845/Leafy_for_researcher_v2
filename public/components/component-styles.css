@@ -3,21 +3,26 @@
 /* Navigation Bar */
 
 .navigator {
-
+    width: 100%;
+    position: absolute;
+    margin: 0 !important;
+    top: -2px;
+    right: -1442px;
+    left: -2px;
+    background-color: #f8f8e7;
+    border-bottom: 2px solid rgba(135, 167, 6, 0.2);
+    box-sizing: border-box;
+    height: 84px;
     display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 98%;
-    background-color: var(--color-background-primary);
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    border-radius: 2px;
-    border-color: var(--color-brand-opacity15);
-    padding: 0 var(--spacing-4);
-    gap: var(--spacing-4);
-    font-size: 1em;
+    justify-content: flex-start;
+    padding: 0px 32px;
+    gap: 32px;
+    text-align: left;
+    font-size: 16px;
+    color: rgba(135, 167, 6, 0.5);
+    font-family: 'Roboto Serif';
     z-index: 1000;
 }
 
@@ -29,7 +34,7 @@
 }
 
 .nav-search-bar {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     align-items: center;
     background-color: var(--color-brand-opacity15);
@@ -43,7 +48,7 @@
     border: none;
     background-color: transparent;
     outline: none;
-    font-size: 1em;
+    font-size: 16px;
     color: var(--color-brand-primary);
     flex-grow: 1;
 }
@@ -59,12 +64,12 @@
     align-items: center;
     gap: var(--spacing-4);
 }
+
 .nav-navigator a {
     text-decoration: none;
     color: var(--color-brand-opacity50);
     font-size: 1em;
     font-weight: 400;
-    padding: var(--spacing-2) var(--spacing-3);
 }
 
 .nav-button {
@@ -78,7 +83,9 @@
     font-size: var(--font-size-4);
     border: none;
     cursor: pointer;
+    font-family: inherit;
 }
+
 .nav-navigator .nav-button:hover {
     background-color: var(--color-brand-opacity50);
 }
@@ -101,7 +108,7 @@
     flex-wrap: wrap
 }
 
-.still-tags-container > a {
+.still-tags-container>a {
     text-decoration: none;
 }
 
@@ -257,4 +264,111 @@
     .card-footer .date-info {
         display: none;
     }
+
+}
+
+/** Footer **/
+.component-footer {
+    background-color: var(--color-brand-primary);
+    display: flex;
+    flex-direction: column;
+    color: var(--color-true-white);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.component-footer .component-footer-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--spacing-4) var(--spacing-6);
+}
+
+.component-footer .naviagation-part {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+
+}
+
+.component-footer .naviagation-part ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    margin: 0;
+    padding: 0;
+}
+
+.component-footer .naviagation-part li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+}
+
+.component-footer .component-footer-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-4) var(--spacing-6);
+    background-color: var(--color-brand-primary-dark);
+}
+
+li {
+    color: #d2e681;
+}
+
+li:hover {
+    color: var(--color-true-white);
+    cursor: pointer;
+}
+
+li a {
+    text-decoration: none;
+    color: #d2e681;
+}
+
+li a:hover {
+    color: var(--color-true-white);
+}
+
+@media screen and (max-width: 1079px) {
+    .component-footer .component-footer-navigation {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-4)
+    }
+
+    .naviagation-part {
+        align-items: center;
+        max-width: 400px;
+    }
+
+    .naviagation-part ul {
+        align-items: center;
+    }
+
+    .component-footer .component-footer-information {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-4)
+    }
+
+}
+
+.footer-info {
+    position: relative;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    text-align: left;
+    font-size: 16px;
+    color: #87a706;
+    font-family: 'Roboto Serif';
 }
