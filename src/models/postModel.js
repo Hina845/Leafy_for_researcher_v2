@@ -9,6 +9,14 @@ const Schema = moongoose.Schema({
         type: String,
         required: true,
     },
+    owned_user_id: {
+        type: String,
+        required: true,
+    },
+    tags: {
+        type: [String],
+        default: [],
+    },
     views: {
         type: Number,
         default: 0,
@@ -17,14 +25,6 @@ const Schema = moongoose.Schema({
     date_created: {
         type: Date,
         default: Date.now,
-        required: true,
-    },
-    owned_user_id: {
-        type: String,
-        required: true,
-    },
-    content_path: {
-        type: String,
         required: true,
     },
 })

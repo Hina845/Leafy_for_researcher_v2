@@ -212,7 +212,7 @@
 		}
 		@media  (max-width: 1079px){
 		.profile-background{
-			content: url(../assets/images/profile-background-small.svg);
+			content: url(assets/images/profile-background-small.svg);
 		}
 		.username{
 			font-size: 1rem;
@@ -256,7 +256,7 @@
   	
 </head>
 <body>
-    		<img class="profile-background" alt="" src="../public/assets/images/profile-background.png">
+    		<img class="profile-background" alt="" src="assets/images/profile-background.png">
     	<div class="profile">
 				<div class="profile-header">
 					<img class="avatar" alt="avatar" src="assets/images/avatar.png">
@@ -297,6 +297,7 @@
 				</button>
     		</div>
 		</div>
+
 		<div class="contents">
 			<div id="posts" class="content active">
     			<div id="content-card"></div>
@@ -317,7 +318,6 @@ function switch_tab(elem1, elem2) {
     
     elem1.classList.add("active");
     
-
     document.getElementById(elem2).classList.add("active");
     
 }

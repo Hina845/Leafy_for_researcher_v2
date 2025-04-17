@@ -1,0 +1,115 @@
+<link rel="stylesheet" href="component-styles.css">
+<style>
+    @import url('../styles/tokens.css');
+
+    .icon {
+        width: 32px;
+        position: relative;
+        max-height: 100%;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    #search {
+        position: relative;
+        font-weight: 500;
+    }
+
+    .icon-parent {
+        align-self: stretch;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .search-bar-tag-child {
+        align-self: stretch;
+        position: relative;
+        border-top: 1px solid rgba(135, 167, 6, 0.5);
+        box-sizing: border-box;
+        height: 1px;
+    }
+
+    .search-bar-tag {
+        width: 100%;
+        position: relative;
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 8px;
+        background-color: #f8f8e7;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 16px;
+        box-sizing: border-box;
+        gap: 16px;
+        text-align: left;
+        font-size: 16px;
+        color: #9db052;
+        font-family: 'Roboto Serif';
+        max-width: 500px;
+    }
+
+    input {
+        flex: 1;
+        background-color: var(--color-background-primary);
+        color: var(--color-brand-primary);
+        border: none;
+        outline: none;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        font-family: inherit;
+        position: relative;
+    }
+
+    input::placeholder {
+        color: var(--color-brand-opacity50);
+    }
+
+    .still-content-tag.active {
+        background-color: transparent;
+        color: var(--color-brand-primary);
+        border-color: 2px solid var(--color-brand-primary);
+    }
+</style>
+
+
+<body>
+
+    <div class="search-bar-tag">
+        <div class="icon-parent">
+            <img class="icon" alt="" src="../assets/icons/icFind.svg">
+            <input id="search" placeholder="Search" type="text"></input>
+        </div>
+        <div class="search-bar-tag-child">
+        </div>
+
+        <div class='still-tags-container' onclick="this.getElementsByClassName(still-content-tag).toggle('active')">
+        </div>
+    </div>
+
+    <script type="module">
+        import { still_tags_loader_with_link, still_tags_loader_no_link } from '../scripts/tags_loader.js';
+
+        const container = document.querySelector('.still-tags-container');
+
+        // Thêm 1 tag mới vào container, cú pháp : {text: 'Tên tag', link: 'Đường dẫn đến trang web'}
+
+        still_tags_loader_with_link(container, [
+            {
+                text: 'Syaro',
+                link: 'https://www.youtube.com/',
+            },
+            {
+                text: 'Fubuki-chan',
+                link: 'https://www.youtube.com/',
+            },
+        ])
+
+        // Hoặc nếu không cần link thì dùng hàm này
+        still_tags_loader_no_link(container, ['Kaguya', 'Miku', 'Gura', 'Aqua', 'Mori Calliope', 'Nene', 'Pekora', 'Kanata', 'Coco', 'Watame', 'Aki', 'Matsuri', 'Subaru', 'Choco', 'Roboco', 'Okayu', 'Korone', 'Marine', 'Luna', 'Sora', 'Aqua-chan', 'Miko-chan', 'Nene-chan', 'Pekora-chan']);
+    </script>
