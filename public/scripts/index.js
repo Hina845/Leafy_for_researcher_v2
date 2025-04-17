@@ -9,8 +9,8 @@ function loadComponent(selector, file) {
   }
   
   document.addEventListener("DOMContentLoaded", () => {
-    loadComponent("#navigation", "./components/navigation.html");
-    loadComponent("#footer", "./components/footer.html");
-    loadComponent("#content-card", "./components/content-card.html");
+    loadComponent("#navigation", "../components/navigation.html");
+    loadComponent("#footer", "../components/footer.html");
+    loadComponent('#search-panel', '../components/search-panel.html');
   });
   
