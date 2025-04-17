@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <link rel="stylesheet" href="components/component-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="content-card-container"></div>
+    <script>
+        fetch('http://localhost:7777/api/v1/get-content-card', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+
+            })
+        }).then(data => data.json()).then(async (data) => {
+            const container = document.getElementById('content-card-container');
+            data = data.content_cards;
+            for (let i = 0; i < data.length; i++) {
+                const content_card = data[i].template;
+                const content_path = data[i].post_directory;
+                const div = document.createElement('div');
+                div.className = 'content-card';
+                div.innerHTML = content_card;
+                
+                console.log(div)
+
+                const content = await fetch(content_path);
+                const contentElement = div.querySelector('#content');
+                if (contentElement) {
+                    contentElement.innerHTML = await marked.parse(await content.text());
+                } else {
+                    console.warn('No element with id "content" found in the template.');
+                }
+                
+                container.appendChild(div);
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+
+    </script>
+</body>
+</html>
