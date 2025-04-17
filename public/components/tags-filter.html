@@ -70,46 +70,98 @@
         color: var(--color-brand-opacity50);
     }
 
-    .still-content-tag.active {
+    .tag-text {
+        position: relative;
+        line-height: 24px;
+        font-weight: 500;
+    }
+
+    .tag.active {
+        background-color: var(--color-brand-primary);
+        color: #fff;
+    }
+
+    .tag {
+        border-radius: 8px;
+        border: 2px solid var(--color-brand-primary);
         background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 8px;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+    }
+
+    .tag-parent {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        gap: 8px;
+        text-align: left;
+        font-size: 12px;
         color: var(--color-brand-primary);
-        border-color: 2px solid var(--color-brand-primary);
+        font-family: 'Roboto Serif';
     }
 </style>
 
 
-<body>
 
-    <div class="search-bar-tag">
-        <div class="icon-parent">
-            <img class="icon" alt="" src="../assets/icons/icFind.svg">
-            <input id="search" placeholder="Search" type="text"></input>
-        </div>
-        <div class="search-bar-tag-child">
-        </div>
-
-        <div class='still-tags-container' onclick="this.getElementsByClassName(still-content-tag).toggle('active')">
-        </div>
+<div class="search-bar-tag">
+    <div class="icon-parent">
+        <img class="icon" alt="" src="../assets/icons/icFind.svg">
+        <input id="search" placeholder="Search" type="text"></input>
     </div>
+    <div class="search-bar-tag-child"></div>
 
-    <script type="module">
-        import { still_tags_loader_with_link, still_tags_loader_no_link } from '../scripts/tags_loader.js';
 
-        const container = document.querySelector('.still-tags-container');
+    <div class="tag-parent" id="tag-container"></div>
+</div>
 
-        // Thêm 1 tag mới vào container, cú pháp : {text: 'Tên tag', link: 'Đường dẫn đến trang web'}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tags = [
+            "Thể thao",
+            "Di sản văn hóa",
+            "Khoa học",
+            "Công nghệ",
+            "Giáo dục",
+            "Môi trường",
+            "Y tế",
+            "Nghệ thuật",
+            "Âm nhạc",
+            "Lịch sử",
+            "Du lịch",
+            "Ẩm thực",
+            "Thời trang",
+            "Kinh tế",
+            "Chính trị",
+            "Xã hội",
+            "Văn học",
+            "Điện ảnh",
+            "Thể hình",
+            "Sức khỏe",
+            // Add more tags as needed
+        ];
 
-        still_tags_loader_with_link(container, [
-            {
-                text: 'Syaro',
-                link: 'https://www.youtube.com/',
-            },
-            {
-                text: 'Fubuki-chan',
-                link: 'https://www.youtube.com/',
-            },
-        ])
+        const tagContainer = document.getElementById("tag-container");
 
-        // Hoặc nếu không cần link thì dùng hàm này
-        still_tags_loader_no_link(container, ['Kaguya', 'Miku', 'Gura', 'Aqua', 'Mori Calliope', 'Nene', 'Pekora', 'Kanata', 'Coco', 'Watame', 'Aki', 'Matsuri', 'Subaru', 'Choco', 'Roboco', 'Okayu', 'Korone', 'Marine', 'Luna', 'Sora', 'Aqua-chan', 'Miko-chan', 'Nene-chan', 'Pekora-chan']);
-    </script>
+        // Generate tags dynamically
+        tags.forEach((tagText) => {
+            const tag = document.createElement("div");
+            tag.className = "tag";
+            tag.innerHTML = `<div class="tag-text">${tagText}</div>`;
+            tag.addEventListener("click", () => {
+                tag.classList.toggle("active");
+            });
+            tagContainer.appendChild(tag);
+            // code backend từ đây nhé quân
+        });
+    });
+</script>
