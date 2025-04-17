@@ -58,7 +58,7 @@
 			overflow: hidden;
 			flex-shrink: 0;
 		}
-		.follow-text {
+		.button-text {
 			position: relative;
 			font-family: inherit;
 			font-size: var(--spacing-3);
@@ -78,6 +78,22 @@
 			padding: var(--spacing-2) var(--spacing-4);
 			gap: var(--spacing-1);
 			box-sizing: border-box; 
+		}
+		.followed{
+			font-family: inherit;
+			border: 2px solid var(--color-brand-primary);
+			border-radius: 16px;
+			background:none;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			padding: var(--spacing-2) var(--spacing-4);
+			gap: var(--spacing-1);
+			box-sizing: border-box; 
+		}
+		.followed .button-text{
+			color: var(--color-brand-primary);
 		}
 		.share-icon {
 			width: 24px;
@@ -212,7 +228,7 @@
 		}
 		@media  (max-width: 1079px){
 		.profile-background{
-			content: url(../assets/images/profile-background-small.svg);
+			content: url(assets/images/profile-background-small.svg);
 		}
 		.username{
 			font-size: 1rem;
@@ -221,10 +237,13 @@
 			font-size: 2.25em;
 		}
 
-		.follow-text {
+		.button-text {
 			font-size: 1rem;	
 		}
 		.follow{
+			height: 50px;
+		}
+		.followed{
 			height: 50px;
 		}
 		.share {
@@ -256,7 +275,8 @@
   	
 </head>
 <body>
-    		<img class="profile-background" alt="" src="../public/assets/images/profile-background.png">
+	<nav id="navigation"></nav>
+    		<img class="profile-background" alt="" src="assets/images/profile-background.png">
     	<div class="profile">
 				<div class="profile-header">
 					<img class="avatar" alt="avatar" src="assets/images/avatar.png">
@@ -266,9 +286,13 @@
     		
 
     		<div class="button">
-      			<button class="follow">
-					<img src="assets/icons/icFollow.png" alt="follow" class="follow-icon">
-					<span class="follow-text">Theo dõi</span>
+      			<button id="action-button" class="follow" style="display: none;">
+					<img src="assets/icons/icEdit.svg" alt="edit" class="follow-icon">
+					<span class="button-text">Chỉnh sửa</span>
+	  			</button>
+				  <button id="follow-button" class="follow">
+					<img src="assets/icons/icFollow.svg" alt="follow" class="follow-icon">
+					<span id="follow-text" class="button-text">Theo dõi</span>
 	  			</button>
 	  			<button class="share">
 					<img src="assets/icons/icShare.png" alt="share" class="share-icon">
@@ -305,7 +329,50 @@
 				<div id="content-card"></div>
 			</div>
 		</div>
+	<footer id="footer"></footer>
 <script>
+			const isLoggedIn = false; 
+			const isOwner = false;
+
+		const actionButton = document.getElementById('action-button');
+		const followButton = document.getElementById('follow-button');
+		const followText = document.getElementById('follow-text');
+
+		function updateButtonDisplay() {
+			if (isLoggedIn && isOwner) {
+				actionButton.style.display = 'flex';
+				followButton.style.display = 'none';
+			} else {
+				actionButton.style.display = 'none';
+				followButton.style.display = 'flex';
+			}
+		}
+
+		let isFollowing = false;
+
+		function requireLogin() {
+			// Có thể thay bằng chuyển hướng đến trang đăng nhập
+			alert('Vui lòng đăng nhập để theo dõi!');
+		}
+
+		followButton.addEventListener('click', () => {
+			if (!isLoggedIn) {
+				requireLogin();
+			} else {
+				isFollowing = !isFollowing;
+				followText.textContent = isFollowing ? 'Đã theo dõi' : 'Theo dõi';
+				if (isFollowing) {
+					followButton.classList.remove('follow');
+					followButton.classList.add('followed');
+				} else {
+					followButton.classList.remove('followed');
+					followButton.classList.add('follow');
+				}
+			}
+		});
+
+		updateButtonDisplay();
+
 function switch_tab(elem1, elem2) {
     for (let e of document.getElementById("tab-navigator").querySelectorAll("button")) {
         e.classList.remove("active");
@@ -322,6 +389,6 @@ function switch_tab(elem1, elem2) {
     
 }
 	</script>
-<script src="../scripts/index.js"></script>
+<script src="scripts/index.js"></script>
 </body>
 </html>
