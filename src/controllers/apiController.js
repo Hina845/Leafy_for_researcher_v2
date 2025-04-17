@@ -23,7 +23,6 @@ async function getContentCards(req, res) {
 
         let content_cards = [];
         for (let post of posts) {
-            const post_directory = `researches/${post._id.toString()}/content.md`;
             const author = await UserModel.findById(post.owned_user_id);
             const thumbnail_directory = path.resolve('public', 'researches', post._id.toString());
             const thumbnail_files = fs.readdirSync(thumbnail_directory);
@@ -35,6 +34,7 @@ async function getContentCards(req, res) {
             const template = await ejs.renderFile(__dirname + '/views/content-card.ejs', {
                 tags: post.tags,
                 title: post.title,
+                subtitle: post.subtitle,
                 author: author.display_name,
                 date: post.date_created.toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -44,7 +44,7 @@ async function getContentCards(req, res) {
                 views: post.views,
                 imageUrl: `${thumbnail_path}`,
             });
-            content_cards.push({template, post_directory})
+            content_cards.push(template)
         }
         return res.json({ success: true, content_cards });
     } catch (err) {
