@@ -43,7 +43,7 @@
     margin: 0 auto;
   }
   
-  /* --- Responsive cho điện thoại (VD: iPhone 14 Pro Max ~ max-width: 430px) --- */
+
   @media (max-width: 430px) {
     .title-main {
       font-size: 36px;
@@ -55,6 +55,24 @@
       max-width: 90%;
       padding: 0 10px;
     }
+    .category {
+    padding: 24px 16px; /* Giảm padding hai bên khi trên mobile */
+  }
+
+  .t-cc-nhmt {
+    font-size: 24px; /* Nhỏ hơn một chút cho vừa màn hình */
+    padding-bottom: 16px;
+  }
+
+  .tag {
+    font-size: 11px; /* Có thể giảm nhẹ chữ nếu cần */
+    padding: 5px 10px;
+  }
+
+  .tag-combination {
+    gap: 8px;
+    padding-bottom: 16px;
+  }
   
     .title-container {
       padding: 10px;
