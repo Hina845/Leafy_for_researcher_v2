@@ -132,3 +132,78 @@ body {
 .research-vault-container .active {
 	display: flex;
 }
+
+
+@media (max-width: 430px) {
+	/* NAVIGATION - điều hướng */
+	nav {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  background-color: #f9f9f9;
+	  padding: 10px;
+	}
+  
+	nav a {
+	  font-size: 16px;
+	  padding: 10px;
+	  text-decoration: none;
+	  color: #333;
+	  display: block;
+	  width: 100%;
+	  text-align: center;
+	}
+  
+	/* FOOTER - chân trang */
+	footer {
+	  padding: 20px 10px;
+	  font-size: 14px;
+	  text-align: center;
+	  background-color: #f1f1f1;
+	}
+  
+	/* HÌNH ẢNH */
+	img {
+	  max-width: 100%;
+	  height: auto;
+	}
+  
+	/* CÁC PHẦN TỬ KHÁC */
+	.content, .main {
+	  padding: 10px;
+	  font-size: 16px;
+	}
+  
+	/* NẾU DÙNG FLEX HOẶC GRID */
+	.flex-container {
+	  flex-direction: column;
+	}
+  
+	/* ẨN MENU DESKTOP - HIỆN MENU MOBILE NẾU CÓ */
+	.menu-desktop {
+	  display: none;
+	}
+  
+	.menu-mobile {
+	  display: block;
+	}
+  
+	/* MENU TOGGLE HAMBURGER (tuỳ bạn có dùng không) */
+	.menu-toggle {
+	  display: block;
+	  font-size: 24px;
+	  cursor: pointer;
+	  margin-bottom: 10px;
+	}
+  
+	.nav-links {
+	  display: none;
+	  flex-direction: column;
+	  width: 100%;
+	}
+  
+	.nav-links.show {
+	  display: flex;
+	}
+  }
+  

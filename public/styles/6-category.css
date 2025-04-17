@@ -1,0 +1,63 @@
+.typography-title {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full màn hình */
+    overflow: hidden;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .title-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px;
+    z-index: 2;
+  }
+  
+  .title-main {
+    color: var(--true-white, #FFF);
+    font-family: "Roboto Serif", serif;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
+  
+  .title-sub {
+    color: var(--true-white, #FFF);
+    font-family: "Roboto Serif", serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    max-width: 727px;
+    margin: 0 auto;
+  }
+  
+  /* --- Responsive cho điện thoại (VD: iPhone 14 Pro Max ~ max-width: 430px) --- */
+  @media (max-width: 430px) {
+    .title-main {
+      font-size: 36px;
+      padding: 0 10px;
+    }
+  
+    .title-sub {
+      font-size: 14px;
+      max-width: 90%;
+      padding: 0 10px;
+    }
+  
+    .title-container {
+      padding: 10px;
+    }
+  }
+  
