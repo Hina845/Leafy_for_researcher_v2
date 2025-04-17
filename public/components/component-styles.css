@@ -8,10 +8,11 @@
     top: 0;
     left: 0;
     width: 96%;
+    height: 80px;
     background-color: var(--color-background-primary);
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     border-radius: 2px;
     border-color: var(--color-brand-opacity15);
     padding: var(--spacing-2) var(--spacing-4);

@@ -10,7 +10,6 @@
             border-radius: 8px;
             border: 1px solid var(--color-brand-primary);
             box-sizing: border-box;
-            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -26,9 +25,8 @@
         .login{
             position: relative;
             border-radius: 8px;
-            border: none;
+            border: 1px solid transparent;
             box-sizing: border-box;
-            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -48,13 +46,39 @@
         }
         .search-input {
             font-family: inherit;
+            width: 100%; 
+            box-sizing: border-box; 
+            min-width: 0; 
 
         }
 
         .search-input::placeholder {
             font-family: inherit;
         }
+        .menu-toggle{
+            display: none;
+        }
+        @media (max-width: 1079px)
+        {
+            a,
+            .signed-in,
+            .sign-up {
+                display: none !important;
+            }
+            .menu-toggle {
+                display: flex !important;
+                background: none;
+                border: none;
+                 padding-right: var(--spacing-4);
+            }
 
+            .nav-search-bar {
+            align-items: stretch;
+            flex-shrink: 1; 
+            flex-basis: 200px; 
+            min-width: 80px;
+            }
+        }
     </style>
 </head><body>
 
@@ -102,27 +126,41 @@
             <!-- Dynamic update this using JS after backend done -->
             <img id = 'profile-picture' src = "../assets/images/dummy_profile.PNG" alt="User" class="user-icon" style = "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
         </div>
-      <!-- <div class="sign-up">
-            <button class="register">đăng kí</button>
+      <div class="sign-up">
+            <button class="register">đăng ký</button>
             <button class="login">đăng nhập</button>
         </div>
         </div>
+        <button class="menu-toggle" aria-label="Menu">
+            <img src="../assets/icons/icMenu.svg">
+          </button>
     </div>
     <script>
             const isLoggedIn = false;
 
-window.addEventListener("DOMContentLoaded", () => {
-    const signedIn = document.querySelector(".signed-in");
-    const signUp = document.querySelector(".sign-up");
+    window.addEventListener("DOMContentLoaded", () => {
+        const signedIn = document.querySelector(".signed-in");
+        const signUp = document.querySelector(".sign-up");
 
-    if (isLoggedIn) {
-        signedIn.style.display = "flex";
-        signUp.style.display = "none";
-    } else {
-        signedIn.style.display = "none";
-        signUp.style.display = "flex";
-    }
-});
+        if (isLoggedIn) {
+            signedIn.style.display = "flex";
+            signUp.style.display = "none";
+        } else {
+            signedIn.style.display = "none";
+            signUp.style.display = "flex";
+        }
+    });
+    function updatePlaceholder() {
+            const searchInput = document.querySelector(".search-input");
+            if (window.innerWidth <= 1080) {
+                searchInput.placeholder = "tìm kiếm...";
+            } else {
+                searchInput.placeholder = "tìm cảm hứng nghiên cứu...";
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", updatePlaceholder);
+        window.addEventListener("resize", updatePlaceholder);
     </script>
     <!-- <script type = "module">
         import { server } from '../frontend/config.js';
