@@ -5,9 +5,9 @@
   	<meta name="viewport" content="initial-scale=1, width=device-width">
   	
   	<title>Profile | Leafy</title>
-    <link rel="icon" type="favicon/icon" href="../assets/icons/icBrandLogo1.svg">
+    <link rel="icon" type="favicon/icon" href="assets/icons/icBrandLogo1.svg">
   	<style>
-         @import url("../styles/tokens.css");
+         @import url("styles/tokens.css");
 
 		.profile-background {
 			width: 100%;
@@ -210,15 +210,56 @@
 			flex-direction: column;
 			align-items: center;
 		}
+		@media  (max-width: 1079px){
+		.profile-background{
+			content: url(../assets/images/profile-background-small.svg);
+		}
+		.username{
+			font-size: 1rem;
+		}
+		.profile-header {
+			font-size: 2.25em;
+		}
+
+		.follow-text {
+			font-size: 1rem;	
+		}
+		.follow{
+			height: 50px;
+		}
+		.share {
+			height: 50px;
+			width: 50px;
+		}
+		.quantity {
+			font-size: 2.25rem;
+		}
+		.stat{
+			font-size: 1rem;
+		}
+		.profile-stats{
+			gap: 23.5px;
+		}
+		.tabs{
+			padding-bottom: 16px;;
+		}
+		.profile{
+			gap: 16px;
+		}
+		.contents{
+			width: 88%;
+			padding-bottom: 24px;
+		}
+	}
      </style>
   	
   	
 </head>
 <body>
-    		<img class="profile-background" alt="" src="../assets/images/profile-background.png">
+    		<img class="profile-background" alt="" src="../public/assets/images/profile-background.png">
     	<div class="profile">
 				<div class="profile-header">
-					<img class="avatar" alt="avatar" src="../assets/images/avatar.png">
+					<img class="avatar" alt="avatar" src="assets/images/avatar.png">
 					<div class="name">Lê Đăng Tấn</div>
 					<div class="username">@realdangtan</div>
 				</div>
@@ -226,11 +267,11 @@
 
     		<div class="button">
       			<button class="follow">
-					<img src="../assets/icons/icFollow.png" alt="follow" class="follow-icon">
+					<img src="assets/icons/icFollow.png" alt="follow" class="follow-icon">
 					<span class="follow-text">Theo dõi</span>
 	  			</button>
 	  			<button class="share">
-					<img src="../assets/icons/icShare.png" alt="share" class="share-icon">
+					<img src="assets/icons/icShare.png" alt="share" class="share-icon">
 				</button>
     		</div>
     		<div class="profile-stats">
