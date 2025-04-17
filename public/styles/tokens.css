@@ -58,4 +58,41 @@ html, body {
   --spacing-7: 96px;
 }
 
+/* WebKit scrollbar styling */
+::-webkit-scrollbar {
+  width: 50px;
+  height: 50px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* no background */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #88ab2d; /* default (middle) */
+  border-radius: 999px;
+  border: 3px solid transparent; /* creates padding effect */
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a2b765; /* hover (left) */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #264a1d; /* active/click (right) */
+}
+
+/* Remove scrollbar buttons (top/bottom arrows) */
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+}
+
+/* Firefox fallback */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #88ab2d transparent;
+}
   

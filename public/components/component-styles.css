@@ -83,6 +83,15 @@
     background-color: var(--color-brand-opacity50);
 }
 
+
+.account-circle-icon {
+    width: 24px;
+    position: relative;
+    height: 24px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
 /* Still Tag Container */
 
 .still-tags-container {
@@ -148,6 +157,8 @@
     z-index: 0;
 }
 
+/* Content Card */
+
 .image-icon {
     width: 100%;
     position: absolute;
@@ -193,27 +204,6 @@
     color: var(--color-brand-contrast);
 }
 
-.account-circle-icon {
-    width: 24px;
-    position: relative;
-    height: 24px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.footer-info {
-    position: relative;
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    text-align: left;
-    font-size: 16px;
-    color: #87a706;
-    font-family: 'Roboto Serif';
-}
 
 .card-footer {
     align-self: stretch;
@@ -245,6 +235,12 @@
     font-size: 12px;
     color: var(--color-true-white);
     font-family: "Roboto Serif";
+}
+
+@media screen and (max-width: 1079px) {
+    .card-footer .date-info {
+        display: none;
+    }
 }
 
 /** Footer **/
@@ -333,4 +329,240 @@ li a:hover{
         gap: var(--spacing-4)
     }
     
+}
+
+.footer-info {
+    position: relative;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    text-align: left;
+    font-size: 16px;
+    color: #87a706;
+    font-family: 'Roboto Serif';
+}
+
+/* Search Panel */
+.icon {
+    width: 32px;
+    position: relative;
+    max-height: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.title {
+    position: relative;
+    font-weight: 600;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.tag-text {
+    position: relative;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.tag-item {
+    border-radius: 8px;
+    background-color: #87a706;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+}
+
+.tag-list {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.title1 {
+    align-self: stretch;
+    position: relative;
+}
+
+.account-circle-icon {
+    width: 24px;
+    position: relative;
+    height: 24px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.author-name {
+    width: fit-content;
+    position: relative;
+    line-height: 24px;
+}
+
+.author {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.date {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.view {
+    width: 75px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.card-footer {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0px;
+    font-size: 16px;
+    color: #87a706;
+}
+
+.content-card {
+    align-self: stretch;
+    border-radius: 16px;
+    background-color: #f0f6d8;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 32px;
+    gap: 16px;
+    font-size: 20px;
+}
+
+.person-info-child {
+    width: 59px;
+    position: relative;
+    border-radius: 50%;
+    height: 59px;
+    object-fit: cover;
+}
+
+.person-name {
+    align-self: stretch;
+    position: relative;
+    font-weight: 500;
+}
+
+.person-handle {
+    align-self: stretch;
+    position: relative;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.person-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.person-info {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.add-circle-outline {
+    width: 16px;
+    position: relative;
+    max-height: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.follow-button-text {
+    position: relative;
+    font-weight: 500;
+}
+
+.follow-button {
+    border-radius: 999px;
+    background-color: #87a706;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    gap: 4px;
+    font-size: 10px;
+    color: #fff;
+}
+
+.profile-card {
+    align-self: stretch;
+    border-radius: 16px;
+    background-color: rgba(135, 167, 6, 0.1);
+    height: 83px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    box-sizing: border-box;
+    gap: 0px;
+    font-size: 16px;
+    color: #87a706;
+}
+
+.headersearch-card {
+    width: 100%;
+    position: relative;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 16px;
+    background-color: #f8f8e7;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 32px;
+    box-sizing: border-box;
+    gap: 16px;
+    text-align: left;
+    font-size: 24px;
+    color: #204f0a;
+    font-family: 'Roboto Serif';
 }
