@@ -20,6 +20,7 @@ footer {
 
 button{
   cursor: pointer;
+  font-family: 'Roboto Serif';
 }
 
 html, body {

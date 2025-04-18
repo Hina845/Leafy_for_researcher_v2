@@ -22,4 +22,13 @@ pageRouter.get('/change-password', verifyPasswordChangeLink, (req, res) => {
     res.sendFile(path.join(root, '2-3-change-password.html'));
 });
 
+pageRouter.get('/profile', (req, res) => {
+    res.sendFile(path.join(root, '4-profile.html'));
+});
+
+pageRouter.get('/archive', (req, res) => {
+    res.sendFile(path.join(root, '5-archive.html'));
+})
+
+
 export default pageRouter;
