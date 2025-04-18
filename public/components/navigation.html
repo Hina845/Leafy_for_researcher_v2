@@ -437,6 +437,12 @@
             right: 0px;
         }
 
+        #profile-menu-popup.popup-show {
+            display: flex;
+            animation: dropdown-animation 0.3s ease-in-out;
+        }
+
+
         .menu-text {
             cursor: pointer;
             align-self: stretch;
@@ -496,11 +502,6 @@
             .mobile {
                 display:unset;
             }   
-        }
-
-        #profile-menu-popup.popup-show {
-            display: flex;
-            animation: dropdown-animation 0.3s ease-in-out;
         }
 
         @keyframes dropdown-animation {
@@ -614,7 +615,7 @@
                     <a class="menu-text" id = "change-on-login">Đăng nhập</a>
                     <div class="menu-child show-on-login">
                     </div>
-                    <a class="menu-text-red show-on-login" href = '/logout'>Đăng xuất</a>
+                    <div class="menu-text-red show-on-login" onclick = "window.location.href = '/logout'">Đăng xuất</div>
                 </div>
             </div>
         </div>
@@ -623,7 +624,7 @@
             import { server } from '../scripts/config.js';
             import { still_tags_loader_with_link } from '../scripts/tags_loader.js';
 
-            const isLoggedIn = true;
+            const isLoggedIn = false;
 
             window.addEventListener("DOMContentLoaded", () => {
                 const signedIn = document.querySelector(".signed-in");
@@ -634,7 +635,7 @@
                     signedIn.style.display = "flex";
                     signUp.style.display = "none";
                     show_on_login.forEach((element) => {
-                        element.style.display = "flex";
+                        element.style = "display: flex; align-items: center; justify-content: center;";
                     });
                     change_on_login.innerText = "Chỉnh sửa thông tin";
                     change_on_login.href = "/profile";
@@ -649,19 +650,20 @@
                 }
             });
 
-            document.getElementById("profile-picture").addEventListener("click", (e) => {
-                e.stopPropagation();
-                const profileMenuPopup = document.getElementById("profile-menu-popup");
-                profileMenuPopup.classList.toggle("popup-show");
-            });
-
             document.querySelector(".menu-toggle").addEventListener("click", (e) => {
                 e.stopPropagation();
                 const profileMenuPopup = document.getElementById("profile-menu-popup");
                 profileMenuPopup.classList.toggle("popup-show");
             });
 
+            document.getElementById("profile-picture").addEventListener("click", (e) => {
+                e.stopPropagation();
+                const profileMenuPopup = document.getElementById("profile-menu-popup");
+                profileMenuPopup.classList.toggle("popup-show");
+            });
+
             document.addEventListener("click", (event) => {
+                event.stopPropagation();
                 const searchPanel = document.getElementById("search-panel");
                 const profileMenuPopup = document.getElementById("profile-menu-popup");
 
