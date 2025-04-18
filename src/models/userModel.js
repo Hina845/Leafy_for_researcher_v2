@@ -28,10 +28,6 @@ const Schema = mongoose.Schema({
         type: Array,
         default: [],
     },
-    profile_image: {
-        type: String,
-        default: 'public/assets/imgDefaultProfilePic.png',
-    },
     viewed_posts: {
         type: Array,
         default: [],

@@ -387,6 +387,7 @@
 
         .menu-toggle {
             display: none;
+            pointer-events: none;
         }
 
         @media (max-width: 1079px) {
@@ -417,7 +418,7 @@
         }
 
         #search-panel {
-            display: flex;
+            display: none;
             flex-direction: column;
             position: absolute;
             top: 80px;
@@ -436,10 +437,24 @@
             right: 0px;
         }
 
+        #profile-menu-popup.popup-show {
+            display: flex;
+            animation: dropdown-animation 0.3s ease-in-out;
+        }
+
+
         .menu-text {
-        align-self: stretch;
-        position: relative;
-        font-weight: 500;
+            cursor: pointer;
+            align-self: stretch;
+            position: relative;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #87a706;
+            text-align: center;
         }
 
         .menu-child {
@@ -451,6 +466,8 @@
         }
 
         .menu-text-red {
+            display: none;
+            text-decoration: none;
             align-self: stretch;
             position: relative;
             font-weight: 500;
@@ -487,11 +504,6 @@
             }   
         }
 
-        #profile-menu-popup.popup-show {
-            display: flex;
-            animation: dropdown-animation 0.3s ease-in-out;
-        }
-
         @keyframes dropdown-animation {
             from {
             opacity: 0;
@@ -521,9 +533,8 @@
 <body>
     <nav>
         <div class='navigator'>
-            <img src="../assets/images/logo-type2.png" alt="Logo" class="logo"
-                style="width: 100px; height: var(--spacing-4);">
-            <div class=" nav-search-bar" onclick="document.getElementById('search-panel').classList.toggle('popup-show')">
+            <img src="../assets/images/logo-type2.png" alt="Logo" class="logo" style="width: 100px; height: var(--spacing-4);">
+            <div class=" nav-search-bar">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_294_217)">
                         <path
@@ -536,156 +547,26 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <input type="text" placeholder="tìm cảm hứng nghiên cứu..." class="search-input">
+                <input type="text" placeholder="tìm cảm hứng nghiên cứu..." class="search-input" id = 'search-input'>
             </div>
             <div id = 'search-panel'>
                 <div class="headersearch-card">
-                    <div class="search-container">
+                    <div class="search-container" id = 'search-panel-still-tag-header'>
                         <img class="icon" alt="" src="../assets/icons/icFind.svg">
                         <div class="title">Chủ đề</div>
-                    </div>
-                    
-                    <div class='still-tags-container'></div>
-                    <script type="module">
-                        import { still_tags_loader_with_link, still_tags_loader_no_link } from '../scripts/tags_loader.js';
-            
-                        const container = document.querySelector('.still-tags-container');
-
-                        still_tags_loader_with_link(container, [
-                            {
-                                text: 'Syaro',
-                                link: 'https://www.youtube.com/',
-                            },
-                            {
-                                text: 'Fubuki-chan',
-                                link: 'https://www.youtube.com/',
-                            },
-                        ])
-            
-                    </script>
-                   
-                    <div class="search-container">
+                    </div>  
+                    <div class='still-tags-container' id = 'search-panel-still-tag-container'></div>
+                    <div class="search-container" id = 'search-panel-content-card-header'>
                         <img class="icon" alt="" src="../assets/icons/icFind.svg">
                 
                         <div class="title">Các post liên quan</div>
                     </div>
-                
-                    <div id = search-panel-content-card-container class = 'search-panel-container'>
-                        <div class="content-card-2">
-                            <div class="title1">Duolingo: Hành Trình Tạo Dựng Sản Phẩm Công Nghệ Và Thay Đổi Tư Duy Về Kỹ Thuật Phần Mềm
-                            </div>
-                            <div class="card-footer">
-                                <div class="author">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icAccount.svg">
-                    
-                                    <div class="author-name">Lê Đăng Tấn</div>
-                                </div>
-                                <div class="date">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icTime.svg">
-                    
-                                    <div class="author-name">16 tháng 02 2025, 19:20</div>
-                                </div>
-                                <div class="view">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icEye.svg">
-                    
-                                    <div class="author-name">12,3k</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content-card-2">
-                            <div class="title1">Duolingo: Hành Trình Tạo Dựng Sản Phẩm Công Nghệ Và Thay Đổi Tư Duy Về Kỹ Thuật Phần Mềm
-                            </div>
-                            <div class="card-footer">
-                                <div class="author">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icAccount.svg">
-                    
-                                    <div class="author-name">Lê Đăng Tấn</div>
-                                </div>
-                                <div class="date">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icTime.svg">
-                    
-                                    <div class="author-name">16 tháng 02 2025, 19:20</div>
-                                </div>
-                                <div class="view">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icEye.svg">
-                    
-                                    <div class="author-name">12,3k</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content-card-2">
-                            <div class="title1">Duolingo: Hành Trình Tạo Dựng Sản Phẩm Công Nghệ Và Thay Đổi Tư Duy Về Kỹ Thuật Phần Mềm
-                            </div>
-                            <div class="card-footer">
-                                <div class="author">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icAccount.svg">
-                    
-                                    <div class="author-name">Lê Đăng Tấn</div>
-                                </div>
-                                <div class="date">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icTime.svg">
-                    
-                                    <div class="author-name">16 tháng 02 2025, 19:20</div>
-                                </div>
-                                <div class="view">
-                                    <img class="account-circle-icon" alt="" src="../assets/icons/icEye.svg">
-                    
-                                    <div class="author-name">12,3k</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="search-container">
+                    <div id = search-panel-content-card-container class = 'search-panel-container'></div>
+                    <div class="search-container" id = 'search-panel-profile-card-header'>
                         <img class="icon" alt="" src="../assets/icons/icFind.svg">
                         <div class="title">Nhà nghiên cứu</div>
                     </div>
-                    <div id = search-panel-profile-card-container class = search-panel-container>
-                        <div class="profile-card">
-                            <div class="person-info">
-                                <img class="person-info-child" alt="" src="../assets/images/imgProfile.png">
-                    
-                                <div class="person-details">
-                                    <div class="person-name">Lê Đăng Tấn</div>
-                                    <div class="person-handle">@realdangtan</div>
-                                </div>
-                            </div>
-                            <div class="follow-button">
-                                <img class="add-circle-outline" alt="" src="../assets/icons/icFollow.png">
-                    
-                                <div class="follow-button-text">Theo dõi</div>
-                            </div>
-                        </div>
-                        <div class="profile-card">
-                            <div class="person-info">
-                                <img class="person-info-child" alt="" src="../assets/images/imgProfile.png">
-                    
-                                <div class="person-details">
-                                    <div class="person-name">Lê Đăng Tấn</div>
-                                    <div class="person-handle">@realdangtan</div>
-                                </div>
-                            </div>
-                            <div class="follow-button">
-                                <img class="add-circle-outline" alt="" src="../assets/icons/icFollow.png">
-                    
-                                <div class="follow-button-text">Theo dõi</div>
-                            </div>
-                        </div>
-                        <div class="profile-card">
-                            <div class="person-info">
-                                <img class="person-info-child" alt="" src="../assets/images/imgProfile.png">
-                    
-                                <div class="person-details">
-                                    <div class="person-name">Lê Đăng Tấn</div>
-                                    <div class="person-handle">@realdangtan</div>
-                                </div>
-                            </div>
-                            <div class="follow-button">
-                                <img class="add-circle-outline" alt="" src="../assets/icons/icFollow.png">
-                    
-                                <div class="follow-button-text">Theo dõi</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id = search-panel-profile-card-container class = search-panel-container></div>
                 </div>
             </div>
             <div class='nav-navigator'>
@@ -713,44 +594,85 @@
                         <span style="color: var(--color-true-white);">Thêm bài viết</span>
                     </button>
                     <!-- Dynamic update this using JS after backend done -->
-                    <img id='profile-picture' src="../assets/images/dummy_profile.PNG" alt="User" class="user-icon"
-                        style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+                    <img id='profile-picture' src="../assets/images/dummy_profile.PNG" alt="User" class="user-icon" style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
                 </div>
                 <div class="sign-up">
                     <button class="register">đăng ký</button>
                     <button class="login">đăng nhập</button>
                 </div>
             </div>
-            <button class="menu-toggle" onclick = "document.getElementById('profile-menu-popup').classList.toggle('popup-show')" aria-label="Menu">
+            <button class="menu-toggle" aria-label="Menu">
                 <img src="../assets/icons/icMenu.svg">
             </button>
             <div id = 'profile-menu-popup'>
                 <div class="menu">
-                    <div class="menu-text mobile">Tài nguyên</div>
+                    <a class="menu-text mobile" href = '/archive'>Tài nguyên</a>
                     <div class="menu-child mobile">
                     </div>
-                    <div class="menu-text mobile">Danh mục</div>
+                    <a class="menu-text mobile" href = '/category'>Danh mục</a>
                     <div class="menu-child mobile">
                     </div>
-                    <div class="menu-text">Chỉnh sửa thông tin</div>
-                    <div class="menu-child">
+                    <a class="menu-text" id = "change-on-login">Đăng nhập</a>
+                    <div class="menu-child show-on-login">
                     </div>
-                    <div class="menu-text-red">Đăng xuất</div>
+                    <div class="menu-text-red show-on-login" onclick = "window.location.href = '/logout'">Đăng xuất</div>
                 </div>
             </div>
         </div>
-        <script>
+        <script type = "module">
+
+            import { server } from '../scripts/config.js';
+            import { still_tags_loader_with_link } from '../scripts/tags_loader.js';
+
             const isLoggedIn = false;
 
             window.addEventListener("DOMContentLoaded", () => {
                 const signedIn = document.querySelector(".signed-in");
                 const signUp = document.querySelector(".sign-up");
+                const show_on_login = document.querySelectorAll(".show-on-login");
+                const change_on_login = document.getElementById("change-on-login");
                 if (isLoggedIn) {
                     signedIn.style.display = "flex";
                     signUp.style.display = "none";
+                    show_on_login.forEach((element) => {
+                        element.style = "display: flex; align-items: center; justify-content: center;";
+                    });
+                    change_on_login.innerText = "Chỉnh sửa thông tin";
+                    change_on_login.href = "/profile";
                 } else {
                     signedIn.style.display = "none";
                     signUp.style.display = "flex";
+                    show_on_login.forEach((element) => {
+                        element.style.display = "none";
+                    });
+                    change_on_login.href = "/login";
+                    change_on_login.innerText = "Đăng nhập";
+                }
+            });
+
+            document.querySelector(".menu-toggle").addEventListener("click", (e) => {
+                e.stopPropagation();
+                const profileMenuPopup = document.getElementById("profile-menu-popup");
+                profileMenuPopup.classList.toggle("popup-show");
+            });
+
+            document.getElementById("profile-picture").addEventListener("click", (e) => {
+                e.stopPropagation();
+                const profileMenuPopup = document.getElementById("profile-menu-popup");
+                profileMenuPopup.classList.toggle("popup-show");
+            });
+
+            document.addEventListener("click", (event) => {
+                event.stopPropagation();
+                const searchPanel = document.getElementById("search-panel");
+                const profileMenuPopup = document.getElementById("profile-menu-popup");
+
+                if (!searchPanel.contains(event.target) && !event.target.closest(".nav-search-bar")) {
+                    searchPanel.classList.remove("popup-show");
+                }
+
+                if (!profileMenuPopup.contains(event.target) && !event.target.closest(".menu-toggle")) {
+                    profileMenuPopup.classList.remove("popup-show");
                 }
             });
 
@@ -767,6 +689,128 @@
                     document.querySelector("#search-panel").style.width = parseFloat(search_bar_width) + 32 + "px";
                 }
             }
+
+            function content_card_template(data) {
+                const template = `<div class="title1">${data.title}</div>
+                    <div class="card-footer">
+                        <div class="author">
+                            <img class="account-circle-icon" alt="" src="../assets/icons/icAccount.svg">                  
+                            <div class="author-name">${data.author_name}</div>
+                        </div>
+                        <div class="date">
+                            <img class="account-circle-icon" alt="" src="../assets/icons/icTime.svg">
+                            <div class="author-name">${data.date_created}</div>
+                        </div>
+                        <div class="view">
+                            <img class="account-circle-icon" alt="" src="../assets/icons/icEye.svg">
+                            <div class="author-name">${data.view}</div>
+                        </div>
+                    </div>`;
+                return template; 
+            }
+
+            function profile_card_template(data) {
+                const template = `<div class="person-info">
+                        <img class="person-info-child" alt="" src="${data.profile_picture_url}">
+                        <div class="person-details">
+                            <a class="person-name" style = "text-align: left;" href = '/user/${data._id}'>${data.display_name}</a>
+                            <div class="person-handle">@${data.username}</div>
+                        </div>
+                    </div>
+                    <div class="follow-button">
+                        <img class="add-circle-outline" alt="" src="../assets/icons/icFollow.svg">
+                        <div class="follow-button-text" onclick = "follow(${data._id})">Theo dõi</div>
+                    </div>`;
+                return template; 
+            }
+
+            document.getElementById("search-input").addEventListener("input", async () => {
+                if (document.getElementById("search-input").value.length == 0) {
+                    document.getElementById("search-panel").classList.remove("popup-show");
+                    return;
+                }
+                const searchPanel = document.getElementById("search-panel");
+
+                searchPanel.classList.add("popup-show");
+
+                const searchPanelStillTagHeader = document.getElementById("search-panel-still-tag-header");
+                const searchPanelStillTagContainer = document.getElementById("search-panel-still-tag-container");
+                const searchPanelContentCardHeader = document.getElementById("search-panel-content-card-header");
+                const searchPanelContentCardContainer = document.getElementById("search-panel-content-card-container");
+                const searchPanelProfileCardHeader = document.getElementById("search-panel-profile-card-header");
+                const searchPanelProfileCardContainer = document.getElementById("search-panel-profile-card-container");
+
+                const url = `${server}/api/v1/get-search-value?value=${document.getElementById("search-input").value}`;
+
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                let data = await response.json();
+                if (!data.success) {
+                    document.getElementById("search-panel").innerHTML = `<div class="headersearch-card">Đã xảy ra lỗi, vui lòng thử lại sau</div>`;
+                    return;
+                }
+                data = data.data;
+                if (data.tags.length === 0 && data.posts.length === 0 && data.users.length === 0) {
+                    searchPanelStillTagHeader.style.display = "none";
+                    searchPanelStillTagContainer.innerHTML = "<p>Không tìm thấy kết quả nào...<p>";
+                    searchPanelContentCardHeader.style.display = "none";
+                    searchPanelContentCardContainer.innerHTML = "";
+                    searchPanelProfileCardHeader.style.display = "none";
+                    searchPanelProfileCardContainer.innerHTML = "";
+                    return;
+                }
+                if (data.tags.length == 0) {
+                    searchPanelStillTagHeader.style.display = "none";
+                    searchPanelStillTagContainer.innerHTML = "";
+                } else {
+                    searchPanelStillTagHeader.style.display = "flex";
+                    searchPanelStillTagHeader.style.cursor = "pointer";
+                    searchPanelStillTagContainer.innerHTML = "";
+
+                    for (let tag of data.tags) {
+                        still_tags_loader_with_link(searchPanelStillTagContainer, [
+                            {
+                                text: tag.name,
+                                link: `archive?tag=${tag._id}`,
+                            },
+                        ])
+                    }
+                }
+                if (data.posts.length == 0) {
+                    searchPanelContentCardHeader.style.display = "none";
+                    searchPanelContentCardContainer.innerHTML = "";
+                } else {
+                    searchPanelContentCardHeader.style.display = "flex";
+                    searchPanelContentCardContainer.innerHTML = "";
+                    for (let content_card of data.posts) {
+                        const div = document.createElement("div");
+                        div.onclick = () => {
+                            window.location.href = `/posts/${content_card._id}`;
+                        };
+                        div.className = "content-card-2";
+                        div.style.cursor = "pointer";
+                        div.innerHTML = content_card_template(content_card);
+                        searchPanelContentCardContainer.appendChild(div);
+                    }
+                }
+                if (data.users.length == 0) {
+                    searchPanelProfileCardHeader.style.display = "none";
+                    searchPanelProfileCardContainer.innerHTML = "";
+                } else {
+                    searchPanelProfileCardHeader.style.display = "flex";
+                    searchPanelProfileCardContainer.innerHTML = "";
+                    for (let profile_card of data.users) {
+                        const div = document.createElement("div");
+                        div.className = "profile-card";
+                        div.innerHTML = profile_card_template(profile_card);
+                        searchPanelProfileCardContainer.appendChild(div);
+                    }
+                }
+            });
 
             window.addEventListener("DOMContentLoaded", updatePlaceholder);
             window.addEventListener("resize", updatePlaceholder);
