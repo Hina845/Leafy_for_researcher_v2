@@ -404,7 +404,6 @@ flex-shrink: 0;
 
 .menu-toggle {
     display: none;
-    pointer-events: none;
 }
 
 @media (max-width: 1079px) {
