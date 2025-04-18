@@ -30,5 +30,9 @@ pageRouter.get('/archive', (req, res) => {
     res.sendFile(path.join(root, '5-archive.html'));
 })
 
+pageRouter.get('/test', (req, res) => {
+    res.sendFile(path.join(root, 'components', 'navigation.html'));
+});
+
 
 export default pageRouter;

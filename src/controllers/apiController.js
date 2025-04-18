@@ -1,5 +1,6 @@
 import PostModel from '../models/postModel.js';
 import UserModel from '../models/userModel.js';
+import TagModel from '../models/tagModel.js';
 import ejs from 'ejs';
 import path from 'path';
 import fs from 'fs';
@@ -53,4 +54,83 @@ async function getContentCards(req, res) {
     }
 }
 
-export { getContentCards };
+async function getSearchValue(req, res) {
+    const regex = req.query.value || '';
+    const limit = parseInt(req.query.limit) || 10;
+    let searchResponse = {
+        tags: [],
+        posts: [],
+        users: [],
+    }
+    try {
+        const [tags, posts, users, users_by_display_name] = await Promise.all([
+            TagModel.find({ name: { $regex: regex, $options: 'iu' } }).limit(limit),
+            PostModel.find({ title: { $regex: regex, $options: 'iu' } }).limit(limit),
+            UserModel.find({ username: { $regex: regex, $options: 'i' } }).limit(limit),
+            UserModel.find({ display_name: { $regex: regex, $options: 'iu' } }).limit(limit),
+        ]);
+
+        const userUsernames = new Set(users.map(user => user.username));
+        for (let user of users_by_display_name) {
+            if (!userUsernames.has(user.username)) {
+            users.push(user);
+            userUsernames.add(user.username);
+            }
+        }
+
+        searchResponse.tags = tags.map(tag => ({
+            _id: tag._id,
+            name: tag.name,
+        }));
+
+        const postAuthors = await UserModel.find({
+            _id: { $in: posts.map(post => post.owned_user_id) },
+        }).lean();
+
+        const authorMap = postAuthors.reduce((map, author) => {
+            map[author._id] = author.display_name;
+            return map;
+        }, {});
+
+        searchResponse.posts = posts.map(post => ({
+            _id: post._id,
+            title: post.title,
+            author_name: authorMap[post.owned_user_id] || 'Unknown',
+            date_created: post.date_created.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                }),
+            view: post.views,
+        }));
+
+        const userProfilePaths = users.map(user => ({
+            user,
+            profilePicturePath: path.join(__dirname, '..', 'public', 'users', user._id.toString()),
+        }));
+
+        for (let { user, profilePicturePath } of userProfilePaths) {
+            if (!fs.existsSync(profilePicturePath)) {
+                user.profile_image = 'assets/images/imgDefaultProfilePicture.png';
+            } else {
+                const files = fs.readdirSync(profilePicturePath);
+                user.profile_image = path.join('users', user._id.toString(), files[0]);
+            }
+        }
+
+        searchResponse.users = users.map(user => ({
+            _id: user._id,
+            username: user.username,
+            display_name: user.display_name,
+            profile_picture_url: user.profile_image,
+        }));
+
+        return res.json({ success: true, data: searchResponse });
+    } catch (err) {
+        console.error(err.message);
+        return res.json({ success: false, error: err.message });
+    }
+}
+
+
+export { getContentCards, getSearchValue };

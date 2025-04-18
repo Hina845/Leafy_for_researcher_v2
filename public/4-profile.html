@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="initial-scale=1, width=device-width">
-  	
-  	<title>Profile | Leafy</title>
-    <link rel="icon" type="favicon/icon" href="assets/icons/icBrandLogo1.svg">
-  	<style>
-         @import url("styles/tokens.css");
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
+
+	<title>Profile | Leafy</title>
+	<link rel="icon" type="favicon/icon" href="assets/icons/icBrandLogo1.svg">
+	<link rel="stylesheet" href="components/component-styles.css">
+	<style>
+		@import url("styles/tokens.css");
 
 		.profile-background {
 			width: 100%;
@@ -22,6 +24,7 @@
 			flex-shrink: 0;
 			object-fit: cover;
 		}
+
 		.avatar {
 			width: 140px;
 			position: absolute;
@@ -31,15 +34,18 @@
 			object-fit: cover;
 			z-index: 10;
 		}
-		.name{
+
+		.name {
 			position: relative;
 			font-weight: 500;
 		}
-		.username{
+
+		.username {
 			position: relative;
 			font-size: 20px;
 			font-weight: 500;
 		}
+
 		.profile-header {
 			color: var(--color-brand-primary);
 			position: relative;
@@ -51,6 +57,7 @@
 			gap: 12px;
 			font-size: 3em;
 		}
+
 		.follow-icon {
 			width: 24px;
 			position: relative;
@@ -58,6 +65,7 @@
 			overflow: hidden;
 			flex-shrink: 0;
 		}
+
 		.follow-text {
 			position: relative;
 			font-family: inherit;
@@ -66,6 +74,7 @@
 			color: var(--color-true-white);
 			text-align: left;
 		}
+
 		.follow {
 			font-family: inherit;
 			border: none;
@@ -77,16 +86,36 @@
 			justify-content: center;
 			padding: var(--spacing-2) var(--spacing-4);
 			gap: var(--spacing-1);
-			box-sizing: border-box; 
+			box-sizing: border-box;
 		}
+
+		.followed {
+			font-family: inherit;
+			border: 2px solid var(--color-brand-primary);
+			border-radius: 16px;
+			background: none;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			padding: var(--spacing-2) var(--spacing-4);
+			gap: var(--spacing-1);
+			box-sizing: border-box;
+		}
+
+		.followed .follow-text {
+			color: var(--color-true-white);
+		}
+
 		.share-icon {
 			width: 24px;
 			position: relative;
 			height: 24px;
 			overflow: hidden;
 			flex-shrink: 0;
-			box-sizing: border-box; 
+			box-sizing: border-box;
 		}
+
 		.share {
 			border: none;
 			width: 60px;
@@ -97,14 +126,17 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			box-sizing: border-box; 
+			box-sizing: border-box;
 		}
+
 		.follow:hover {
 			background-color: var(--color-hover);
 		}
+
 		.follow:active {
 			background-color: var(--color-clicked);
 		}
+
 		.button {
 			position: relative;
 			width: 100%;
@@ -117,18 +149,21 @@
 			font-size: 24px;
 			color: var(--color-true-white);
 		}
+
 		.quantity {
 			align-self: stretch;
 			position: relative;
 			font-weight: 500;
 		}
-		.stat{
+
+		.stat {
 			align-self: stretch;
 			position: relative;
 			font-size: 24px;
 			font-weight: 500;
 		}
-		.stats{
+
+		.stats {
 			width: 180px;
 			display: flex;
 			flex-direction: column;
@@ -136,7 +171,8 @@
 			justify-content: center;
 			gap: 4px;
 		}
-		.profile-stats{
+
+		.profile-stats {
 			position: relative;
 			width: 100%;
 			display: flex;
@@ -148,7 +184,8 @@
 			font-size: 64px;
 			color: var(--color-brand-primary);
 		}
-		.tabs button{
+
+		.tabs button {
 			font-weight: 500;
 			font-size: 24px;
 			font-family: inherit;
@@ -167,8 +204,9 @@
 			background-color: var(--color-brand-opacity15);
 			color: var(--color-brand-primary);
 		}
-		.tabs{
-			
+
+		.tabs {
+
 			position: relative;
 			width: 100%;
 			display: flex;
@@ -181,147 +219,224 @@
 			font-family: inherit;
 			padding-bottom: 43px;
 		}
-		.profile{
+
+		.profile {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			gap: 43px;
 			width: 100%;
 		}
-		.content{
+
+		.content {
 			display: none;
 		}
+
 		.content.active {
-			display: block; 
+			display: block;
 		}
-		.contents{
+
+		.contents {
 			position: relative;
 			width: 70%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 		}
-		.contents div{
+
+		.contents div {
 			position: relative;
 			gap: 16px;
 		}
-		body{
+
+		body {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 		}
-		@media  (max-width: 1079px){
-		.profile-background{
-			content: url(assets/images/profile-background-small.svg);
-		}
-		.username{
-			font-size: 1rem;
-		}
-		.profile-header {
-			font-size: 2.25em;
-		}
 
-		.follow-text {
-			font-size: 1rem;	
+		@media (max-width: 1079px) {
+			.profile-background {
+				content: url(assets/images/profile-background-small.svg);
+			}
+
+			.username {
+				font-size: 1rem;
+			}
+
+			.profile-header {
+				font-size: 2.25em;
+			}
+
+			.follow-text {
+				font-size: 1rem;
+			}
+
+			.follow,
+			.followed {
+				height: 50px;
+			}
+
+			.share {
+				height: 50px;
+				width: 50px;
+			}
+
+			.quantity {
+				font-size: 2.25rem;
+			}
+
+			.stat {
+				font-size: 1rem;
+			}
+
+			.profile-stats {
+				gap: 23.5px;
+			}
+
+			.tabs {
+				padding-bottom: 16px;
+				;
+			}
+
+			.profile {
+				gap: 16px;
+			}
+
+			.contents {
+				width: 88%;
+				padding-bottom: 24px;
+			}
 		}
-		.follow{
-			height: 50px;
-		}
-		.share {
-			height: 50px;
-			width: 50px;
-		}
-		.quantity {
-			font-size: 2.25rem;
-		}
-		.stat{
-			font-size: 1rem;
-		}
-		.profile-stats{
-			gap: 23.5px;
-		}
-		.tabs{
-			padding-bottom: 16px;;
-		}
-		.profile{
-			gap: 16px;
-		}
-		.contents{
-			width: 88%;
-			padding-bottom: 24px;
-		}
-	}
-     </style>
-  	
-  	
+	</style>
 </head>
+
 <body>
-    		<img class="profile-background" alt="" src="assets/images/profile-background.png">
-    	<div class="profile">
-				<div class="profile-header">
-					<img class="avatar" alt="avatar" src="assets/images/avatar.png">
-					<div class="name">Lê Đăng Tấn</div>
-					<div class="username">@realdangtan</div>
-				</div>
-    		
-
-    		<div class="button">
-      			<button class="follow">
-					<img src="assets/icons/icFollow.png" alt="follow" class="follow-icon">
-					<span class="follow-text">Theo dõi</span>
-	  			</button>
-	  			<button class="share">
-					<img src="assets/icons/icShare.png" alt="share" class="share-icon">
-				</button>
-    		</div>
-    		<div class="profile-stats">
-      			<div class="stats">
-        				<div class="quantity">30</div>
-        				<div class="stat">Bài viết</div>
-      			</div>
-      			<div class="stats">
-        				<div class="quantity">60</div>
-        				<div class="stat">Theo dõi</div>
-      			</div>
-      			<div class="stats">
-        				<div class="quantity">12k</div>
-        				<div class="stat">Lượt xem</div>
-      			</div>
-    		</div>
-    		<div class="tabs" id="tab-navigator">
-      			<button class="active" onclick="switch_tab(this,'posts')">
-					Bài viết
-				</button>
-				<button onclick="switch_tab(this,'saved')">
-					Đã lưu
-				</button>
-    		</div>
+	<nav id = 'navigation'></nav>
+	<img class="profile-background" alt="" src="assets/images/profile-background.png">
+	<div class="profile">
+		<div class="profile-header">
+			<img class="avatar" alt="avatar" src="assets/images/avatar.png">
+			<div class="name">Lê Đăng Tấn</div>
+			<div class="username">@realdangtan</div>
 		</div>
 
-		<div class="contents">
-			<div id="posts" class="content active">
-    			<div id="content-card"></div>
+
+		<div class="button">
+			<button id="edit-button" class="follow" style="display: none;">
+				<img src="assets/icons/icEdit.svg" alt="edit" class="follow-icon">
+				<span class="follow-text">Chỉnh sửa</span>
+			</button>
+			<button id="follow-button" class="follow">
+				<img src="assets/icons/icFollow.svg" alt="follow" class="follow-icon">
+				<span class="follow-text">Theo dõi</span>
+			</button>
+
+			<button class="share">
+				<img src="assets/icons/icShare.png" alt="share" class="share-icon">
+			</button>
+		</div>
+		<div class="profile-stats">
+			<div class="stats">
+				<div class="quantity">30</div>
+				<div class="stat">Bài viết</div>
 			</div>
-			<div id="saved" class="content">
-				<div id="content-card"></div>
+			<div class="stats">
+				<div class="quantity">60</div>
+				<div class="stat">Theo dõi</div>
+			</div>
+			<div class="stats">
+				<div class="quantity">12k</div>
+				<div class="stat">Lượt xem</div>
 			</div>
 		</div>
-<script>
-function switch_tab(elem1, elem2) {
-    for (let e of document.getElementById("tab-navigator").querySelectorAll("button")) {
-        e.classList.remove("active");
-    }
-    
-    for (let e of document.querySelectorAll(".content")) {
-        e.classList.remove("active");
-    }
-    
-    elem1.classList.add("active");
-    
-    document.getElementById(elem2).classList.add("active");
-    
-}
+		<div class="tabs" id="tab-navigator">
+			<button class="active" onclick="switch_tab(this,'posts')">
+				Bài viết
+			</button>
+			<button onclick="switch_tab(this,'saved')">
+				Đã lưu
+			</button>
+		</div>
+	</div>
+	<div class="contents">
+		<div id="posts" class="content active">
+			<div id="content-card"></div>
+		</div>
+		<div id="saved" class="content">
+			<div id="content-card"></div>
+		</div>
+	</div>
+	<footer id="footer"></footer>
+	<script>
+
+		const isLoggedIn = false;
+		const isOwner = false;
+
+		const actionButton = document.getElementById('edit-button');
+		const followButton = document.getElementById('follow-button');
+		const followText = document.getElementById('follow-text');
+
+		function updateButtonDisplay() {
+			if (isLoggedIn && isOwner) {
+				actionButton.style.display = 'flex';
+				followButton.style.display = 'none';
+			} else {
+				actionButton.style.display = 'none';
+				followButton.style.display = 'flex';
+			}
+		}
+
+		let isFollowing = false;
+
+		function requireLogin() {
+			// Có thể thay bằng chuyển hướng đến trang đăng nhập
+			alert('Vui lòng đăng nhập để theo dõi!');
+		}
+
+		followButton.addEventListener('click', () => {
+			if (!isLoggedIn) {
+				requireLogin();
+			} else {
+				isFollowing = !isFollowing;
+				followText.textContent = isFollowing ? 'Đã theo dõi' : 'Theo dõi';
+				if (isFollowing) {
+					followButton.classList.remove('follow');
+					followButton.classList.add('followed');
+				} else {
+					followButton.classList.remove('followed');
+					followButton.classList.add('follow');
+				}
+			}
+		});
+
+		updateButtonDisplay();
+
+		function switch_tab(elem1, elem2) {
+			for (let e of document.getElementById("tab-navigator").querySelectorAll("button")) {
+				e.classList.remove("active");
+			}
+
+			for (let e of document.querySelectorAll(".content")) {
+				e.classList.remove("active");
+			}
+
+			elem1.classList.add("active");
+
+
+			document.getElementById(elem2).classList.add("active");
+
+		}
 	</script>
-<script src="../scripts/index.js"></script>
+	<script type="module" src="./scripts/index.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			const script = document.createElement("script");
+			script.type = "module";
+			script.src = "./scripts/navigator.js";
+			document.body.appendChild(script);
+		});
+	</script>
 </body>
+
 </html>

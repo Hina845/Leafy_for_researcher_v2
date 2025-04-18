@@ -2,295 +2,96 @@
 
 <head>
     <style>
-        @import url('../styles/tokens.css');
-        .navigator {
-            width: 100%;
-            position: absolute;
-            margin: 0 !important;
-            top: -2px;
-            right: -1442px;
-            left: -2px;
-            background-color: #f8f8e7;
-            border-bottom: 2px solid rgba(135, 167, 6, 0.2);
-            box-sizing: border-box;
-            height: 80px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 0px 32px;
-            gap: 32px;
-            text-align: left;
-            font-size: 16px;
-            color: rgba(135, 167, 6, 0.5);
-            font-family: 'Roboto Serif';
-            z-index: 1000;
-        }
-
-        .nav-navigator {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: var(--spacing-4);
-        }
-
-        .nav-search-bar {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: var(--color-brand-opacity15);
-            gap: var(--spacing-1);
-            border-radius: 999px;
-            padding: var(--spacing-1) var(--spacing-2);
-            flex-grow: 1;
-        }
-
-        .nav-search-bar input {
-            border: none;
-            background-color: transparent;
-            outline: none;
-            font-size: 16px;
-            color: var(--color-brand-primary);
-            flex-grow: 1;
-        }
-
-        .nav-search-bar input::placeholder {
-            color: var(--color-brand-opacity50);
-            font-size: 1em;
-        }
-
-        .nav-navigator {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: var(--spacing-4);
-        }
-
-        .nav-navigator a {
-            text-decoration: none;
-            color: var(--color-brand-opacity50);
-            font-size: 1em;
-            font-weight: 400;
-        }
-
-        .nav-button {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: var(--spacing-1);
-            background-color: var(--color-brand-primary);
-            border-radius: var(--spacing-1);
-            padding: var(--spacing-1) var(--spacing-2);
-            font-size: var(--font-size-4);
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .nav-navigator .nav-button:hover {
-            background-color: var(--color-brand-opacity50);
-        }
-
-
-        .account-circle-icon {
-            width: 24px;
-            position: relative;
-            height: 24px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .signed-in {
-            display: none;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .register {
-            position: relative;
-            border-radius: 8px;
-            border: 1px solid var(--color-brand-primary);
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            padding: var(--spacing-1) var(--spacing-2);
-            text-align: center;
-            font-size: 14px;
-            color: var(--color-brand-primary);
-            font-family: inherit;
-            font-weight: 500;
-            background: none;
-        }
-
-        .login {
-            position: relative;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            padding: var(--spacing-1) var(--spacing-2);
-            text-align: center;
-            font-size: 14px;
-            color: var(--color-true-white);
-            font-family: inherit;
-            font-weight: 500;
-            background-color: var(--color-brand-primary);
-        }
-
-        .sign-up {
-            display: none;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .search-input {
-            font-family: inherit;
-            width: 100%;
-            box-sizing: border-box;
-            min-width: 0;
-            position: relative;
-        }
-
-        .search-input::placeholder {
-            font-family: inherit;
-        }
-
-        .menu-toggle {
-            display: none;
-        }
-
-        @media (max-width: 1079px) {
-
-            a,
-            .signed-in,
-            .sign-up {
-                display: none !important;
-            }
-
-            .menu-toggle {
-                display: flex !important;
-                background: none;
-                border: none;
-            }
-
-            .nav-navigator {
-                display: none !important;
-            }
-
-        }
-
-        @media (max-width: 1440px) {
-            #search-panel {
-                width: 90% !important;
-                left: 5% !important;
-            }
-        }
-
-        #search-panel {
-            position: absolute;
-            top: 80px;
-            left: 160px;
-        }
+        @import url("styles/navigation.css");
     </style>
 </head>
 
 <body>
-
-    <!-- Copy this part -->
-
-    <nav>
-        <div class='navigator'>
-            <img src="../assets/images/logo-type2.png" alt="Logo" class="logo"
-                style="width: 100px; height: var(--spacing-4);">
-            <div class=" nav-search-bar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_294_217)">
-                        <path
-                            d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
-                            fill="#87A706" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_294_217">
-                            <rect width="24" height="24" fill="white" />
-                        </clipPath>
-                    </defs>
-                </svg>
-                <input type="text" placeholder="tìm cảm hứng nghiên cứu..." class="search-input">
-            </div>
-            <div id = 'search-panel'></div>
-            <div class='nav-navigator'>
-                <a href=''>danh mục</a>
-                <a href=''>nghiên cứu</a>
-                <div class="signed-in">
-                    <button class='nav-button'>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_294_227)">
-                                <g clip-path="url(#clip1_294_227)">
-                                    <path
-                                        d="M8.66683 4.66671H7.3335V7.33337H4.66683V8.66671H7.3335V11.3334H8.66683V8.66671H11.3335V7.33337H8.66683V4.66671ZM8.00016 1.33337C4.32016 1.33337 1.3335 4.32004 1.3335 8.00004C1.3335 11.68 4.32016 14.6667 8.00016 14.6667C11.6802 14.6667 14.6668 11.68 14.6668 8.00004C14.6668 4.32004 11.6802 1.33337 8.00016 1.33337ZM8.00016 13.3334C5.06016 13.3334 2.66683 10.94 2.66683 8.00004C2.66683 5.06004 5.06016 2.66671 8.00016 2.66671C10.9402 2.66671 13.3335 5.06004 13.3335 8.00004C13.3335 10.94 10.9402 13.3334 8.00016 13.3334Z"
-                                        fill="white" />
-                                </g>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_294_227">
-                                    <rect width="16" height="16" fill="white" />
-                                </clipPath>
-                                <clipPath id="clip1_294_227">
-                                    <rect width="16" height="16" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <span style="color: var(--color-true-white);">Thêm bài viết</span>
-                    </button>
-                    <!-- Dynamic update this using JS after backend done -->
-                    <img id='profile-picture' src="../assets/images/dummy_profile.PNG" alt="User" class="user-icon"
-                        style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
-                </div>
-                <div class="sign-up">
-                    <button class="register">đăng ký</button>
-                    <button class="login">đăng nhập</button>
-                </div>
-            </div>
-            <button class="menu-toggle" aria-label="Menu">
-                <img src="../assets/icons/icMenu.svg">
-            </button>
+    <div class='navigator'>
+        <img src="../assets/images/logo-type2.png" alt="Logo" class="logo" style="width: 100px; height: var(--spacing-4);">
+        <div class=" nav-search-bar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_294_217)">
+                    <path
+                        d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
+                        fill="#87A706" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_294_217">
+                        <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
+            <input type="text" placeholder="tìm cảm hứng nghiên cứu..." class="search-input" id = 'search-input'>
         </div>
-        <script>
-            const isLoggedIn = false;
-
-            window.addEventListener("DOMContentLoaded", () => {
-                const signedIn = document.querySelector(".signed-in");
-                const signUp = document.querySelector(".sign-up");
-                if (isLoggedIn) {
-                    signedIn.style.display = "flex";
-                    signUp.style.display = "none";
-                } else {
-                    signedIn.style.display = "none";
-                    signUp.style.display = "flex";
-                }
-            });
-
-            function updatePlaceholder() {
-                const searchInput = document.querySelector(".search-input");
-                if (window.innerWidth <= 1080) {
-                    searchInput.placeholder = "tìm kiếm...";
-                } else {
-                    searchInput.placeholder = "tìm cảm hứng nghiên cứu...";
-                }
-                if (window.innerWidth >= 1440) {
-                    const search_bar_width = window.getComputedStyle(document.querySelector(".nav-search-bar")).width;
-                    document.querySelector("#search-panel").style.width = parseFloat(search_bar_width) + 32 + "px";
-                }
-            }
-
-            window.addEventListener("DOMContentLoaded", updatePlaceholder);
-            window.addEventListener("resize", updatePlaceholder);
-        </script>
-        <script src="../scripts/index.js"></script>
-    </nav>
+        <div id = 'search-panel'>
+            <div class="headersearch-card">
+                <div class="search-container" id = 'search-panel-still-tag-header'>
+                    <img class="icon" alt="" src="../assets/icons/icFind.svg">
+                    <div class="title">Chủ đề</div>
+                </div>  
+                <div class='still-tags-container' id = 'search-panel-still-tag-container'></div>
+                <div class="search-container" id = 'search-panel-content-card-header'>
+                    <img class="icon" alt="" src="../assets/icons/icFind.svg">
+            
+                    <div class="title">Các post liên quan</div>
+                </div>
+                <div id = search-panel-content-card-container class = 'search-panel-container'></div>
+                <div class="search-container" id = 'search-panel-profile-card-header'>
+                    <img class="icon" alt="" src="../assets/icons/icFind.svg">
+                    <div class="title">Nhà nghiên cứu</div>
+                </div>
+                <div id = search-panel-profile-card-container class = search-panel-container></div>
+            </div>
+        </div>
+        <div class='nav-navigator'>
+            <a href=''>danh mục</a>
+            <a href=''>nghiên cứu</a>
+            <div class="signed-in">
+                <button class='nav-button'>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_294_227)">
+                            <g clip-path="url(#clip1_294_227)">
+                                <path
+                                    d="M8.66683 4.66671H7.3335V7.33337H4.66683V8.66671H7.3335V11.3334H8.66683V8.66671H11.3335V7.33337H8.66683V4.66671ZM8.00016 1.33337C4.32016 1.33337 1.3335 4.32004 1.3335 8.00004C1.3335 11.68 4.32016 14.6667 8.00016 14.6667C11.6802 14.6667 14.6668 11.68 14.6668 8.00004C14.6668 4.32004 11.6802 1.33337 8.00016 1.33337ZM8.00016 13.3334C5.06016 13.3334 2.66683 10.94 2.66683 8.00004C2.66683 5.06004 5.06016 2.66671 8.00016 2.66671C10.9402 2.66671 13.3335 5.06004 13.3335 8.00004C13.3335 10.94 10.9402 13.3334 8.00016 13.3334Z"
+                                    fill="white" />
+                            </g>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_294_227">
+                                <rect width="16" height="16" fill="white" />
+                            </clipPath>
+                            <clipPath id="clip1_294_227">
+                                <rect width="16" height="16" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <span style="color: var(--color-true-white);">Thêm bài viết</span>
+                </button>
+                <!-- Dynamic update this using JS after backend done -->
+                <img id='profile-picture' alt="User" class="user-icon" style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+            </div>
+            <div class="sign-up">
+                <a class="register" href = '/signup'>đăng ký</a>
+                <a class="login" href = '/login' style = "color: #ffffff">đăng nhập</a>
+            </div>
+        </div>
+        <button class="menu-toggle" aria-label="Menu">
+            <img src="../assets/icons/icMenu.svg">
+        </button>
+        <div id = 'profile-menu-popup'>
+            <div class="menu">
+                <a class="menu-text mobile" href = '/archive'>Tài nguyên</a>
+                <div class="menu-child mobile">
+                </div>
+                <a class="menu-text mobile" href = '/category'>Danh mục</a>
+                <div class="menu-child mobile">
+                </div>
+                <a class="menu-text" id = "change-on-login">Đăng nhập</a>
+                <div class="menu-child show-on-login">
+                </div>
+                <div class="menu-text-red show-on-login" onclick = "window.location.href = '/user/logout'">Đăng xuất</div>
+            </div>
+        </div>
+    </div>
 </body>
