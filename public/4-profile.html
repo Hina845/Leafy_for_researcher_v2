@@ -5,9 +5,9 @@
   	<meta name="viewport" content="initial-scale=1, width=device-width">
   	
   	<title>Profile | Leafy</title>
-    <link rel="icon" type="favicon/icon" href="../assets/icons/icBrandLogo1.svg">
+    <link rel="icon" type="favicon/icon" href="assets/icons/icBrandLogo1.svg">
   	<style>
-         @import url("../styles/tokens.css");
+         @import url("styles/tokens.css");
 
 		.profile-background {
 			width: 100%;
@@ -78,6 +78,22 @@
 			padding: var(--spacing-2) var(--spacing-4);
 			gap: var(--spacing-1);
 			box-sizing: border-box; 
+		}
+		.followed {
+			font-family: inherit;
+			border: 2px solid var(--color-brand-primary);
+			border-radius: 16px;
+			background:none;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			padding: var(--spacing-2) var(--spacing-4);
+			gap: var(--spacing-1);
+			box-sizing: border-box; 
+		}
+		.followed .follow-text{
+			color: var(--color-true-white);
 		}
 		.share-icon {
 			width: 24px;
@@ -210,27 +226,73 @@
 			flex-direction: column;
 			align-items: center;
 		}
+		@media  (max-width: 1079px){
+		.profile-background{
+			content: url(assets/images/profile-background-small.svg);
+		}
+		.username{
+			font-size: 1rem;
+		}
+		.profile-header {
+			font-size: 2.25em;
+		}
+
+		.follow-text {
+			font-size: 1rem;	
+		}
+		.follow, .followed{
+			height: 50px;
+		}
+		.share {
+			height: 50px;
+			width: 50px;
+		}
+		.quantity {
+			font-size: 2.25rem;
+		}
+		.stat{
+			font-size: 1rem;
+		}
+		.profile-stats{
+			gap: 23.5px;
+		}
+		.tabs{
+			padding-bottom: 16px;;
+		}
+		.profile{
+			gap: 16px;
+		}
+		.contents{
+			width: 88%;
+			padding-bottom: 24px;
+		}
+	}
      </style>
   	
   	
 </head>
 <body>
-    		<img class="profile-background" alt="" src="../assets/images/profile-background.png">
+    		<img class="profile-background" alt="" src="assets/images/profile-background.png">
     	<div class="profile">
 				<div class="profile-header">
-					<img class="avatar" alt="avatar" src="../assets/images/avatar.png">
+					<img class="avatar" alt="avatar" src="assets/images/avatar.png">
 					<div class="name">Lê Đăng Tấn</div>
 					<div class="username">@realdangtan</div>
 				</div>
     		
 
     		<div class="button">
-      			<button class="follow">
-					<img src="../assets/icons/icFollow.png" alt="follow" class="follow-icon">
+				<button  id="edit-button"class="follow" style="display: none;">
+					<img src="assets/icons/icEdit.svg" alt="edit" class="follow-icon" >
+					<span class="follow-text">Chỉnh sửa</span>
+	  			</button>
+      			<button id="follow-button" class="follow">
+					<img src="assets/icons/icFollow.svg" alt="follow" class="follow-icon">
 					<span class="follow-text">Theo dõi</span>
 	  			</button>
+
 	  			<button class="share">
-					<img src="../assets/icons/icShare.png" alt="share" class="share-icon">
+					<img src="assets/icons/icShare.png" alt="share" class="share-icon">
 				</button>
     		</div>
     		<div class="profile-stats">
@@ -265,6 +327,49 @@
 			</div>
 		</div>
 <script>
+	
+		const isLoggedIn = false; 
+		const isOwner = false; 
+
+		const actionButton = document.getElementById('edit-button');
+		const followButton = document.getElementById('follow-button');
+		const followText = document.getElementById('follow-text');
+
+		function updateButtonDisplay() {
+			if (isLoggedIn && isOwner) {
+				actionButton.style.display = 'flex';
+				followButton.style.display = 'none';
+			} else {
+				actionButton.style.display = 'none';
+				followButton.style.display = 'flex';
+			}
+		}
+
+		let isFollowing = false;
+
+		function requireLogin() {
+			// Có thể thay bằng chuyển hướng đến trang đăng nhập
+			alert('Vui lòng đăng nhập để theo dõi!');
+		}
+
+		followButton.addEventListener('click', () => {
+			if (!isLoggedIn) {
+				requireLogin();
+			} else {
+				isFollowing = !isFollowing;
+				followText.textContent = isFollowing ? 'Đã theo dõi' : 'Theo dõi';
+				if (isFollowing) {
+					followButton.classList.remove('follow');
+					followButton.classList.add('followed');
+				} else {
+					followButton.classList.remove('followed');
+					followButton.classList.add('follow');
+				}
+			}
+		});
+
+		updateButtonDisplay();
+
 function switch_tab(elem1, elem2) {
     for (let e of document.getElementById("tab-navigator").querySelectorAll("button")) {
         e.classList.remove("active");
