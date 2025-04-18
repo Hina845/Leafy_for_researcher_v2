@@ -72,6 +72,8 @@
         </script> -->
     
     </nav>
+
+
     <div class="typography-title">
         <img class="hero-image" alt="" src="assets\images\imgKhoNghienCuuHero.png">
         <div class = title-container>
@@ -79,32 +81,42 @@
             <p class ="title-sub">Bạn đang tìm kiếm nguồn cảm hứng nghiên cứu nhưng không muốn bị chìm trong những trang tài liệu khô khan? Đừng lo! Kho nghiên cứu Leafy sẽ mang đến cho bạn một không gian xanh mát, nơi kiến thức nảy nở tự nhiên như những chiếc lá non. Hãy cùng khám phá những bài nghiên cứu chất lượng theo cách thú vị nhất!</p>    
         </div>
     </div>
+
+
+
     <div class = topic-nav>
+        <div class="filter-button">
+            <div class="filter-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_127_559)">
+                        <path xmlns="http://www.w3.org/2000/svg" id="Vector" d="M21.3572 6.25875L21.3497 6.26719L15 13.0472V18.2494C15.0003 18.4968 14.9395 18.7405 14.8229 18.9587C14.7062 19.1769 14.5375 19.3628 14.3315 19.5L11.3315 21.5006C11.1055 21.6512 10.8427 21.7376 10.5714 21.7505C10.3001 21.7635 10.0303 21.7025 9.79095 21.5741C9.55157 21.4457 9.35155 21.2547 9.21225 21.0215C9.07294 20.7883 8.99957 20.5216 8.99998 20.25V13.0472L2.65029 6.26719L2.64279 6.25875C2.44755 6.04389 2.31886 5.77699 2.27232 5.49043C2.22579 5.20387 2.26341 4.90996 2.38063 4.64436C2.49785 4.37876 2.68962 4.15288 2.93269 3.99413C3.17575 3.83538 3.45966 3.75057 3.74997 3.75H20.25C20.5405 3.75003 20.8248 3.83444 21.0683 3.99298C21.3118 4.15152 21.504 4.37737 21.6216 4.64308C21.7391 4.90878 21.777 5.20292 21.7305 5.48973C21.6841 5.77655 21.5554 6.04371 21.36 6.25875H21.3572Z" fill="#87A706"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_127_559">
+                    <rect width="24" height="24" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <div class="filter-text">Filter (1)</div>
+          </div>
+          
+
         <div id = tab-navigator>   
             <span class = "active" onclick = "switch_tab(this, 'tab-newest')">Mới nhất</span>
             <span onclick = "switch_tab(this, 'tab-hotest')">Hot nhất</span>
             <span onclick = "switch_tab(this, 'tab-from-follower')">Từ người theo dõi</span>
         </div>
+
         <button class = 'nav-button'>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_294_227)">
-                <g clip-path="url(#clip1_294_227)">
-                <path d="M8.66683 4.66671H7.3335V7.33337H4.66683V8.66671H7.3335V11.3334H8.66683V8.66671H11.3335V7.33337H8.66683V4.66671ZM8.00016 1.33337C4.32016 1.33337 1.3335 4.32004 1.3335 8.00004C1.3335 11.68 4.32016 14.6667 8.00016 14.6667C11.6802 14.6667 14.6668 11.68 14.6668 8.00004C14.6668 4.32004 11.6802 1.33337 8.00016 1.33337ZM8.00016 13.3334C5.06016 13.3334 2.66683 10.94 2.66683 8.00004C2.66683 5.06004 5.06016 2.66671 8.00016 2.66671C10.9402 2.66671 13.3335 5.06004 13.3335 8.00004C13.3335 10.94 10.9402 13.3334 8.00016 13.3334Z" fill="white"/>
-                </g>
-                </g>
-                <defs>
-                <clipPath id="clip0_294_227">
-                <rect width="16" height="16" fill="white"/>
-                </clipPath>
-                <clipPath id="clip1_294_227">
-                <rect width="16" height="16" fill="white"/>
-                </clipPath>
-                </defs>
-            </svg>
             <span style = "color: var(--color-true-white);">Thêm bài viết</span>
         </button>
     </div>
+
+
+
     <div class = 'research-vault-container'>
+
         <div id = 'tab-newest' class = 'research-vault-content-card active'>
             <div class="content-card">
                 <div class="tag-list">
@@ -183,6 +195,7 @@
                 </div>
             </div>
         </div>
+
         <div id = 'tab-hotest' class = 'research-vault-content-card'>
             <div class="content-card">
                 <div class="tag-list">
@@ -261,6 +274,7 @@
                 </div>
             </div>
         </div>
+
         <div id = 'tab-from-follower' class = 'research-vault-content-card'>
             <div class="content-card">
                 <div class="tag-list">
@@ -339,6 +353,12 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
         <div class = research-vault-sticky>
             <div class = 'hot-exploration-tab'>
                 <div style = "display: flex; align-items: center; gap: 8px;">
@@ -356,6 +376,9 @@
                     <span style = "font-size: 24px; font-weight: 500;">Khám phá chủ đề hot</span>
                 </div>
                 <div class = 'still-tags-container' id = "hot-exploration-tab" style = "justify-content: flex-start;"></div>
+
+
+
                 <script type = "module">
                     import { still_tags_loader_with_link, still_tags_loader_no_link } from '../scripts/tags_loader.js';
         
@@ -378,6 +401,7 @@
                     still_tags_loader_no_link(container, ['Kaguya', 'Miku', 'Gura', 'Aqua', 'Mori Calliope', 'Nene', 'Pekora', 'Kanata', 'Coco', 'Watame', 'Aki', 'Matsuri']);
                 </script>
             </div>
+
             <div class = 'people-suggesion'>
                 <div style = "display: flex; gap: 8px;">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -476,6 +500,13 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
     <div class='component-footer'>
         <div class='component-footer-navigation'>
             <div style="display: flex; flex-direction: row; align-items: flex-start; gap: var(--spacing-1);">
@@ -558,6 +589,8 @@
             </div>
         </div>
     </div>
+
+
     <script>
         function switch_tab(elem1, elem2) {
             for (let e of document.getElementById('tab-navigator').querySelectorAll('span')) e.classList.remove('active');
