@@ -132,4 +132,5 @@ async function getSearchValue(req, res) {
     }
 }
 
+
 export { getContentCards, getSearchValue };

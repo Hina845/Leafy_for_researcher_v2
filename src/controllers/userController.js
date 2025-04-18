@@ -3,6 +3,7 @@ import AuthTokenModel from '../models/authtokenModel.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import ejs from 'ejs';
+import fs from 'fs';
 import path from 'path';
 import nodemailer from 'nodemailer';
 import { server } from '../config.js';
@@ -61,7 +62,7 @@ async function userLogin(req, res) {
 
 async function userLogout(req, res) {
     res.clearCookie('token');
-    res.json({ success: true, message: 'Logout successful' });
+    res.redirect('/login');
 }
 
 async function resetPasswordSubmit(req, res) {
@@ -111,10 +112,34 @@ async function resetPassword(req, res) {
     return res.json({ success: true, message: 'Password changed successfully' });
 }
 
+async function getUserInfo(req, res) {
+    const user = await UserModel.findById(req.userId)
+    let profile_picture_url = 'assets/images/imgDefaultProfilePicture.png';
+
+    const profilePicturePath = path.join(__dirname, '..', 'public', 'users', user._id.toString())
+
+    if (fs.existsSync(profilePicturePath)) {
+        const files = fs.readdirSync(profilePicturePath);
+        profile_picture_url = path.join('users', user._id.toString(), files[0]);
+    }
+
+    res.json({
+        success: true,
+        data: {
+            _id: user._id,
+            username: user.username,
+            display_name: user.display_name,
+            profile_picture_url: profile_picture_url,
+        },
+    });
+
+}
+
 export {
     userCreate,
     userLogin,
     userLogout,
     resetPasswordSubmit,
     resetPassword,
+    getUserInfo,
 }

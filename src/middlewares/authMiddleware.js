@@ -30,6 +30,7 @@ function verifyPasswordChangeLink(req, res, next) {
     });
 }
 
+
 export {
     verifyToken,
     verifyPasswordChangeLink,
