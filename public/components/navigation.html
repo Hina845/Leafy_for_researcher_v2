@@ -3,6 +3,7 @@
 <head>
     <style>
         @import url('../styles/tokens.css');
+        @import url('../components/component-styles.css');
         .navigator {
             width: 100%;
             position: absolute;
@@ -91,6 +92,230 @@
             background-color: var(--color-brand-opacity50);
         }
 
+        .icon {
+        width: 32px;
+        position: relative;
+        max-height: 100%;
+        overflow: hidden;
+        flex-shrink: 0;
+        }
+
+        .title {
+            position: relative;
+            font-weight: 600;
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .tag-text {
+            position: relative;
+            line-height: 24px;
+            font-weight: 500;
+        }
+
+        .tag-item {
+            border-radius: 8px;
+            background-color: #87a706;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 8px;
+        }
+
+        .tag-list {
+            align-self: stretch;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .title1 {
+            align-self: stretch;
+            position: relative;
+            color: var(--color-brand-contrast);
+        }
+
+        .account-circle-icon {
+            width: 24px;
+            position: relative;
+            height: 24px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .author-name {
+            width: fit-content;
+            position: relative;
+            line-height: 24px;
+        }
+
+        .author {
+            width: fit-content;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .date {
+            width: fit-content;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .view {
+            width: 75px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .card-footer {
+            align-self: stretch;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0px;
+            font-size: 16px;
+            color: #87a706;
+        }
+
+        .content-card-2 {
+            align-self: stretch;
+            border-radius: 16px;
+            background-color: #f0f6d8;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 32px;
+            gap: 16px;
+            font-size: 20px;
+        }
+
+        .person-info-child {
+            width: 59px;
+            position: relative;
+            border-radius: 50%;
+            height: 59px;
+            object-fit: cover;
+        }
+
+        .person-name {
+            align-self: stretch;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .person-handle {
+            align-self: stretch;
+            position: relative;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .person-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .person-info {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .add-circle-outline {
+            width: 16px;
+            position: relative;
+            max-height: 100%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .follow-button-text {
+            position: relative;
+            font-weight: 500;
+        }
+
+        .follow-button {
+            border-radius: 999px;
+            background-color: #87a706;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            gap: 4px;
+            font-size: 10px;
+            color: #fff;
+        }
+
+        .profile-card {
+            align-self: stretch;
+            border-radius: 16px;
+            background-color: rgba(135, 167, 6, 0.1);
+            height: 83px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            box-sizing: border-box;
+            gap: 0px;
+            font-size: 16px;
+            color: #87a706;
+        }
+
+        .headersearch-card {
+            width: 100%;
+            position: relative;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 16px;
+            background-color: #f8f8e7;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 32px;
+            box-sizing: border-box;
+            gap: 16px;
+            text-align: left;
+            font-size: 24px;
+            color: #204f0a;
+            font-family: 'Roboto Serif';
+        }
+        @media screen and (max-width: 1079px){
+            .date {
+                display: none;
+            }
+        }
 
         .account-circle-icon {
             width: 24px;
@@ -166,7 +391,6 @@
 
         @media (max-width: 1079px) {
 
-            a,
             .signed-in,
             .sign-up {
                 display: none !important;
@@ -174,6 +398,7 @@
 
             .menu-toggle {
                 display: flex !important;
+                position: relative;
                 background: none;
                 border: none;
             }
@@ -192,22 +417,113 @@
         }
 
         #search-panel {
+            display: flex;
+            flex-direction: column;
             position: absolute;
             top: 80px;
             left: 160px;
         }
+
+        #search-panel.popup-show {
+            display: flex;
+            animation: dropdown-animation 0.3s ease-in-out;
+        }
+
+        #profile-menu-popup {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 0px;
+        }
+
+        .menu-text {
+        align-self: stretch;
+        position: relative;
+        font-weight: 500;
+        }
+
+        .menu-child {
+            align-self: stretch;
+            position: relative;
+            border-top: 1px solid rgba(135, 167, 6, 0.5);
+            box-sizing: border-box;
+            height: 1px;
+        }
+
+        .menu-text-red {
+            align-self: stretch;
+            position: relative;
+            font-weight: 500;
+            color: #d2181b;
+        }
+
+        .menu {
+            position: relative;
+            border-radius: 16px;
+            background-color: #f8f8e7;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 24px;
+            box-sizing: border-box;
+            gap: 16px;
+            text-align: center;
+            font-size: 16px;
+            color: #87a706;
+            font-family: 'Roboto Serif';
+            max-width: fit-content;
+        }
+
+        .mobile {
+            display: none;
+        }
+
+        @media screen and (max-width: 1079px) {
+            .mobile {
+                display:unset;
+            }   
+        }
+
+        #profile-menu-popup.popup-show {
+            display: flex;
+            animation: dropdown-animation 0.3s ease-in-out;
+        }
+
+        @keyframes dropdown-animation {
+            from {
+            opacity: 0;
+            transform: translateY(-20px);
+            }
+            to {
+            opacity: 1;
+            transform: translateY(0);
+            }
+        }
+
+        .search-panel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 8px;
+            width: 100%;
+            min-width: 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
     </style>
 </head>
 
 <body>
-
-    <!-- Copy this part -->
-
     <nav>
         <div class='navigator'>
             <img src="../assets/images/logo-type2.png" alt="Logo" class="logo"
                 style="width: 100px; height: var(--spacing-4);">
-            <div class=" nav-search-bar">
+            <div class=" nav-search-bar" onclick="document.getElementById('search-panel').classList.toggle('popup-show')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_294_217)">
                         <path
@@ -222,7 +538,156 @@
                 </svg>
                 <input type="text" placeholder="tìm cảm hứng nghiên cứu..." class="search-input">
             </div>
-            <div id = 'search-panel'></div>
+            <div id = 'search-panel'>
+                <div class="headersearch-card">
+                    <div class="search-container">
+                        <img class="icon" alt="" src="../assets/icons/icFind.svg">
+                        <div class="title">Chủ đề</div>
+                    </div>
+                    
+                    <div class='still-tags-container'></div>
+                    <script type="module">
+                        import { still_tags_loader_with_link, still_tags_loader_no_link } from '../scripts/tags_loader.js';
+            
+                        const container = document.querySelector('.still-tags-container');
+
+                        still_tags_loader_with_link(container, [
+                            {
+                                text: 'Syaro',
+                                link: 'https://www.youtube.com/',
+                            },
+                            {
+                                text: 'Fubuki-chan',
+                                link: 'https://www.youtube.com/',
+                            },
+                        ])
+            
+                    </script>
+                   
+                    <div class="search-container">
+                        <img class="icon" alt="" src="../assets/icons/icFind.svg">
+                
+                        <div class="title">Các post liên quan</div>
+                    </div>
+                
+                    <div id = search-panel-content-card-container class = 'search-panel-container'>
+                        <div class="content-card-2">
+                            <div class="title1">Duolingo: Hành Trình Tạo Dựng Sản Phẩm Công Nghệ Và Thay Đổi Tư Duy Về Kỹ Thuật Phần Mềm
+                            </div>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icAccount.svg">
+                    
+                                    <div class="author-name">Lê Đăng Tấn</div>
+                                </div>
+                                <div class="date">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icTime.svg">
+                    
+                                    <div class="author-name">16 tháng 02 2025, 19:20</div>
+                                </div>
+                                <div class="view">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icEye.svg">
+                    
+                                    <div class="author-name">12,3k</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card-2">
+                            <div class="title1">Duolingo: Hành Trình Tạo Dựng Sản Phẩm Công Nghệ Và Thay Đổi Tư Duy Về Kỹ Thuật Phần Mềm
+                            </div>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icAccount.svg">
+                    
+                                    <div class="author-name">Lê Đăng Tấn</div>
+                                </div>
+                                <div class="date">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icTime.svg">
+                    
+                                    <div class="author-name">16 tháng 02 2025, 19:20</div>
+                                </div>
+                                <div class="view">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icEye.svg">
+                    
+                                    <div class="author-name">12,3k</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card-2">
+                            <div class="title1">Duolingo: Hành Trình Tạo Dựng Sản Phẩm Công Nghệ Và Thay Đổi Tư Duy Về Kỹ Thuật Phần Mềm
+                            </div>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icAccount.svg">
+                    
+                                    <div class="author-name">Lê Đăng Tấn</div>
+                                </div>
+                                <div class="date">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icTime.svg">
+                    
+                                    <div class="author-name">16 tháng 02 2025, 19:20</div>
+                                </div>
+                                <div class="view">
+                                    <img class="account-circle-icon" alt="" src="../assets/icons/icEye.svg">
+                    
+                                    <div class="author-name">12,3k</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-container">
+                        <img class="icon" alt="" src="../assets/icons/icFind.svg">
+                        <div class="title">Nhà nghiên cứu</div>
+                    </div>
+                    <div id = search-panel-profile-card-container class = search-panel-container>
+                        <div class="profile-card">
+                            <div class="person-info">
+                                <img class="person-info-child" alt="" src="../assets/images/imgProfile.png">
+                    
+                                <div class="person-details">
+                                    <div class="person-name">Lê Đăng Tấn</div>
+                                    <div class="person-handle">@realdangtan</div>
+                                </div>
+                            </div>
+                            <div class="follow-button">
+                                <img class="add-circle-outline" alt="" src="../assets/icons/icFollow.png">
+                    
+                                <div class="follow-button-text">Theo dõi</div>
+                            </div>
+                        </div>
+                        <div class="profile-card">
+                            <div class="person-info">
+                                <img class="person-info-child" alt="" src="../assets/images/imgProfile.png">
+                    
+                                <div class="person-details">
+                                    <div class="person-name">Lê Đăng Tấn</div>
+                                    <div class="person-handle">@realdangtan</div>
+                                </div>
+                            </div>
+                            <div class="follow-button">
+                                <img class="add-circle-outline" alt="" src="../assets/icons/icFollow.png">
+                    
+                                <div class="follow-button-text">Theo dõi</div>
+                            </div>
+                        </div>
+                        <div class="profile-card">
+                            <div class="person-info">
+                                <img class="person-info-child" alt="" src="../assets/images/imgProfile.png">
+                    
+                                <div class="person-details">
+                                    <div class="person-name">Lê Đăng Tấn</div>
+                                    <div class="person-handle">@realdangtan</div>
+                                </div>
+                            </div>
+                            <div class="follow-button">
+                                <img class="add-circle-outline" alt="" src="../assets/icons/icFollow.png">
+                    
+                                <div class="follow-button-text">Theo dõi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class='nav-navigator'>
                 <a href=''>danh mục</a>
                 <a href=''>nghiên cứu</a>
@@ -256,9 +721,23 @@
                     <button class="login">đăng nhập</button>
                 </div>
             </div>
-            <button class="menu-toggle" aria-label="Menu">
+            <button class="menu-toggle" onclick = "document.getElementById('profile-menu-popup').classList.toggle('popup-show')" aria-label="Menu">
                 <img src="../assets/icons/icMenu.svg">
             </button>
+            <div id = 'profile-menu-popup'>
+                <div class="menu">
+                    <div class="menu-text mobile">Tài nguyên</div>
+                    <div class="menu-child mobile">
+                    </div>
+                    <div class="menu-text mobile">Danh mục</div>
+                    <div class="menu-child mobile">
+                    </div>
+                    <div class="menu-text">Chỉnh sửa thông tin</div>
+                    <div class="menu-child">
+                    </div>
+                    <div class="menu-text-red">Đăng xuất</div>
+                </div>
+            </div>
         </div>
         <script>
             const isLoggedIn = false;
@@ -277,6 +756,7 @@
 
             function updatePlaceholder() {
                 const searchInput = document.querySelector(".search-input");
+                document.querySelector("#profile-menu-popup").classList.remove("popup-show");
                 if (window.innerWidth <= 1080) {
                     searchInput.placeholder = "tìm kiếm...";
                 } else {
@@ -291,6 +771,5 @@
             window.addEventListener("DOMContentLoaded", updatePlaceholder);
             window.addEventListener("resize", updatePlaceholder);
         </script>
-        <script src="../scripts/index.js"></script>
     </nav>
 </body>

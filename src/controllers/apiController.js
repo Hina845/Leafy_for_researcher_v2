@@ -53,4 +53,9 @@ async function getContentCards(req, res) {
     }
 }
 
+async function getSearchValue(req, res) {
+    const regex = req.query.regex || '';
+    
+}
+
 export { getContentCards };
