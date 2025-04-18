@@ -8,10 +8,10 @@
     <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
     <link rel="stylesheet" href="styles/tokens.css">
     <link rel="stylesheet" href="components/component-styles.css">
-    <link rel="stylesheet" href="styles/edit-research.css">
 
     <style>
         @import url('tokens.css');
+
         .t-nhng-phn {
             position: relative;
             font-size: 32px;
@@ -19,29 +19,65 @@
             color: #204f0a;
             text-align: left;
         }
+
+        .research-title {
+            position: relative;
+        }
+
+        .research-description {
+            width: 727px;
+            position: relative;
+            font-size: 16px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .research-section {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .background-image {
+            width: 100%;
+            position: absolute;
+            margin: 0 !important;
+            top: 0px;
+            right: -1440px;
+            left: 0px;
+            height: 440px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 140px 0px 0px;
+            box-sizing: border-box;
+            background-image: url("assets/images/imgKhoNghienCuuHero2.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top;
+            text-align: left;
+            font-size: 96px;
+            color: #fff;
+            font-family: 'Roboto Serif';
+        }
     </style>
 
 </head>
 
 <body>
-    <div class="typography-title">
-        <img class="hero-image" alt="" src="assets\images\imgKhoNghienCuuHero.png">
-        <div class=title-container>
-            <div class="title-main">Danh mục</div>
-            <p class="title-sub">Chào mừng bạn đến với thế giới đầy màu sắc của những danh mục thú vị
-                dành cho các nghiên cứu sinh! Tại đây, bạn không chỉ tìm thấy những chủ đề hấp dẫn mà
-                còn có cơ hội khám phá những điều mới mẻ mà có thể bạn chưa bao giờ nghĩ đến. Hãy cùng nhau lướt qua
-                những ý tưởng độc đáo và những câu chuyện thú vị, để mỗi ngày học tập trở thành một cuộc phiêu lưu đầy
-                niềm vui nhé!</p>
+    <div class="background-image">
+        <div class="research-section">
+            <div class="research-title">Kho nghiên cứu</div>
+            <div class="research-description">Bạn đang tìm kiếm nguồn cảm hứng nghiên cứu nhưng không muốn bị chìm trong
+                những trang tài liệu khô khan? Đừng lo! Kho nghiên cứu Leafy sẽ mang đến cho bạn một không gian xanh
+                mát, nơi kiến thức nảy nở tự nhiên như những chiếc lá non. Hãy cùng khám phá những bài nghiên cứu chất
+                lượng theo cách thú vị nhất!</div>
         </div>
     </div>
-
-    <div class="t-cc-nhmt">Từ các nhóm/tổ đội nghiên cứu</div>
-
-    <div class="t-cc-nhmt">Từ các chủ đề nghiên cứu hấp dẫn</div>
-
-    <div class="t-cc-nhmt">Từ những phân mục hấp dẫn</div>
-
 
 
 </body>

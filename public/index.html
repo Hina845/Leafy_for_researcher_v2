@@ -546,12 +546,23 @@
             display: inline-block;
             max-width: 1240px;
         }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1440px;
+            position: absolute;
+            margin: 0 !important;
+            top: 80px;
+            overflow: hidden;
+            height: auto;
+            flex-shrink: 0;
+        }
     </style>
 
 </head>
 
 <body>
-    <nav id="navigation"></nav>
+    <img class="hero-image" alt="" src="assets/images/imgIndex.png">
 
     <!-- <div class="leaf-poster-7-parent">
         <img class="leaf-poster-7-icon" alt="" src="assets/images/leaf-poster 7.png">
@@ -668,11 +679,6 @@
     </div>
 
 
-
-
-    <footer id="footer"></footer>
-
-    <script src="scripts/component.js"></script>
 </body>
 
 </html>

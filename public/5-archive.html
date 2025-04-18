@@ -22,19 +22,34 @@
         </div>
     </div>
 
-    <div class=topic-nav>
-        <div id=tab-navigator>
-            <span class="active" onclick="switch_tab(this, 'tab-newest')">Mới nhất</span>
-            <span onclick="switch_tab(this, 'tab-hotest')">Hot nhất</span>
-            <span onclick="switch_tab(this, 'tab-from-follower')">Từ người theo dõi</span>
+    <div class="header">
+        <div class="filter-container" onclick="toggleTagsFilter()">
+            <div class="icon">
+                <img class="vector-icon" alt="" src="assets/icons/icFilter.svg">
+            </div>
+            <div class="tagline-text">Filter <span id="filterCount" class="filter-count">0</span></div>
+        </div>
+        <div id="tags-filter-container" class="tags-filter-hidden"></div>
+        <div class="tagline">
+            <div class="tagline-item" onclick="switch_tab(this, 'tab-newest')">
+                <div class="tagline-text">Mới nhất</div>
+            </div>
+            <div class="tagline-item" onclick="switch_tab(this, 'tab-hotest')">
+                <div class="tagline-text">Hot nhất</div>
+            </div>
+            <div class="tagline-item" onclick="switch_tab(this, 'tab-from-follower')">
+                <div class="tagline-text">Từ người theo dõi</div>
+            </div>
         </div>
         <div class="button">
             <div class="icon">
                 <img class="add-circle-outline" alt="" src="assets/icons/icAdd.svg">
             </div>
-            <div class="button-text">Thêm bài viết</div>
+            <div class="tagline-text">Thêm bài viết</div>
         </div>
     </div>
+
+
 
     <div class='research-vault-container'>
 
@@ -211,99 +226,44 @@
             </div>
         </div>
     </div>
-    <div class='component-footer'>
-        <div class='component-footer-navigation'>
-            <div style="display: flex; flex-direction: row; align-items: flex-start; gap: var(--spacing-1);">
-                <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M27.9313 5.0089C27.917 4.76425 27.8134 4.53337 27.6401 4.36009C27.4669 4.1868 27.236 4.08318 26.9913 4.0689C17.4751 3.51014 9.85258 6.37515 6.60258 11.7501C5.47604 13.5888 4.9209 15.7206 5.00758 17.8751C5.06416 19.2529 5.34449 20.6124 5.83758 21.9001C5.86655 21.9794 5.91512 22.05 5.97874 22.1055C6.04236 22.1609 6.11898 22.1993 6.20146 22.2172C6.28393 22.235 6.36958 22.2317 6.45043 22.2075C6.53128 22.1833 6.60469 22.1391 6.66383 22.0789L17.2888 11.2914C17.3817 11.1985 17.492 11.1248 17.6134 11.0745C17.7348 11.0242 17.8649 10.9983 17.9963 10.9983C18.1277 10.9983 18.2578 11.0242 18.3792 11.0745C18.5006 11.1248 18.6109 11.1985 18.7038 11.2914C18.7967 11.3843 18.8704 11.4946 18.9207 11.616C18.971 11.7374 18.9969 11.8675 18.9969 11.9989C18.9969 12.1303 18.971 12.2604 18.9207 12.3818C18.8704 12.5032 18.7967 12.6135 18.7038 12.7064L7.09258 24.4926L5.31883 26.2664C5.13436 26.446 5.02423 26.6884 5.01034 26.9455C4.99644 27.2026 5.0798 27.4555 5.24383 27.6539C5.33366 27.7579 5.44398 27.8423 5.56789 27.9018C5.6918 27.9613 5.82664 27.9946 5.964 27.9997C6.10135 28.0047 6.23827 27.9814 6.36621 27.9311C6.49415 27.8809 6.61036 27.8048 6.70758 27.7076L8.80633 25.6089C10.5738 26.4639 12.3576 26.9301 14.1263 26.9926C14.2655 26.9976 14.4042 27.0001 14.5426 27.0001C16.5568 27.0053 18.5329 26.4505 20.2501 25.3976C25.6251 22.1476 28.4913 14.5264 27.9313 5.0089Z"
-                        fill="#FFFFFF" />
-                </svg>
-                <span style='font-size: 48px; font-family: "Roboto Serif";'>leafy</span>
-            </div>
-            <div class="naviagation-part">
-                <span style='font-weight: 800;'>Khám Phá Leafy</span>
-                <ul>
-                    <li>Bộ sưu tập nghiên cứu</li>
-                    <li>Hướng dẫn học tập</li>
-                    <li>Chủ đề nổi bật</li>
-                </ul>
-            </div>
-            <div class="naviagation-part">
-                <span style='font-weight: 800;'>Cộng Đồng Học Tập</span>
-                <ul>
-                    <li>Diễn đàn Leafy</li>
-                    <li>Sự kiện & hội thảo</li>
-                    <li>Bảng xếp hạng học tập</li>
-                </ul>
-            </div>
-            <div class="naviagation-part">
-                <span style='font-weight: 800;'>Liên Hệ</span>
-                <ul style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center;">
-                    <li>
-                        <span style="padding-right: var(--spacing-2);">📩</span>
-                        <span>Email: support@leafy.com</span>
-                    </li>
-                    <li>
-                        <span style="padding-right: var(--spacing-2);">📍</span>
-                        <span>Địa chỉ: 123 Đường Tri Thức, Thành phố Sáng Tạo</span>
-                    </li>
-                    <li>
-                        <span style="padding-right: var(--spacing-2);">📞</span>
-                        <span>Hotline: 1800-LEAFY (1800-53239)</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class='component-footer-information'>
-            <div style="font-size: 12px;">© 2025 leafy. Tất cả các quyền được bảo lưu.</div>
-            <div style="display: flex; gap: var(--spacing-2);">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M16 0C7.16352 0 0 7.16352 0 16C0 23.5034 5.16608 29.7997 12.135 31.529V20.8896H8.83584V16H12.135V13.8931C12.135 8.44736 14.5997 5.9232 19.9462 5.9232C20.96 5.9232 22.7091 6.12224 23.4246 6.32064V10.7526C23.047 10.713 22.391 10.6931 21.5763 10.6931C18.953 10.6931 17.9392 11.687 17.9392 14.2707V16H23.1654L22.2675 20.8896H17.9392V31.8829C25.8618 30.9261 32.0006 24.1805 32.0006 16C32 7.16352 24.8365 0 16 0Z"
-                        fill="white" />
-                </svg>
-
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M24.4352 2.53857H28.9332L19.1065 13.7699L30.6668 29.0532H21.6151L14.5255 19.784L6.41343 29.0532H1.91274L12.4234 17.04L1.3335 2.53857H10.615L17.0234 11.011L24.4352 2.53857ZM22.8566 26.3609H25.3489L9.26069 5.08942H6.58611L22.8566 26.3609Z"
-                        fill="white" />
-                </svg>
-
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_204_1849)">
-                        <path
-                            d="M16 2.88125C20.275 2.88125 20.7813 2.9 22.4625 2.975C24.025 3.04375 24.8688 3.30625 25.4313 3.525C26.175 3.8125 26.7125 4.1625 27.2688 4.71875C27.8313 5.28125 28.175 5.8125 28.4625 6.55625C28.6813 7.11875 28.9438 7.96875 29.0125 9.525C29.0875 11.2125 29.1063 11.7188 29.1063 15.9875C29.1063 20.2625 29.0875 20.7688 29.0125 22.45C28.9438 24.0125 28.6813 24.8563 28.4625 25.4188C28.175 26.1625 27.825 26.7 27.2688 27.2563C26.7063 27.8188 26.175 28.1625 25.4313 28.45C24.8688 28.6688 24.0188 28.9313 22.4625 29C20.775 29.075 20.2688 29.0938 16 29.0938C11.725 29.0938 11.2188 29.075 9.5375 29C7.975 28.9313 7.13125 28.6688 6.56875 28.45C5.825 28.1625 5.2875 27.8125 4.73125 27.2563C4.16875 26.6938 3.825 26.1625 3.5375 25.4188C3.31875 24.8563 3.05625 24.0063 2.9875 22.45C2.9125 20.7625 2.89375 20.2563 2.89375 15.9875C2.89375 11.7125 2.9125 11.2063 2.9875 9.525C3.05625 7.9625 3.31875 7.11875 3.5375 6.55625C3.825 5.8125 4.175 5.275 4.73125 4.71875C5.29375 4.15625 5.825 3.8125 6.56875 3.525C7.13125 3.30625 7.98125 3.04375 9.5375 2.975C11.2188 2.9 11.725 2.88125 16 2.88125ZM16 0C11.6563 0 11.1125 0.01875 9.40625 0.09375C7.70625 0.16875 6.5375 0.44375 5.525 0.8375C4.46875 1.25 3.575 1.79375 2.6875 2.6875C1.79375 3.575 1.25 4.46875 0.8375 5.51875C0.44375 6.5375 0.16875 7.7 0.09375 9.4C0.01875 11.1125 0 11.6562 0 16C0 20.3438 0.01875 20.8875 0.09375 22.5938C0.16875 24.2938 0.44375 25.4625 0.8375 26.475C1.25 27.5313 1.79375 28.425 2.6875 29.3125C3.575 30.2 4.46875 30.75 5.51875 31.1562C6.5375 31.55 7.7 31.825 9.4 31.9C11.1063 31.975 11.65 31.9937 15.9938 31.9937C20.3375 31.9937 20.8813 31.975 22.5875 31.9C24.2875 31.825 25.4563 31.55 26.4688 31.1562C27.5188 30.75 28.4125 30.2 29.3 29.3125C30.1875 28.425 30.7375 27.5313 31.1438 26.4813C31.5375 25.4625 31.8125 24.3 31.8875 22.6C31.9625 20.8938 31.9813 20.35 31.9813 16.0063C31.9813 11.6625 31.9625 11.1188 31.8875 9.4125C31.8125 7.7125 31.5375 6.54375 31.1438 5.53125C30.75 4.46875 30.2063 3.575 29.3125 2.6875C28.425 1.8 27.5313 1.25 26.4813 0.84375C25.4625 0.45 24.3 0.175 22.6 0.1C20.8875 0.01875 20.3438 0 16 0Z"
-                            fill="white" />
-                        <path
-                            d="M16 7.78125C11.4625 7.78125 7.78125 11.4625 7.78125 16C7.78125 20.5375 11.4625 24.2188 16 24.2188C20.5375 24.2188 24.2188 20.5375 24.2188 16C24.2188 11.4625 20.5375 7.78125 16 7.78125ZM16 21.3312C13.0563 21.3312 10.6687 18.9438 10.6687 16C10.6687 13.0563 13.0563 10.6687 16 10.6687C18.9438 10.6687 21.3312 13.0563 21.3312 16C21.3312 18.9438 18.9438 21.3312 16 21.3312Z"
-                            fill="white" />
-                        <path
-                            d="M26.4625 7.45635C26.4625 8.51885 25.6 9.3751 24.5438 9.3751C23.4813 9.3751 22.625 8.5126 22.625 7.45635C22.625 6.39385 23.4875 5.5376 24.5438 5.5376C25.6 5.5376 26.4625 6.4001 26.4625 7.45635Z"
-                            fill="white" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_204_1849">
-                            <rect width="32" height="32" fill="white" />
-                        </clipPath>
-                    </defs>
-                </svg>
-
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M16.0132 0C7.15833 0 0 7.2111 0 16.1322C0 23.2633 4.58659 29.2997 10.9494 31.4362C11.7449 31.5968 12.0363 31.089 12.0363 30.6619C12.0363 30.2879 12.0101 29.006 12.0101 27.6703C7.5556 28.632 6.62799 25.7472 6.62799 25.7472C5.91212 23.8776 4.85143 23.3971 4.85143 23.3971C3.39348 22.4088 4.95763 22.4088 4.95763 22.4088C6.57489 22.5157 7.4235 24.0648 7.4235 24.0648C8.85491 26.5218 11.1615 25.8276 12.0894 25.4001C12.2218 24.3585 12.6463 23.6373 13.097 23.2368C9.54422 22.8628 5.80625 21.474 5.80625 15.2774C5.80625 13.5146 6.44214 12.0724 7.44973 10.9507C7.29075 10.5502 6.73386 8.89391 7.60903 6.67715C7.60903 6.67715 8.96111 6.24973 12.0098 8.33309C13.315 7.97996 14.6611 7.80032 16.0132 7.79881C17.3653 7.79881 18.7436 7.98597 20.0164 8.33309C23.0654 6.24973 24.4175 6.67715 24.4175 6.67715C25.2926 8.89391 24.7354 10.5502 24.5764 10.9507C25.6106 12.0724 26.2202 13.5146 26.2202 15.2774C26.2202 21.474 22.4823 22.8359 18.9029 23.2368C19.4864 23.7442 19.9898 24.7056 19.9898 26.2281C19.9898 28.3914 19.9636 30.1277 19.9636 30.6616C19.9636 31.089 20.2553 31.5968 21.0505 31.4365C27.4133 29.2994 31.9999 23.2633 31.9999 16.1322C32.0261 7.2111 24.8416 0 16.0132 0Z"
-                        fill="white" />
-                </svg>
-            </div>
-        </div>
-    </div>
     <script src="scripts/component.js"></script>
     <script>
         function switch_tab(elem1, elem2) {
-            for (let e of document.getElementById('tab-navigator').querySelectorAll('span')) e.classList.remove('active');
-            for (let e of document.querySelectorAll('.research-vault-content-card')) e.classList.remove('active');
+            // Remove 'active' class from all tagline items
+            for (let e of document.querySelectorAll('.tagline .tagline-item')) {
+                e.classList.remove('active');
+            }
+
+            // Remove 'active' class from all research vault content cards
+            for (let e of document.querySelectorAll('.research-vault-content-card')) {
+                e.classList.remove('active');
+            }
+
+            // Add 'active' class to the clicked element and the corresponding content card
             elem1.classList.add('active');
             document.getElementById(elem2).classList.add('active');
+        }
+
+
+        function toggleTagsFilter() {
+            const tagsFilterContainer = document.getElementById("tags-filter-container");
+
+            // Check if the tags-filter is already loaded
+            if (!tagsFilterContainer.innerHTML.trim()) {
+                // Load the tags-filter component dynamically
+                fetch("components/tags-filter.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        tagsFilterContainer.innerHTML = data;
+                        tagsFilterContainer.classList.toggle("tags-filter-visible");
+                        tagsFilterContainer.classList.toggle("tags-filter-hidden");
+                    })
+                    .catch((error) => console.error("Error loading tags-filter:", error));
+            } else {
+                // Toggle visibility
+                tagsFilterContainer.classList.toggle("tags-filter-visible");
+                tagsFilterContainer.classList.toggle("tags-filter-hidden");
+            }
         }
     </script>
 </body>
