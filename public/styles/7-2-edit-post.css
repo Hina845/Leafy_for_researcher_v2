@@ -1,9 +1,9 @@
-@import url(styles/tokens.css);
+@import url(tokens.css);
 
 body {
     font-family: "Roboto Serif";
     font-weight: 500;
- 
+    padding: auto;
 }
 
 .edit-research {
@@ -14,7 +14,8 @@ body {
     gap: var(--spacing-4);
     padding: 0 var(--spacing-7);
     flex-wrap: nowrap;
-    padding: 0 100px 0 100px
+    padding: 0 100px 0 100px;
+    max-width: 1440px;
 }
 
 .edit-field {
