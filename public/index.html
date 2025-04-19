@@ -60,98 +60,6 @@
             overflow: hidden;
         }
 
-        .leafy-parent {
-            position: absolute;
-            top: 178px;
-            left: 0px;
-            width: 184px;
-            height: 60px;
-            font-size: 48px;
-        }
-
-        .dracaena-marginata-plant-in-ye-icon {
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            width: 665.6px;
-            height: 815px;
-            object-fit: cover;
-        }
-
-        .nghin-cu-ging-nh-chm-cy-parent {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 1283.6px;
-            height: 815px;
-        }
-
-        .group-wrapper {
-            position: absolute;
-            top: 64px;
-            left: 134px;
-            width: 1283.6px;
-            height: 815px;
-        }
-
-        .leaf-poster-2-icon {
-            position: absolute;
-            top: 129px;
-            left: 0px;
-            width: 136px;
-            height: 136px;
-            object-fit: contain;
-        }
-
-        .leaf-poster-3-icon {
-            position: absolute;
-            top: 586px;
-            left: 278px;
-            width: 263.3px;
-            height: 263.3px;
-            object-fit: contain;
-        }
-
-        .leaf-poster-4-icon {
-            position: absolute;
-            top: 151px;
-            left: 445px;
-            width: 93px;
-            height: 93px;
-            object-fit: contain;
-        }
-
-        .leaf-poster-5-icon {
-            position: absolute;
-            top: 545px;
-            left: 1304px;
-            width: 209.8px;
-            height: 209.8px;
-            object-fit: contain;
-        }
-
-        .leaf-poster-6-icon {
-            position: absolute;
-            top: 147.07px;
-            left: 1338.83px;
-            width: 106.5px;
-            height: 106.5px;
-            object-fit: contain;
-        }
-
-        .leaf-poster-7-parent {
-            position: absolute;
-            top: 26px;
-            height: 879px;
-            width: 100%;
-            text-align: left;
-            font-size: 80px;
-            color: #87a706;
-            font-family: 'Roboto Serif';
-        }
-
-
-
         body {
             width: 100%;
             position: relative;
@@ -160,7 +68,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 875px 100px 604px;
+            padding: 80px 100px 604px;
             box-sizing: border-box;
             gap: 40px;
             min-width: 1270px;
@@ -181,7 +89,7 @@
 
 
 
-        .unsplashwwwkgomu8h8-icon {
+        .img-kham-pha {
             width: 198px;
             position: absolute;
             margin: 0 !important;
@@ -209,7 +117,7 @@
             z-index: 2;
         }
 
-        .unsplashwwwkgomu8h8-parent {
+        .kham-pha-tri-thuc {
             align-self: stretch;
             border-radius: 16px;
             background-color: rgba(135, 167, 6, 0.1);
@@ -222,14 +130,18 @@
             gap: 16px;
         }
 
-        .hnh-trnh-kin {
+        .kham-pha-tri-thuc:hover {
+            background-color: rgba(135, 167, 6, 0.2);
+        }
+
+        .hanh-trinh-title {
             align-self: stretch;
             position: relative;
             font-weight: 500;
             z-index: 0;
         }
 
-        .chng-ti-t {
+        .hanh-trinh-text {
             width: 292px;
             position: relative;
             font-size: 16px;
@@ -239,7 +151,7 @@
             z-index: 1;
         }
 
-        .unsplashwhjlzhzaz9e-icon {
+        .img-hanh-trinh {
             width: 277px;
             position: absolute;
             margin: 0 !important;
@@ -250,7 +162,7 @@
             z-index: 2;
         }
 
-        .hnh-trnh-kin-thc-y-cm-h-parent {
+        .hanh-trinh {
             align-self: stretch;
             border-radius: 16px;
             background-color: rgba(135, 167, 6, 0.1);
@@ -262,9 +174,14 @@
             padding: 32px 36px;
             position: relative;
             gap: 16px;
+            transition: all 0.3s ease-in-out;
         }
 
-        .frame-group {
+        .hanh-trinh:hover {
+            background-color: rgba(135, 167, 6, 0.2);
+        }
+
+        .why-group {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -274,12 +191,12 @@
             min-width: 582px;
         }
 
-        .div {
+        .hieu-qua {
             position: relative;
             z-index: 0;
         }
 
-        .hiu-qu-nghin {
+        .hieu-qua-text {
             width: 349px;
             position: relative;
             font-size: 16px;
@@ -289,7 +206,8 @@
             z-index: 1;
         }
 
-        .unsplashakqw-m1cmfi-icon {
+
+        .img-hieu-qua {
             width: 421px;
             position: absolute;
             margin: 0 !important;
@@ -300,7 +218,7 @@
             z-index: 2;
         }
 
-        .parent {
+        .hieu-qua {
             align-self: stretch;
             border-radius: 16px;
             background-color: rgba(135, 167, 6, 0.1);
@@ -314,7 +232,7 @@
             font-size: 96px;
         }
 
-        .frame-parent {
+        .why-parent {
             width: 100%;
             position: relative;
             display: flex;
@@ -536,7 +454,7 @@
             font-family: 'Roboto Serif';
         }
 
-        .lin-h-vi {
+        .title-divider {
             width: 100%;
             position: relative;
             font-size: 40px;
@@ -551,19 +469,93 @@
         .hero-image {
             width: 100%;
             max-width: 1440px;
-            position: absolute;
-            margin: 0 !important;
             top: 80px;
             overflow: hidden;
-            height: auto;
+            height: fit-content;
             flex-shrink: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        input {
+            flex: 1;
+            background-color: var(--color-background-primary);
+            color: var(--color-brand-primary);
+            border: none;
+            outline: none;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            font-family: inherit;
+            position: relative;
+        }
+
+        input::placeholder {
+            color: var(--color-brand-opacity50);
+        }
+
+        .dots-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background-color: var(--color-background-secondary);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--color-brand-contrast);
+        }
+
+        .content-card {
+            display: none;
+        }
+
+        .content-card.active {
+            display: block;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+
+        .hero-image.mobile {
+            display: none;
+        }
+
+        @media screen and (max-width: 1079px) {
+            .hero-image {
+                display: none;
+            }
+
+            .hero-image.mobile {
+                display: unset;
+            }
         }
     </style>
 
 </head>
 
-<body>
+<body max-width="1440px">
+    <nav id='navigation'></nav>
     <img class="hero-image" alt="" src="assets/images/imgIndex.png">
+    <img class="hero-image mobile" alt="" src="assets/images/imgIndexMobile.png">
+
 
     <!-- <div class="leaf-poster-7-parent">
         <img class="leaf-poster-7-icon" alt="" src="assets/images/leaf-poster 7.png">
@@ -591,103 +583,219 @@
         <img class="leaf-poster-6-icon" alt="" src="assets/images/leaf-poster 6.png">
     </div> -->
 
+    <div class="title-divider">Tại sao nghiên cứu lại cần tham khảo?</div>
 
-
-    <div class="frame-parent">
-        <div class="frame-group">
-            <div class="unsplashwwwkgomu8h8-parent">
-                <img class="unsplashwwwkgomu8h8-icon" alt="" src="assets/images/imgCardTree1.png">
+    <div class="why-parent">
+        <div class="why-group">
+            <div class="kham-pha-tri-thuc">
+                <img class="img-kham-pha" alt="" src="assets/images/imgCardTree1.png">
                 <div class="khm-ph-tri">Khám Phá Tri Thức Mỗi Ngày</div>
                 <div class="b-su-tp">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển chọn kỹ lưỡng để
                     mang đến những thông tin hữu ích, giúp bạn dễ dàng tiếp cận và khám phá thế giới tri thức một cách
                     trọn vẹn.</div>
             </div>
-            <div class="hnh-trnh-kin-thc-y-cm-h-parent">
-                <div class="hnh-trnh-kin">Hành Trình Kiến Thức Đầy Cảm Hứng</div>
-                <div class="chng-ti-t">Chúng tôi tự hào mang đến những bài nghiên cứu chuyên sâu, hỗ trợ bạn trong việc
+            <div class="hanh-trinh">
+                <div class="hanh-trinh-title">Hành Trình Kiến Thức Đầy Cảm Hứng</div>
+                <div class="hanh-trinh-text">Chúng tôi tự hào mang đến những bài nghiên cứu chuyên sâu, hỗ trợ bạn trong
+                    việc
                     tìm hiểu và mở rộng hiểu biết. Mỗi bài viết là một cơ hội để bạn học hỏi và phát triển theo cách của
                     riêng mình.</div>
-                <img class="unsplashwhjlzhzaz9e-icon" alt="" src="assets/images/imgCardTree3.png">
+                <img class="img-hanh-trinh" alt="" src="assets/images/imgCardTree3.png">
             </div>
         </div>
-        <div class="parent">
-            <div class="div">60%</div>
-            <div class="hiu-qu-nghin">Hiệu quả nghiên cứu tăng lên khi tham khảo các tài liệu đa dạng từ nhiều nguồn
+        <div class="hieu-qua">
+            <div class="hieu-qua-title">60%</div>
+            <div class="hieu-qua-text">Hiệu quả nghiên cứu tăng lên khi tham khảo các tài liệu đa dạng từ nhiều nguồn
                 đáng tin cậy. Chúng tôi cung cấp nội dung phong phú, giúp bạn có cái nhìn toàn diện và ứng dụng vào thực
                 tế.</div>
-            <img class="unsplashakqw-m1cmfi-icon" alt="" src="assets/images/imgCardTree2.png">
+            <img class="img-hieu-qua" alt="" src="assets/images/imgCardTree2.png">
+        </div>
+    </div>
+
+    <!-- <div class="why-parent mobile">
+        <div class="why-group">
+            <div class="kham-pha-tri-thuc">
+                <img class="img-kham-pha" alt="" src="assets/images/imgCardTree1.png">
+                <div class="khm-ph-tri">Khám Phá Tri Thức Mỗi Ngày</div>
+                <div class="b-su-tp">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển chọn kỹ lưỡng để
+                    mang đến những thông tin hữu ích, giúp bạn dễ dàng tiếp cận và khám phá thế giới tri thức một cách
+                    trọn vẹn.</div>
+            </div>
+            <div class="hanh-trinh">
+                <div class="hanh-trinh-title">Hành Trình Kiến Thức Đầy Cảm Hứng</div>
+                <div class="hanh-trinh-text">Chúng tôi tự hào mang đến những bài nghiên cứu chuyên sâu, hỗ trợ bạn trong
+                    việc
+                    tìm hiểu và mở rộng hiểu biết. Mỗi bài viết là một cơ hội để bạn học hỏi và phát triển theo cách của
+                    riêng mình.</div>
+                <img class="img-hanh-trinh" alt="" src="assets/images/imgCardTree3.png">
+            </div>
+        </div>
+        <div class="hieu-qua">
+            <div class="hieu-qua-title">60%</div>
+            <div class="hieu-qua-text">Hiệu quả nghiên cứu tăng lên khi tham khảo các tài liệu đa dạng từ nhiều nguồn
+                đáng tin cậy. Chúng tôi cung cấp nội dung phong phú, giúp bạn có cái nhìn toàn diện và ứng dụng vào thực
+                tế.</div>
+            <img class="img-hieu-qua" alt="" src="assets/images/imgCardTree2.png">
+        </div>
+    </div> -->
+    <!-------------------->
+
+
+
+    <!--API content card ahead-->
+    <div class="title-divider">Tham khảo những bài nghiên cứu tốt nhất</div>
+    <div class="slideshow-container">
+        <!-- Content Cards -->
+        <div class="content-card active">1</div>
+        <div class="content-card">2</div>
+        <div class="content-card">3</div>
+        <div class="content-card">4</div>
+        <div class="content-card">5</div>
+
+        <!-- Navigation Dots -->
+        <div class="dots-container">
+            <span class="dot active" onclick="navigateSlide(0)"></span>
+            <span class="dot" onclick="navigateSlide(1)"></span>
+            <span class="dot" onclick="navigateSlide(2)"></span>
+            <span class="dot" onclick="navigateSlide(3)"></span>
+            <span class="dot" onclick="navigateSlide(4)"></span>
         </div>
     </div>
 
 
-    <div class="lin-h-vi">Liên hệ với các thầy cô chất lượng</div>
 
 
+    <!--Lecture Cards-->
+    <div class="title-divider">Liên hệ với các thầy cô chất lượng</div>
     <div class="group-parent">
-        <div class="rectangle-parent">
-            <div class="group-child">
-            </div>
-            <img class="image-7-icon" alt="" src="assets/images/imgThay.png">
-            <div class="group-wrapper">
-                <div class="ths-trn-quang-ton-wrapper">
-                    <div class="ths-trn-quang">ThS Duy Khánh</div>
+        <a href="https://fit.neu.edu.vn/lecturer/ths-le-duy-khanh">
+            <div class="rectangle-parent">
+                <div class="group-child">
+                </div>
+                <img class="image-7-icon" alt="" src="assets/images/imgThay.png">
+                <div class="group-wrapper">
+                    <div class="ths-trn-quang-ton-wrapper">
+                        <div class="ths-trn-quang">ThS Duy Khánh</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="rectangle-parent">
-            <div class="group-item">
-            </div>
-            <img class="image-7-icon" alt="" src="assets/images/imgThayOS.png">
-            <div class="group-container">
-                <div class="ths-trn-quang-ton-wrapper">
-                    <div class="ths-trn-quang">ThS Phương Nam</div>
+        </a>
+
+
+        <a href="https://fit.neu.edu.vn/lecturer/ths-nguyen-phuong-nam">
+            <div class="rectangle-parent">
+                <div class="group-item">
+                </div>
+                <img class="image-7-icon" alt="" src="assets/images/imgThayOS.png">
+                <div class="group-container">
+                    <div class="ths-trn-quang-ton-wrapper">
+                        <div class="ths-trn-quang">ThS Phương Nam</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="rectangle-parent">
-            <div class="group-item">
-            </div>
-            <img class="image-7-icon" alt="" src="assets/images/imgThayThao.png">
-            <div class="group-frame">
-                <div class="ths-trn-quang-ton-wrapper">
-                    <div class="ths-trn-quang">TS Phạm Thảo</div>
+        </a>
+
+
+        <a href="https://fit.neu.edu.vn/lecturer/th-s-pham-thao">
+            <div class="rectangle-parent">
+                <div class="group-item">
+                </div>
+                <img class="image-7-icon" alt="" src="assets/images/imgThayThao.png">
+                <div class="group-frame">
+                    <div class="ths-trn-quang-ton-wrapper">
+                        <div class="ths-trn-quang">TS Phạm Thảo</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="rectangle-parent">
-            <div class="group-item">
-            </div>
-            <img class="image-7-icon" alt="" src="assets/images/imgThayToan.png">
-            <div class="frame-div">
-                <div class="ths-trn-quang-ton-wrapper">
-                    <div class="ths-trn-quang">ThS Quang Toàn</div>
+        </a>
+
+        <a href="https://fit.neu.edu.vn/lecturer/ths-tran-quang-toan">
+            <div class="rectangle-parent">
+                <div class="group-item">
+                </div>
+                <img class="image-7-icon" alt="" src="assets/images/imgThayToan.png">
+                <div class="frame-div">
+                    <div class="ths-trn-quang-ton-wrapper">
+                        <div class="ths-trn-quang">ThS Quang Toàn</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
+    <!-------------------------------->
 
 
-
+    <!--Get email (Done)-->
     <div class="ng-k-nhn-thng-tin-ngay-parent">
-        <div class="ng-k-nhn">Đăng ký nhận thông tin ngay</div>
+        <div class="title-divider">Đăng ký nhận thông tin ngay</div>
         <div class="email-parent">
-            <img class="email-icon" alt="" src="Email.svg">
-            <div class="nhp-email-ca">Nhập email của bạn..</div>
+            <img class="email-icon" alt="" src="assets/icons/icEmail.svg">
+            <input id="search" placeholder="Nhập Email của bạn" type="text"></input>
         </div>
-        <div class="nhn-thng-bo-wrapper">
+        <div class="nhn-thng-bo-wrapper" style="cursor: pointer; transition: background-color 0.3s, color 0.3s;"
+            onmouseover="this.style.backgroundColor='#6b8e23'; this.style.color='#fff';"
+            onmouseout="this.style.backgroundColor='#87a706'; this.style.color='#fff';"
+            onclick="alert('Cảm ơn bạn đã đăng kí, bạn sẽ nhận được mail sớm thôi !!!')">
             <div class="nhn-thng-bo">Nhận thông báo</div>
         </div>
     </div>
-
-
-<<<<<<< HEAD
-=======
+    <!--------------------->
 
 
     <footer id="footer"></footer>
 
-    <script type = "module" src="scripts/index.js"></script>
->>>>>>> main
+    <script type="module" src="./scripts/component.js"></script>
+    <script>
+        //component.js
+        document.addEventListener("DOMContentLoaded", function () {
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = "./scripts/navigator.js";
+            document.body.appendChild(script);
+        });
+
+        fetch('components/content-card.html')
+            .then(res => res.text())
+            .then(html => {
+                document.querySelectorAll('#content-card').forEach(el => {
+                    el.innerHTML = html;
+                });
+            });
+
+
+
+
+
+        // CAOUSEL CARD
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.content-card');
+        const dots = document.querySelectorAll('.dot');
+
+        // Function to show a specific slide
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        // Function to navigate to a specific slide
+        function navigateSlide(index) {
+            clearInterval(slideInterval); // Stop auto-looping when manually navigating
+            showSlide(index);
+            slideInterval = setInterval(nextSlide, 5000); // Restart auto-looping
+        }
+
+        // Function to show the next slide
+        function nextSlide() {
+            const nextIndex = (currentSlide + 1) % slides.length;
+            showSlide(nextIndex);
+        }
+
+        // Start the slideshow
+        let slideInterval = setInterval(nextSlide, 5000);
+    </script>
 </body>
 
 </html>
