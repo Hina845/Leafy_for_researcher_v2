@@ -212,7 +212,7 @@
                 document.getElementById('post-content').innerHTML = marked.parse(data.md_content || "");
                 document.getElementById('author').innerText = data.author_name;
                 document.getElementById('post-time').innerText = data.date_created;
-                document.getElementById('views').innerText = data.views;
+                document.getElementById('views').innerText = data.view;
             }
         })
         .catch(error => console.error('Error fetching post:', error));
