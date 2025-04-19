@@ -4,22 +4,23 @@ import TagModel from '../models/tagModel.js';
 import ejs from 'ejs';
 import path from 'path';
 import fs from 'fs';
+import { tmpdir } from 'os';
 
 const __dirname = path.resolve('src');
 
 async function getContentCards(req, res) {
 
-    const post_id = req.body.post_id || null;
-    const user_id = req.body.user_id || null;
+    const post_id = req.body.post_id;
+    const owned_user_id = req.body.owned_user_id || null;
     const limit = req.body.limit || 10;
-    const tags = req.body.tags || [];
+    const tags = req.body.tags ;
 
-    let query = {};
-    if (post_id) query._id = post_id;
-    if (user_id) query.owned_user_id = user_id;
-    if (tags.length > 0) query.tags = { $in: tags };
+    let query = [];
+    if (post_id != null) query.push({_id: {$in: post_id}});
+    if (owned_user_id) query.push({owned_user_id: owned_user_id});
+    if (tags != null) query.push({tags: { $in: tags }});
     try {
-        const posts = await PostModel.find(query).limit(limit);
+        const posts = await PostModel.find({$and: query}).limit(limit);
         if (!posts) return res.status(400).json({ success: false, error: 'post-not-exist' });
 
         let content_cards = [];
@@ -45,7 +46,7 @@ async function getContentCards(req, res) {
                 views: post.views,
                 imageUrl: `${thumbnail_path}`,
             });
-            content_cards.push(template)
+            content_cards.push({template: template, _id: post._id});
         }
         return res.json({ success: true, content_cards });
     } catch (err) {
@@ -63,20 +64,23 @@ async function getSearchValue(req, res) {
         users: [],
     }
     try {
-        const [tags, posts, users, users_by_display_name] = await Promise.all([
+        const searchPromises = [
             TagModel.find({ name: { $regex: regex, $options: 'iu' } }).limit(limit),
-            PostModel.find({ title: { $regex: regex, $options: 'iu' } }).limit(limit),
-            UserModel.find({ username: { $regex: regex, $options: 'i' } }).limit(limit),
-            UserModel.find({ display_name: { $regex: regex, $options: 'iu' } }).limit(limit),
-        ]);
+            PostModel.find({
+            $or: [
+                { title: { $regex: regex, $options: 'iu' } },
+                { subtitle: { $regex: regex, $options: 'iu' } },
+            ],
+            }).limit(limit),
+            UserModel.find({
+            $or: [
+                { username: { $regex: regex, $options: 'i' } },
+                { display_name: { $regex: regex, $options: 'iu' } },
+            ],
+            }).limit(limit),
+        ];
 
-        const userUsernames = new Set(users.map(user => user.username));
-        for (let user of users_by_display_name) {
-            if (!userUsernames.has(user.username)) {
-            users.push(user);
-            userUsernames.add(user.username);
-            }
-        }
+        const [tags, posts, users] = await Promise.all(searchPromises);
 
         searchResponse.tags = tags.map(tag => ({
             _id: tag._id,

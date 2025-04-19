@@ -40,6 +40,10 @@ const Schema = mongoose.Schema({
         type: Array,
         default: [],
     },
+    total_views: {
+        type: Number,
+        default: 0,
+    }
 })
 
 const UserModel = mongoose.model('user', Schema);

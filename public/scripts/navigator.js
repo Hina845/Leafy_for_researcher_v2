@@ -109,13 +109,9 @@ await fetch(`${server}/user/get-user-info`, {
         const template = `<div class="person-info">
                 <img class="person-info-child" alt="" src="${data.profile_picture_url}">
                 <div class="person-details">
-                    <a class="person-name" style = "text-align: left;" href = '/user/${data._id}'>${data.display_name}</a>
+                    <a class="person-name" style = "text-align: left;" href = '/profile?user_id=${data._id}'>${data.display_name}</a>
                     <div class="person-handle">@${data.username}</div>
                 </div>
-            </div>
-            <div class="follow-button">
-                <img class="add-circle-outline" alt="" src="../assets/icons/icFollow.svg">
-                <div class="follow-button-text" onclick = "follow(${data._id})">Theo dõi</div>
             </div>`;
         return template; 
     }

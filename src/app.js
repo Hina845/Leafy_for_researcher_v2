@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import userRouter from './routes/userRoutes.js';
 import pageRouter from './routes/pageRouter.js';
 import apiRouter from './routes/apiRouter.js';
-import { verifyPasswordChangeLink } from './middlewares/authMiddleware.js'; 
+import { verifyPasswordChangeLink, verifyTokenNotRes } from './middlewares/authMiddleware.js'; 
 
 const app = new express();
 
