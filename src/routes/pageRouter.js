@@ -38,5 +38,8 @@ pageRouter.get('/edit-post', (req, res) => {
     res.sendFile(path.join(root, '7-2-edit-post.html'));
 });
 
+pageRouter.get('/post', (req, res) => {
+    res.sendFile(path.join(root, '7-post.html'));
+});
 
 export default pageRouter;
