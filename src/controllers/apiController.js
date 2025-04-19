@@ -136,5 +136,75 @@ async function getSearchValue(req, res) {
     }
 }
 
+async function getPostForEdit(req, res) {
+    const post_id = req.query.post_id;
+    if (!post_id) return res.status(400).json({ success: false, error: 'post-not-exist' });
+    try {
+        const post = await PostModel.findById(post_id);
+        if (!post) return res.status(400).json({ success: false, error: 'post-not-exist' });
 
-export { getContentCards, getSearchValue };
+        if (post.owned_user_id != req.userId) {
+           return res.status(403).json({ success: false, error: 'Unauthorized' });
+        }
+        return res.json({
+            success: true,
+            data: {
+                title: post.title,
+                subtitle: post.subtitle,
+                tags: post.tags,
+            },
+        });
+    } catch (err) {
+        console.error(err.message);
+        return res.json({ success: false, error: err.message });
+    }
+}
+
+async function getPost(req, res) {
+    const post_id = req.query.post_id;
+    if (!post_id) return res.status(400).json({ success: false, error: 'post-not-exist' });
+
+    try {
+        const post = await PostModel.findById(post_id);
+        if (!post) return res.status(400).json({ success: false, error: 'post-not-exist' });
+
+        post.views += 1;
+        await post.save();
+
+        const author = await UserModel.findById(post.owned_user_id);
+        const post_directory = path.resolve('public', 'researches', post._id.toString());
+        const thumbnail_files = fs.readdirSync(post_directory);
+        const thumbnail_file = thumbnail_files.find(file => /\.(png|jpg|jpeg|gif|bmp|webp)$/i.test(file));
+        if (!thumbnail_file) {
+            throw new Error(`Thumbnail not found for post ${post._id}`);
+        }
+        const thumbnail_path = path.join('researches', post._id.toString(), thumbnail_file);
+
+        const md_content = fs.readFileSync(path.join(post_directory, 'content.md'), 'utf-8');
+
+        return res.json({
+            success: true,
+            data: {
+                title: post.title,
+                subtitle: post.subtitle,
+                tags: post.tags,
+                md_content: md_content,
+                author_name: author.display_name,
+                date_created: post.date_created.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                }),
+                view: post.views,
+                image_url: `${thumbnail_path}`,
+            },
+        });
+    } catch (err) {
+        console.error(err.message);
+        return res.json({ success: false, error: err.message });
+    }
+}
+        
+
+
+export { getContentCards, getSearchValue, getPostForEdit, getPost };
