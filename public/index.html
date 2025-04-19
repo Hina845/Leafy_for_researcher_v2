@@ -71,10 +71,7 @@
             padding: 80px 100px 604px;
             box-sizing: border-box;
             gap: 40px;
-            min-width: 1270px;
             text-align: center;
-            color: #204f0a;
-            font-family: 'Roboto Serif';
             padding: auto;
         }
 
@@ -100,14 +97,14 @@
             z-index: 0;
         }
 
-        .khm-ph-tri {
+        .kham-pha-text {
             align-self: stretch;
             position: relative;
             font-weight: 500;
             z-index: 1;
         }
 
-        .b-su-tp {
+        .kham-pha-description {
             position: relative;
             font-size: 16px;
             font-weight: 500;
@@ -238,7 +235,7 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             gap: 40px;
             min-width: 1043px;
             max-width: 1043px;
@@ -284,12 +281,12 @@
             color: rgba(135, 167, 6, 0.5);
         }
 
-        .nhn-thng-bo {
+        .receive-noti-text {
             position: relative;
             font-weight: 600;
         }
 
-        .nhn-thng-bo-wrapper {
+        .receive-noti {
             width: 188px;
             border-radius: 999px;
             background-color: #87a706;
@@ -304,7 +301,7 @@
             color: #fff;
         }
 
-        .ng-k-nhn-thng-tin-ngay-parent {
+        .receive-information {
             width: 100%;
             position: relative;
             display: flex;
@@ -319,7 +316,7 @@
             font-family: 'Roboto Serif';
         }
 
-        .group-child {
+        .group-item {
             position: absolute;
             top: 77.51px;
             left: 0px;
@@ -329,7 +326,7 @@
             height: 377.1px;
         }
 
-        .image-7-icon {
+        .teacher-img {
             position: absolute;
             top: 0px;
             left: 0px;
@@ -339,7 +336,7 @@
             object-fit: cover;
         }
 
-        .ths-trn-quang {
+        .teacher-name {
             position: absolute;
             top: 0px;
             left: 0px;
@@ -347,13 +344,13 @@
             width: 100%;
         }
 
-        .ths-trn-quang-ton-wrapper {
+        .name-wrapper {
             width: 175px;
             position: relative;
             height: 19px;
         }
 
-        .group-wrapper {
+        .name-container {
             position: absolute;
             top: 405.98px;
             left: 19.14px;
@@ -446,12 +443,13 @@
             justify-content: space-between;
             flex-wrap: wrap;
             align-content: flex-end;
-            gap: 22px 0px;
+            gap: 22px;
             max-width: 1240px;
             text-align: center;
             font-size: 16px;
             color: #fff;
             font-family: 'Roboto Serif';
+            flex-shrink: 0;
         }
 
         .title-divider {
@@ -534,17 +532,29 @@
         }
 
 
-        .hero-image.mobile {
-            display: none;
-        }
 
-        @media screen and (max-width: 1079px) {
+        @media (max-width: 1079px) {
             .hero-image {
-                display: none;
+                content: url(assets/images/imgIndexMobile.png);
             }
-
-            .hero-image.mobile {
-                display: unset;
+            .kham-pha-tri-thuc{
+                flex-direction: column;
+                align-self: stretch;
+                border-radius: 16px;
+                background-color: rgba(135, 167, 6, 0.1);
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 32px 36px;
+                position: relative;
+                gap: 16px;
+            }
+            .why-parent{
+                flex-direction: column;
+                width: 400px;
+                flex-shrink: 0;
+                flex-grow: 0;
             }
         }
     </style>
@@ -554,12 +564,11 @@
 <body max-width="1440px">
     <nav id='navigation'></nav>
     <img class="hero-image" alt="" src="assets/images/imgIndex.png">
-    <img class="hero-image mobile" alt="" src="assets/images/imgIndexMobile.png">
 
 
     <!-- <div class="leaf-poster-7-parent">
         <img class="leaf-poster-7-icon" alt="" src="assets/images/leaf-poster 7.png">
-        <div class="group-wrapper">
+        <div class="name-container">
             <div class="nghin-cu-ging-nh-chm-cy-parent">
                 <div class="nghin-cu-ging-container">
                     <span>nghiên cứu </span>
@@ -589,8 +598,8 @@
         <div class="why-group">
             <div class="kham-pha-tri-thuc">
                 <img class="img-kham-pha" alt="" src="assets/images/imgCardTree1.png">
-                <div class="khm-ph-tri">Khám Phá Tri Thức Mỗi Ngày</div>
-                <div class="b-su-tp">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển chọn kỹ lưỡng để
+                <div class="kham-pha-text">Khám Phá Tri Thức Mỗi Ngày</div>
+                <div class="kham-pha-description">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển chọn kỹ lưỡng để
                     mang đến những thông tin hữu ích, giúp bạn dễ dàng tiếp cận và khám phá thế giới tri thức một cách
                     trọn vẹn.</div>
             </div>
@@ -616,8 +625,8 @@
         <div class="why-group">
             <div class="kham-pha-tri-thuc">
                 <img class="img-kham-pha" alt="" src="assets/images/imgCardTree1.png">
-                <div class="khm-ph-tri">Khám Phá Tri Thức Mỗi Ngày</div>
-                <div class="b-su-tp">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển chọn kỹ lưỡng để
+                <div class="kham-pha-text">Khám Phá Tri Thức Mỗi Ngày</div>
+                <div class="kham-pha-description">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển chọn kỹ lưỡng để
                     mang đến những thông tin hữu ích, giúp bạn dễ dàng tiếp cận và khám phá thế giới tri thức một cách
                     trọn vẹn.</div>
             </div>
@@ -670,12 +679,12 @@ z
     <div class="group-parent">
         <a href="https://fit.neu.edu.vn/lecturer/ths-le-duy-khanh">
             <div class="rectangle-parent">
-                <div class="group-child">
+                <div class="group-item">
                 </div>
-                <img class="image-7-icon" alt="" src="assets/images/imgThay.png">
-                <div class="group-wrapper">
-                    <div class="ths-trn-quang-ton-wrapper">
-                        <div class="ths-trn-quang">ThS Duy Khánh</div>
+                <img class="teacher-img" alt="" src="assets/images/imgThay.png">
+                <div class="name-container">
+                    <div class="name-wrapper">
+                        <div class="teacher-name">ThS Duy Khánh</div>
                     </div>
                 </div>
             </div>
@@ -686,10 +695,10 @@ z
             <div class="rectangle-parent">
                 <div class="group-item">
                 </div>
-                <img class="image-7-icon" alt="" src="assets/images/imgThayOS.png">
-                <div class="group-container">
-                    <div class="ths-trn-quang-ton-wrapper">
-                        <div class="ths-trn-quang">ThS Phương Nam</div>
+                <img class="teacher-img" alt="" src="assets/images/imgThayOS.png">
+                <div class="name-container">
+                    <div class="name-wrapper">
+                        <div class="teacher-name">ThS Phương Nam</div>
                     </div>
                 </div>
             </div>
@@ -700,10 +709,10 @@ z
             <div class="rectangle-parent">
                 <div class="group-item">
                 </div>
-                <img class="image-7-icon" alt="" src="assets/images/imgThayThao.png">
-                <div class="group-frame">
-                    <div class="ths-trn-quang-ton-wrapper">
-                        <div class="ths-trn-quang">TS Phạm Thảo</div>
+                <img class="teacher-img" alt="" src="assets/images/imgThayThao.png">
+                <div class="name-container">
+                    <div class="name-wrapper">
+                        <div class="teacher-name">TS Phạm Thảo</div>
                     </div>
                 </div>
             </div>
@@ -713,10 +722,10 @@ z
             <div class="rectangle-parent">
                 <div class="group-item">
                 </div>
-                <img class="image-7-icon" alt="" src="assets/images/imgThayToan.png">
-                <div class="frame-div">
-                    <div class="ths-trn-quang-ton-wrapper">
-                        <div class="ths-trn-quang">ThS Quang Toàn</div>
+                <img class="teacher-img" alt="" src="assets/images/imgThayToan.png">
+                <div class="name-container">
+                    <div class="name-wrapper">
+                        <div class="teacher-name">ThS Quang Toàn</div>
                     </div>
                 </div>
             </div>
@@ -726,17 +735,17 @@ z
 
 
     <!--Get email (Done)-->
-    <div class="ng-k-nhn-thng-tin-ngay-parent">
+    <div class="receive-information">
         <div class="title-divider">Đăng ký nhận thông tin ngay</div>
         <div class="email-parent">
             <img class="email-icon" alt="" src="assets/icons/icEmail.svg">
             <input id="search" placeholder="Nhập Email của bạn" type="text"></input>
         </div>
-        <div class="nhn-thng-bo-wrapper" style="cursor: pointer; transition: background-color 0.3s, color 0.3s;"
+        <div class="receive-noti" style="cursor: pointer; transition: background-color 0.3s, color 0.3s;"
             onmouseover="this.style.backgroundColor='#6b8e23'; this.style.color='#fff';"
             onmouseout="this.style.backgroundColor='#87a706'; this.style.color='#fff';"
             onclick="alert('Cảm ơn bạn đã đăng kí, bạn sẽ nhận được mail sớm thôi !!!')">
-            <div class="nhn-thng-bo">Nhận thông báo</div>
+            <div class="receive-noti-text">Nhận thông báo</div>
         </div>
     </div>
     <!--------------------->
