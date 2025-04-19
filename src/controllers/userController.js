@@ -123,16 +123,58 @@ async function getUserInfo(req, res) {
         profile_picture_url = path.join('users', user._id.toString(), files[0]);
     }
 
+    let data = {
+        _id: user._id,
+        username: user.username,
+        display_name: user.display_name,
+        profile_picture_url: profile_picture_url,
+        owned_posts: user.owned_posts,
+        viewed_posts: user.viewed_posts,
+        followers: user.followers.length,
+        total_views: user.total_views,
+    }
+
+    if (req.is_owner) data.is_owner = req.is_owner;
+    if (req.is_login) data.is_login = true;
+    else data.is_login = false;
+
     res.json({
         success: true,
-        data: {
-            _id: user._id,
-            username: user.username,
-            display_name: user.display_name,
-            profile_picture_url: profile_picture_url,
-        },
+        data: data
     });
+}
 
+async function FollowUser(req, res) {
+    const user = await UserModel.findById(req.userId);
+    const follow_user = await UserModel.findById(req.query.user_id);
+
+    if (!user || !follow_user) return res.status(404).json({ success: false, error: 'User not found' });
+
+    if (user.followed.includes(follow_user._id)) {
+        user.followed = user.followed.filter(id => id.toString() !== follow_user._id.toString());
+        follow_user.followers = follow_user.followers.filter(id => id.toString() !== user._id.toString());
+    } else {
+        user.followed.push(follow_user._id);
+        follow_user.followers.push(user._id);
+    }
+
+    await user.save();
+    await follow_user.save();
+
+    return res.json({ success: true, message: 'Followed/Unfollowed successfully' });
+}
+
+async function CheckFollow(req, res) {
+    const user = await UserModel.findById(req.userId);
+    let follow_user;
+    if (req.query.user_id != req.userId) follow_user = req.query.user_id;
+
+    if (!user || !follow_user) return res.status(404).json({ success: false, error: 'User not found' });
+
+    if (user.followed.includes(follow_user._id)) {
+        return res.json({ success: true, message: 'Followed', is_followed: true });
+    }
+    return res.json({ success: true, message: 'Not followed', is_followed: false });
 }
 
 export {
@@ -142,4 +184,6 @@ export {
     resetPasswordSubmit,
     resetPassword,
     getUserInfo,
+    FollowUser,
+    CheckFollow,
 }
