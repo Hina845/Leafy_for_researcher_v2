@@ -257,7 +257,6 @@
         import {still_tags_loader_no_link} from './scripts/tags_loader.js';
         import {server} from './scripts/config.js';
 
-
         function getQueryParams() {
             const params = {};
             const queryString = window.location.search;
@@ -269,6 +268,19 @@
             }
             return params;
         }
+
+        fetch(`${server}/user/get-user-info`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			credentials: 'include',
+		}).then((response) => response.json()).then(async (data) => {
+			if (!data.success && data.message === 'Unauthorized') {
+				window.location.href = '/login';
+				return;
+			}
+		})
 
         const queryParams = getQueryParams();
         if (queryParams.post_id) {
