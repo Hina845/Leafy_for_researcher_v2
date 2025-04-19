@@ -126,7 +126,6 @@
         }
 
     </style>
-
 </head>
 
 <body>
@@ -135,6 +134,7 @@
         <span style="font-size: var(--spacing-4); line-height: 100%; letter-spacing: 0%;">Thêm/Cập nhật bài nghiên
             cứu</span>
         <hr style="background-color: var(--color-brand-opacity50); width: 100%; height: 2px;">
+
         <div class='edit-field'>
             <div class='label'>
                 <span style="font-size: var(--spacing-2); line-height: 100%; letter-spacing: 0%;">Thông tin cơ
@@ -175,6 +175,8 @@
                         </div>
                     </div>
                 </div>
+                
+
                 <div class='input-field'>
                     <span>Ảnh bìa</span>
                     <div class='file_upload'>
@@ -227,7 +229,7 @@
                                 </clipPath>
                             </defs>
                         </svg>
-                        <div style="display: flex; gap: 3px; flex-wrap: nowrap;">
+                        <div style="display: flex; gap: 3px; flex-wrap: nowrap;" id="research-file-upload">
                             <span>Kéo một/nhiều file vào đây để upload hoặc</span>
                             <span id='get-research-file-btn'
                                 style="color: var(--color-brand-primary); text-decoration: underline; cursor: pointer">ấn
@@ -443,7 +445,7 @@
                         activeTags.push(tagElement);
                     } else {
                         notActiveTags.push(tagElement);
-                    }  
+                    }
                 });
                 activeTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
                 notActiveTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
