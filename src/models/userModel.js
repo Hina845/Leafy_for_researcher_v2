@@ -20,7 +20,7 @@ const Schema = mongoose.Schema({
         required: true,
         unique: true
     },
-    notifiaction_email: {
+    notification_email: {
         type: String,
         default: null,
     },
