@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="initial-scale=1, width=device-width">
-  	<style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <style>
         @import url('styles/tokens.css');
         #post-image{
-			width: 100%;
-			position: relative;
-			margin: 0 !important;
-			top: 0px;
-			right: 0px;
-			left: 0px;
+            width: 100%;
+            position: relative;
+            margin: 0 !important;
+            top: 0px;
+            right: 0px;
+            left: 0px;
             height: 468px;
-			max-width: 100%;
-			overflow: hidden;
-			flex-shrink: 1;
-			object-fit: cover;
+            max-width: 100%;
+            overflow: hidden;
+            flex-shrink: 1;
+            object-fit: cover;
         }
         #post-title{
             width: 100%;
@@ -142,42 +142,33 @@
             }
         }
     </style>
-  	
-  	
-  	
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <nav id="navigation"></nav>
-    <img id="post-image" src="assets/images/Doulingo.svg">
+    <img id="post-image">
     <div class="post">
         <div class="left">
-            <div id="post-title">
-                Duolingo: Hành Trình Tạo Dựng Sản Phẩm Công Nghệ Và Thay Đổi Tư Duy Về Kỹ Thuật Phần Mềm
-            </div>
-            <div id="post-description">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
-            </div>
-            <div id="post-content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio ullam amet, repellat, similique fugiat laborum eveniet odio, nisi velit hic facilis magni quo doloribus atque possimus nihil iste! Quaerat, suscipit!
-            </div>
+            <div id="post-title"></div>
+            <div id="post-content"></div>
         </div>
         <div class="right">
             <div class="post-info">
-                <div id="info-title" class="info">
+                <div  class="info">
                     <img src="assets/icons/icInfo.svg">
-                    <span class="info-title-text">Thông tin bài viết</span>
+                    <span class="info-title-text" id="info-title">Thông tin bài viết</span>
                 </div>
-                <div id="author"class="info">
+                <div class="info">
                     <img src="assets/icons/icAccount.svg">
-                    <span class="info-text">Lê Đăng Tấn</span>
+                    <span class="info-text" id="author"></span>
                 </div>
-                <div id="post-time" class="info">
+                <div  class="info">
                     <img src="assets/icons/icTime.svg">
-                    <span class="info-text">16 tháng 02 2025, 19:20</span>
+                    <span class="info-text" id="post-time"></span>
                 </div>
-                <div id="views" class="info">
+                <div  class="info">
                     <img src="assets/icons/icEye.svg">
-                    <span class="info-text">12,3k</span>
+                    <span class="info-text" id="views"></span>
                 </div>
             </div>
             <div class="relate-topic">
@@ -185,17 +176,7 @@
                     <img src="assets/icons/icHot.svg">
                     <span class="relate-topic-title-text">Chủ đề liên quan</span>
                 </div>
-                <div class="relate-topic-tag">
-                    <div class="tag">Câu lạc bộ IT</div>
-                    <div class="tag">Design System</div>
-                    <div class="tag">anh ba xin</div>
-                    <div class="tag">Design System</div>
-                    <div class="tag">Câu lạc bộ IT</div>
-                    <div class="tag">domixi</div>
-                    <div class="tag">Câu lạc bộ IT</div>
-                    <div class="tag">Design System</div>
-
-                </div>
+                <div class="relate-topic-tag" id = 'relate-topic-tag'></div>
             </div>
         </div>
     </div>
@@ -209,5 +190,48 @@
 			document.body.appendChild(script);
 		});
 	</script>
+    <script type="module">
+        import {server} from './scripts/config.js';
+        import {still_tags_loader_with_link} from './scripts/tags_loader.js';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('post_id');
+        if (!postId) window.location.href = '/archive';
+
+        await fetch(`${server}/api/v1/get-post?post_id=${postId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                data = data.data;
+                document.getElementById('post-image').src = data.image_url;
+                document.getElementById('post-title').innerText = data.title;
+                document.getElementById('post-content').innerHTML = marked.parse(data.md_content || "");
+                document.getElementById('author').innerText = data.author_name;
+                document.getElementById('post-time').innerText = data.date_created;
+                document.getElementById('views').innerText = data.views;
+            }
+        })
+        .catch(error => console.error('Error fetching post:', error));
+
+        fetch(`${server}/api/v1/get-search-value`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                data.data.tags.forEach(tag => {
+                    const container = document.getElementById('relate-topic-tag');
+                    still_tags_loader_with_link(container, [{text: tag.name, link: `/archive?tag=${tag._id}`}]);
+                });
+            }
+        })
+
+    </script>
 </body>
 </html>
