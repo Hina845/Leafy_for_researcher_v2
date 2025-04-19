@@ -29,10 +29,9 @@ async function getContentCards(req, res) {
             const thumbnail_directory = path.resolve('public', 'researches', post._id.toString());
             const thumbnail_files = fs.readdirSync(thumbnail_directory);
             const thumbnail_file = thumbnail_files.find(file => /\.(png|jpg|jpeg|gif|bmp|webp)$/i.test(file));
-            if (!thumbnail_file) {
-                throw new Error(`Thumbnail not found for post ${post._id}`);
-            }
-            const thumbnail_path = path.join('researches', post._id.toString(), thumbnail_file);
+            let thumbnail_path;
+            if (thumbnail_file) thumbnail_path = path.join('researches', post._id.toString(), thumbnail_file);
+            else thumbnail_path = path.join('assets', 'images', 'imgDefaultPostBackground.png');
             const template = await ejs.renderFile(__dirname + '/views/content-card.ejs', {
                 tags: post.tags,
                 title: post.title,

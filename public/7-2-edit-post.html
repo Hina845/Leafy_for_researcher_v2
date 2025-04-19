@@ -475,6 +475,8 @@
                 const oldExtension = cover_image.name.split('.').pop();
                 const renamedCoverImage = new File([cover_image], `thumbnail.${oldExtension}`, { type: cover_image.type });
                 formData.append("cover_image", renamedCoverImage);
+            } else {
+                
             }
 
             const hasMarkdownFile = research_files.some(file => file.name.endsWith('.md'));
