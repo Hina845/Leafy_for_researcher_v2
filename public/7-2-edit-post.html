@@ -116,6 +116,15 @@
             font-family: 'Roboto Serif';
         }
 
+        #edit-post-error-message {
+            color: red;
+            font-size: var(--spacing-2);
+            line-height: 100%;
+            letter-spacing: 0%;
+            margin-top: 8px;
+            align-self: center;
+        }
+
     </style>
 
 </head>
@@ -439,8 +448,8 @@
             const research_summary = document.getElementById('research-summary').value;
             const cover_image = document.getElementById('cover-image-input').files[0];
             if (!research_name || !research_summary || currentTagTexts.length === 0) {
-                document.getElementById('error-message').innerText = "Vui lòng điền đầy đủ thông tin (*)!";
-                document.getElementById('error-message').style.display = "block";
+                document.getElementById('edit-post-error-message').innerText = "Vui lòng điền đầy đủ thông tin (*)!";
+                document.getElementById('edit-post-error-message').style.display = "block";
                 return;
             }
             let formData = new FormData();
@@ -456,8 +465,8 @@
 
             const hasMarkdownFile = research_files.some(file => file.name.endsWith('.md'));
             if (!hasMarkdownFile) {
-                document.getElementById('error-message').innerText = "Vui lòng tải lên ít nhất một file markdown (.md)!";
-                document.getElementById('error-message').style.display = "block";
+                document.getElementById('edit-post-error-message').innerText = "Vui lòng tải lên ít nhất một file markdown (.md)!";
+                document.getElementById('edit-post-error-message').style.display = "block";
                 return;
             }
 
