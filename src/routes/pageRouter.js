@@ -30,8 +30,12 @@ pageRouter.get('/archive', (req, res) => {
     res.sendFile(path.join(root, '5-archive.html'));
 })
 
-pageRouter.get('/test', (req, res) => {
-    res.sendFile(path.join(root, 'components', 'navigation.html'));
+pageRouter.get('/edit-profile', (req, res) => {
+    res.sendFile(path.join(root, '6-edit-profile.html'));
+});
+
+pageRouter.get('/edit-post', (req, res) => {
+    res.sendFile(path.join(root, '7-2-edit-post.html'));
 });
 
 

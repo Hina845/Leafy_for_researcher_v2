@@ -136,5 +136,29 @@ async function getSearchValue(req, res) {
     }
 }
 
+async function getPostForEdit(req, res) {
+    const post_id = req.query.post_id;
+    if (!post_id) return res.status(400).json({ success: false, error: 'post-not-exist' });
+    try {
+        const post = await PostModel.findById(post_id);
+        if (!post) return res.status(400).json({ success: false, error: 'post-not-exist' });
 
-export { getContentCards, getSearchValue };
+        if (post.owned_user_id != req.userId) {
+           return res.status(403).json({ success: false, error: 'Unauthorized' });
+        }
+        return res.json({
+            success: true,
+            data: {
+                title: post.title,
+                subtitle: post.subtitle,
+                tags: post.tags,
+            },
+        });
+    } catch (err) {
+        console.error(err.message);
+        return res.json({ success: false, error: err.message });
+    }
+}
+
+
+export { getContentCards, getSearchValue, getPostForEdit };
