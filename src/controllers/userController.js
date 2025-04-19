@@ -264,6 +264,21 @@ async function UploadResearch(req, res) {
     }
 }
 
+async function SubscribeEmail(req, res) {
+    const email = req.body.email;
+    if (!email) return res.status(400).json({ success: false, error: 'Email is required' });
+
+    const user = await UserModel.findById(req.userId);
+    if (!user) return res.status(404).json({ success: false, error: 'User not found' });
+
+    UserModel.findByIdAndUpdate({_id: req.userId}, { $set: { notification_email: email }}, { new: true }).then(() => {
+        return res.json({ success: true, message: 'Email subscribed successfully' });
+    }).catch(err => {
+        console.error(err);
+        return res.status(500).json({ success: false, error: 'Internal server error' });
+    });
+}
+
 export {
     userCreate,
     userLogin,
@@ -274,4 +289,5 @@ export {
     FollowUser,
     CheckFollow,
     UploadResearch,
+    SubscribeEmail
 }

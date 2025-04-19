@@ -517,11 +517,11 @@
         }
 
         .content-card {
-            display: none;
+            display: none !important;
         }
 
         .content-card.active {
-            display: block;
+            display: flex !important;
         }
 
         .slideshow-container {
@@ -649,32 +649,14 @@
     </div> -->
     <!-------------------->
 
-
-
-    <!--API content card ahead-->
     <div class="title-divider">Tham khảo những bài nghiên cứu tốt nhất</div>
     <div class="slideshow-container">
-        <!-- Content Cards -->
-        <div class="content-card active">1</div>
-        <div class="content-card">2</div>
-        <div class="content-card">3</div>
-        <div class="content-card">4</div>
-        <div class="content-card">5</div>
-
-        <!-- Navigation Dots -->
+        <div id = 'content-card-container'>
+        </div>
         <div class="dots-container">
-            <span class="dot active" onclick="navigateSlide(0)"></span>
-            <span class="dot" onclick="navigateSlide(1)"></span>
-            <span class="dot" onclick="navigateSlide(2)"></span>
-            <span class="dot" onclick="navigateSlide(3)"></span>
-            <span class="dot" onclick="navigateSlide(4)"></span>
         </div>
     </div>
 
-
-
-
-    <!--Lecture Cards-->
     <div class="title-divider">Liên hệ với các thầy cô chất lượng</div>
     <div class="group-parent">
         <a href="https://fit.neu.edu.vn/lecturer/ths-le-duy-khanh">
@@ -731,31 +713,63 @@
             </div>
         </a>
     </div>
-    <!-------------------------------->
-
-
-    <!--Get email (Done)-->
     <div class="receive-information">
         <div class="title-divider">Đăng ký nhận thông tin ngay</div>
         <div class="email-parent">
             <img class="email-icon" alt="" src="assets/icons/icEmail.svg">
-            <input id="search" placeholder="Nhập Email của bạn" type="text"></input>
+            <input id="email-input" placeholder="Nhập Email của bạn" type="email"></input>
         </div>
         <div class="receive-noti" style="cursor: pointer; transition: background-color 0.3s, color 0.3s;"
             onmouseover="this.style.backgroundColor='#6b8e23'; this.style.color='#fff';"
             onmouseout="this.style.backgroundColor='#87a706'; this.style.color='#fff';"
-            onclick="alert('Cảm ơn bạn đã đăng kí, bạn sẽ nhận được mail sớm thôi !!!')">
+            id = "receive-noti-button">
             <div class="receive-noti-text">Nhận thông báo</div>
         </div>
+        <p id = "error-message" style = "display: none; font-size: 16px;">Vui lòng nhập email của bạn</p>
     </div>
-    <!--------------------->
-
-
     <footer id="footer"></footer>
 
     <script type="module" src="./scripts/component.js"></script>
-    <script>
-        //component.js
+    <script type = "module">
+        import { server } from "./scripts/config.js";
+
+        document.getElementById("receive-noti-button").onclick = () => {
+            const emailInput = document.getElementById("email-input").value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput)) {
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("error-message").innerText = "Email không hợp lệ";
+                document.getElementById("error-message").style.color = "red";
+                return;
+            }
+            if (emailInput) {
+                fetch(`${server}/user/subscribe`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: emailInput
+                    })
+                }).then(response => response.json()).then(data => {
+                    if (data.success) {
+                        document.getElementById("error-message").style.display = "block";
+                        document.getElementById("error-message").innerText = "Đăng ký thành công!";
+                        document.getElementById("error-message").style.color = "green";
+                        document.getElementById("email-input").value = "";
+                    }
+                    else {
+                        window.location.href = "/login";
+                    }
+                });
+            } else {
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("error-message").innerText = "Vui lòng nhập email của bạn";
+                document.getElementById("error-message").style.color = "red";
+            }
+        };
+
         document.addEventListener("DOMContentLoaded", function () {
             const script = document.createElement("script");
             script.type = "module";
@@ -763,47 +777,56 @@
             document.body.appendChild(script);
         });
 
-        fetch('components/content-card.html')
-            .then(res => res.text())
-            .then(html => {
-                document.querySelectorAll('#content-card').forEach(el => {
-                    el.innerHTML = html;
+        fetch(`${server}/api/v1/get-content-card`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                limit: 5,
+                post_id: null,
+                tags: null
+            })
+        }).then(response => response.json()).then(data => {
+            data.content_cards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'content-card' + (index === 0 ? ' active' : '');
+                cardElement.innerHTML = card.template;
+                cardElement.onclick = () => {
+                    window.location.href = `/post?post_id=${card._id}`;
+                };
+                document.getElementById('content-card-container').appendChild(cardElement);
+                document.querySelector('.dots-container').innerHTML += `<span class="dot ${index === 0 ? 'active' : ''}" onclick="navigateSlide(${index})"></span>`;
+            });
+        }).then(() => {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.content-card');
+            const dots = document.querySelectorAll('.dot');
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                    dots[i].classList.toggle('active', i === index);
                 });
-            });
+                currentSlide = index;
+            }
+
+            function navigateSlide(index) {
+                clearInterval(slideInterval);
+                showSlide(index);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function nextSlide() {
+                const nextIndex = (currentSlide + 1) % slides.length;
+                showSlide(nextIndex);
+            }
+
+            let slideInterval = setInterval(nextSlide, 5000);            
+        })
 
 
-
-
-
-        // CAOUSEL CARD
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.content-card');
-        const dots = document.querySelectorAll('.dot');
-
-        // Function to show a specific slide
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-                dots[i].classList.toggle('active', i === index);
-            });
-            currentSlide = index;
-        }
-
-        // Function to navigate to a specific slide
-        function navigateSlide(index) {
-            clearInterval(slideInterval); // Stop auto-looping when manually navigating
-            showSlide(index);
-            slideInterval = setInterval(nextSlide, 5000); // Restart auto-looping
-        }
-
-        // Function to show the next slide
-        function nextSlide() {
-            const nextIndex = (currentSlide + 1) % slides.length;
-            showSlide(nextIndex);
-        }
-
-        // Start the slideshow
-        let slideInterval = setInterval(nextSlide, 5000);
     </script>
 </body>
 
