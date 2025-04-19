@@ -1,4 +1,5 @@
 import UserModel from '../models/userModel.js';
+import PostModel from '../models/postModel.js';
 import AuthTokenModel from '../models/authtokenModel.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -6,6 +7,7 @@ import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
 import nodemailer from 'nodemailer';
+import multer from 'multer';
 import { server } from '../config.js';
 
 const __dirname = path.resolve('src');
@@ -177,6 +179,91 @@ async function CheckFollow(req, res) {
     return res.json({ success: true, message: 'Not followed', is_followed: false });
 }
 
+async function UploadResearch(req, res) {
+    try {
+        const new_post = new PostModel({
+            owned_user_id: req.userId,
+            title: '',
+            subtitle: '',
+            tags: []
+        });
+        
+        const post_id = new_post._id.toString();
+        
+        const postPath = path.join(__dirname, '..', 'public', 'researches', post_id);
+        if (!fs.existsSync(postPath)) {
+            fs.mkdirSync(postPath, { recursive: true });
+        }
+        
+        const assetsPath = path.join(postPath, 'assets');
+        if (!fs.existsSync(assetsPath)) {
+            fs.mkdirSync(assetsPath, { recursive: true });
+        }
+
+        const storage = multer.diskStorage({
+            destination: (req, file, cb) => {
+                if (file.fieldname === 'cover_image') {
+                    cb(null, postPath);
+                } else if (file.fieldname === 'research_file') {
+                    if (file.originalname === 'content.md') {
+                        cb(null, postPath);
+                    } else {
+                        cb(null, assetsPath);
+                    }
+                } else {
+                    cb(null, postPath);
+                }
+            },
+            filename: (req, file, cb) => {
+                cb(null, file.originalname);
+            }
+        });
+
+        const upload = multer({ storage }).fields([
+            { name: 'cover_image', maxCount: 1 },
+            { name: 'research_file', maxCount: 20 }
+        ]);
+
+        upload(req, res, async (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ success: false, error: 'File upload error' });
+            }
+
+            try {
+                new_post.title = req.body.title;
+                new_post.subtitle = req.body.subtitle;
+                new_post.tags = JSON.parse(req.body.tags);
+                
+                await new_post.save();
+                
+                await UserModel.findByIdAndUpdate(
+                    req.userId,
+                    { $push: { owned_posts: new_post._id } }
+                );
+
+                return res.json({ 
+                    status: "success", 
+                    message: 'Files uploaded and post created successfully', 
+                    post_id 
+                });
+            } catch (saveErr) {
+                console.error(saveErr);
+                return res.status(500).json({ 
+                    success: false, 
+                    error: 'Error saving post to database' 
+                });
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ 
+            success: false, 
+            error: 'Server error'
+        });
+    }
+}
+
 export {
     userCreate,
     userLogin,
@@ -186,4 +273,5 @@ export {
     getUserInfo,
     FollowUser,
     CheckFollow,
+    UploadResearch,
 }
