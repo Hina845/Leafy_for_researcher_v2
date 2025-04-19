@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Kho Nghên Cứu</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto Serif:wght@500&display=swap" />
+    <link rel="stylesheet" href="components/component-styles.css">
+    <link rel="stylesheet" href="styles/5-archive.css" />
+</head>
+
+<body style="padding-top:460px;">
+    <div class="background-image">
+        <div class="research-section">
+            <div class="research-title">Kho nghiên cứu</div>
+            <div class="research-description">Bạn đang tìm kiếm nguồn cảm hứng nghiên cứu nhưng không muốn bị chìm trong
+                những trang tài liệu khô khan? Đừng lo! Kho nghiên cứu Leafy sẽ mang đến cho bạn một không gian xanh
+                mát, nơi kiến thức nảy nở tự nhiên như những chiếc lá non. Hãy cùng khám phá những bài nghiên cứu chất
+                lượng theo cách thú vị nhất!</div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="filter-container" onclick="toggleTagsFilter()">
+            <div class="icon">
+                <img class="vector-icon" alt="" src="assets/icons/icFilter.svg">
+            </div>
+            <div class="tagline-text">Filter <span id="filterCount" class="filter-count">0</span></div>
+        </div>
+        <div id="tags-filter-container" class="tags-filter-hidden"></div>
+        <div class="tagline">
+            <div class="tagline-item" onclick="switch_tab(this, 'tab-newest')">
+                <div class="tagline-text">Mới nhất</div>
+            </div>
+            <div class="tagline-item" onclick="switch_tab(this, 'tab-hotest')">
+                <div class="tagline-text">Hot nhất</div>
+            </div>
+            <div class="tagline-item" onclick="switch_tab(this, 'tab-from-follower')">
+                <div class="tagline-text">Từ người theo dõi</div>
+            </div>
+        </div>
+        <div class="button">
+            <div class="icon">
+                <img class="add-circle-outline" alt="" src="assets/icons/icAdd.svg">
+            </div>
+            <div class="tagline-text">Thêm bài viết</div>
+        </div>
+    </div>
+
+
+
+    <div class='research-vault-container'>
+
+        <div id='tab-newest' class='research-vault-content-card active'>
+            <!-- <% content-card %> -->
+            <div class="content-card"></div>
+            <div class="content-card"></div>
+            <div class="content-card"></div>
+        </div>
+
+        <div id='tab-hotest' class='research-vault-content-card'>
+            <!-- <% content-card %> -->
+            <div class="content-card"></div>
+            <div class="content-card"></div>
+            <div class="content-card"></div>
+        </div>
+
+        <div id='tab-from-follower' class='research-vault-content-card'>
+            <!-- <% content-card %> -->
+            <div class="content-card"></div>
+            <div class="content-card"></div>
+            <div class="content-card"></div>
+        </div>
+
+        <div class=research-vault-sticky>
+            <div class='hot-exploration-tab'>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_127_559)">
+                            <path
+                                d="M12 12.9L9.87 14.99C9.31 15.55 9 16.28 9 17.06C9 18.68 10.35 20 12 20C13.65 20 15 18.68 15 17.06C15 16.28 14.69 15.54 14.13 14.99L12 12.9Z"
+                                fill="#87A706" />
+                            <path
+                                d="M16 6L15.56 6.55C14.38 8.02 12 7.19 12 5.3V2C12 2 4 6 4 13C4 15.92 5.56 18.47 7.89 19.86C7.33 19.07 7 18.1 7 17.06C7 15.74 7.52 14.5 8.47 13.56L12 10.1L15.53 13.57C16.48 14.5 17 15.74 17 17.07C17 18.09 16.69 19.03 16.15 19.82C18.04 18.67 19.44 16.76 19.86 14.52C20.52 10.97 18.79 7.62 16 6Z"
+                                fill="#87A706" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_127_559">
+                                <rect width="24" height="24" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <span style="font-size: 24px; font-weight: 500;">Khám phá chủ đề hot</span>
+                </div>
+                <div class='still-tags-container' id="hot-exploration-tab" style="justify-content: flex-start;"></div>
+                <script type="module">
+                    import { still_tags_loader_with_link, still_tags_loader_no_link } from '../scripts/tags_loader.js';
+
+                    const container = document.getElementById('hot-exploration-tab');
+
+                    // Thêm 1 tag mới vào container, cú pháp : {text: 'Tên tag', link: 'Đường dẫn đến trang web'}
+
+                    still_tags_loader_with_link(container, [
+                        {
+                            text: 'Syaro',
+                            link: 'https://www.youtube.com/',
+                        },
+                        {
+                            text: 'Fubuki-chan',
+                            link: 'https://www.youtube.com/',
+                        },
+                    ])
+
+                    // Hoặc nếu không cần link thì dùng hàm này
+                    still_tags_loader_no_link(container, ['Kaguya', 'Miku', 'Gura', 'Aqua', 'Mori Calliope', 'Nene', 'Pekora', 'Kanata', 'Coco', 'Watame', 'Aki', 'Matsuri']);
+                </script>
+            </div>
+            <div class='people-suggesion'>
+                <div style="display: flex; gap: 8px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_127_573)">
+                            <path
+                                d="M16 11C17.66 11 18.99 9.66 18.99 8C18.99 6.34 17.66 5 16 5C14.34 5 13 6.34 13 8C13 9.66 14.34 11 16 11ZM8 11C9.66 11 10.99 9.66 10.99 8C10.99 6.34 9.66 5 8 5C6.34 5 5 6.34 5 8C5 9.66 6.34 11 8 11ZM8 13C5.67 13 1 14.17 1 16.5V19H15V16.5C15 14.17 10.33 13 8 13ZM16 13C15.71 13 15.38 13.02 15.03 13.05C16.19 13.89 17 15.02 17 16.5V19H23V16.5C23 14.17 18.33 13 16 13Z"
+                                fill="#87A706" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_127_573">
+                                <rect width="24" height="24" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <span style="font-size: 24px; font-weight: 500;">Bạn có thể quen</span>
+                </div>
+                <div class='friend-card'>
+                    <div style="display: flex; flex-direction: row; gap: 8px; align-items: center;">
+                        <img src="../assets/images/dummy_profile.PNG"
+                            style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <span>Hina Shii</span>
+                            <span style="font-size: 12px;">@hinashii</span>
+                        </div>
+                    </div>
+                    <button class='nav-button' style="max-width: 115px; gap: 4px; padding: 8px; border-radius: 999px">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_294_227)">
+                                <g clip-path="url(#clip1_294_227)">
+                                    <path
+                                        d="M8.66683 4.66671H7.3335V7.33337H4.66683V8.66671H7.3335V11.3334H8.66683V8.66671H11.3335V7.33337H8.66683V4.66671ZM8.00016 1.33337C4.32016 1.33337 1.3335 4.32004 1.3335 8.00004C1.3335 11.68 4.32016 14.6667 8.00016 14.6667C11.6802 14.6667 14.6668 11.68 14.6668 8.00004C14.6668 4.32004 11.6802 1.33337 8.00016 1.33337ZM8.00016 13.3334C5.06016 13.3334 2.66683 10.94 2.66683 8.00004C2.66683 5.06004 5.06016 2.66671 8.00016 2.66671C10.9402 2.66671 13.3335 5.06004 13.3335 8.00004C13.3335 10.94 10.9402 13.3334 8.00016 13.3334Z"
+                                        fill="white" />
+                                </g>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_294_227">
+                                    <rect width="16" height="16" fill="white" />
+                                </clipPath>
+                                <clipPath id="clip1_294_227">
+                                    <rect width="16" height="16" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span style="color: var(--color-true-white);">Theo dõi</span>
+                    </button>
+                </div>
+                <div class='friend-card'>
+                    <div style="display: flex; flex-direction: row; gap: 8px; align-items: center;">
+                        <img src="../assets/images/dummy_profile.PNG"
+                            style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <span>Hina Shii</span>
+                            <span style="font-size: 12px;">@hinashii</span>
+                        </div>
+                    </div>
+                    <button class='nav-button' style="max-width: 115px; gap: 4px; padding: 8px; border-radius: 999px">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_294_227)">
+                                <g clip-path="url(#clip1_294_227)">
+                                    <path
+                                        d="M8.66683 4.66671H7.3335V7.33337H4.66683V8.66671H7.3335V11.3334H8.66683V8.66671H11.3335V7.33337H8.66683V4.66671ZM8.00016 1.33337C4.32016 1.33337 1.3335 4.32004 1.3335 8.00004C1.3335 11.68 4.32016 14.6667 8.00016 14.6667C11.6802 14.6667 14.6668 11.68 14.6668 8.00004C14.6668 4.32004 11.6802 1.33337 8.00016 1.33337ZM8.00016 13.3334C5.06016 13.3334 2.66683 10.94 2.66683 8.00004C2.66683 5.06004 5.06016 2.66671 8.00016 2.66671C10.9402 2.66671 13.3335 5.06004 13.3335 8.00004C13.3335 10.94 10.9402 13.3334 8.00016 13.3334Z"
+                                        fill="white" />
+                                </g>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_294_227">
+                                    <rect width="16" height="16" fill="white" />
+                                </clipPath>
+                                <clipPath id="clip1_294_227">
+                                    <rect width="16" height="16" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span style="color: var(--color-true-white);">Theo dõi</span>
+                    </button>
+                </div>
+                <div class='friend-card'>
+                    <div style="display: flex; flex-direction: row; gap: 8px; align-items: center;">
+                        <img src="../assets/images/dummy_profile.PNG"
+                            style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <span>Hina Shii</span>
+                            <span style="font-size: 12px;">@hinashii</span>
+                        </div>
+                    </div>
+                    <button class='nav-button' style="max-width: 115px; gap: 4px; padding: 8px; border-radius: 999px">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_294_227)">
+                                <g clip-path="url(#clip1_294_227)">
+                                    <path
+                                        d="M8.66683 4.66671H7.3335V7.33337H4.66683V8.66671H7.3335V11.3334H8.66683V8.66671H11.3335V7.33337H8.66683V4.66671ZM8.00016 1.33337C4.32016 1.33337 1.3335 4.32004 1.3335 8.00004C1.3335 11.68 4.32016 14.6667 8.00016 14.6667C11.6802 14.6667 14.6668 11.68 14.6668 8.00004C14.6668 4.32004 11.6802 1.33337 8.00016 1.33337ZM8.00016 13.3334C5.06016 13.3334 2.66683 10.94 2.66683 8.00004C2.66683 5.06004 5.06016 2.66671 8.00016 2.66671C10.9402 2.66671 13.3335 5.06004 13.3335 8.00004C13.3335 10.94 10.9402 13.3334 8.00016 13.3334Z"
+                                        fill="white" />
+                                </g>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_294_227">
+                                    <rect width="16" height="16" fill="white" />
+                                </clipPath>
+                                <clipPath id="clip1_294_227">
+                                    <rect width="16" height="16" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span style="color: var(--color-true-white);">Theo dõi</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/component.js"></script>
+    <script>
+        function switch_tab(elem1, elem2) {
+            // Remove 'active' class from all tagline items
+            for (let e of document.querySelectorAll('.tagline .tagline-item')) {
+                e.classList.remove('active');
+            }
+
+            // Remove 'active' class from all research vault content cards
+            for (let e of document.querySelectorAll('.research-vault-content-card')) {
+                e.classList.remove('active');
+            }
+
+            // Add 'active' class to the clicked element and the corresponding content card
+            elem1.classList.add('active');
+            document.getElementById(elem2).classList.add('active');
+        }
+
+
+        function toggleTagsFilter() {
+            const tagsFilterContainer = document.getElementById("tags-filter-container");
+
+            // Check if the tags-filter is already loaded
+            if (!tagsFilterContainer.innerHTML.trim()) {
+                // Load the tags-filter component dynamically
+                fetch("components/tags-filter.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        tagsFilterContainer.innerHTML = data;
+                        tagsFilterContainer.classList.toggle("tags-filter-visible");
+                        tagsFilterContainer.classList.toggle("tags-filter-hidden");
+                    })
+                    .catch((error) => console.error("Error loading tags-filter:", error));
+            } else {
+                // Toggle visibility
+                tagsFilterContainer.classList.toggle("tags-filter-visible");
+                tagsFilterContainer.classList.toggle("tags-filter-hidden");
+            }
+        }
+    </script>
+</body>
+
+</html>
