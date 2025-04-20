@@ -150,8 +150,7 @@
                 <span style="font-size: var(--spacing-2); line-height: 100%; letter-spacing: 0%;">Thông tin cơ
                     bản</span>
                 <p style="color: var(--color-brand-primary)">Đây là nơi bạn điền các thông tin quan trọng giúp người đọc
-                    hiểu rõ nghiên cứu của bạn. Hãy chắc chắn rằng tên, tác giả, năm xuất bản và nội dung tóm tắt được
-                    trình bày đầy đủ và chính xác.</p>
+                    hiểu rõ nghiên cứu của bạn. Hãy chắc chắn rằng tên và nội dung tóm tắt đượctrình bày đầy đủ và chính xác.</p>
             </div>
             <div class='edit'>
                 <div class='input-field'>
@@ -189,7 +188,7 @@
 
                 <div class='input-field'>
                     <span>Ảnh bìa</span>
-                    <div class='file_upload'>
+                    <div class='file_upload' id="cover-image-dropzone">
                         <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_204_1667)">
                                 <path
@@ -550,6 +549,97 @@
         });
 
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .file_upload.dragover {
+                    border: 2px dashed var(--color-brand-primary) !important;
+                    background-color: rgba(135, 167, 6, 0.1) !important;
+                }
+            `;
+            document.head.appendChild(style);
+    
+            const coverImageDropzone = document.getElementById('cover-image-dropzone');
+            const coverImageInput = document.getElementById('cover-image-input');
+    
+            const researchUpload = document.getElementById('research-upload');
+            const researchFileInput = document.getElementById('research-file-input');
+    
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                coverImageDropzone.addEventListener(eventName, preventDefaults, false);
+                researchUpload.addEventListener(eventName, preventDefaults, false);
+            });
+    
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+    
+            ['dragenter', 'dragover'].forEach(eventName => {
+                coverImageDropzone.addEventListener(eventName, highlight, false);
+                researchUpload.addEventListener(eventName, highlight, false);
+            });
+    
+            ['dragleave', 'drop'].forEach(eventName => {
+                coverImageDropzone.addEventListener(eventName, unhighlight, false);
+                researchUpload.addEventListener(eventName, unhighlight, false);
+            });
+    
+            function highlight(e) {
+                this.classList.add('dragover');
+            }
+    
+            function unhighlight(e) {
+                this.classList.remove('dragover');
+            }
+    
+            coverImageDropzone.addEventListener('drop', handleCoverImageDrop, false);
+            researchUpload.addEventListener('drop', handleResearchFilesDrop, false);
+    
+            function handleCoverImageDrop(e) {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+                
+                if (file) {
+                    const isImage = file.type.startsWith('image/');
+                    
+                    if (isImage) {
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(file);
+                        coverImageInput.files = dataTransfer.files;
+                        
+                        const event = new Event('change');
+                        coverImageInput.dispatchEvent(event);
+                    } else {
+                        const errorMsg = document.getElementById('edit-post-error-message');
+                        errorMsg.innerText = "Vui lòng chỉ tải lên tệp hình ảnh.";
+                        errorMsg.style.display = "block";
+                        
+                        setTimeout(() => {
+                            errorMsg.style.display = "none";
+                        }, 3000);
+                    }
+                }
+            }
+            function handleResearchFilesDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (files.length > 0) {
+                    const dataTransfer = new DataTransfer();
+                    for (let i = 0; i < files.length; i++) {
+                        dataTransfer.items.add(files[i]);
+                    }
+                    researchFileInput.files = dataTransfer.files;
+
+                    const event = new Event('change');
+                    researchFileInput.dispatchEvent(event);
+                }
+            }
+        });
+    </script>
+    
 </body>
 
 </html>
