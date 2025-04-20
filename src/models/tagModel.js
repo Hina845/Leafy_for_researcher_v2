@@ -6,7 +6,7 @@ const Schema = mongose.Schema({
         required: true,
     },
     group: {
-        type: [String],
+        type: String,
         required: true,
     },
 })

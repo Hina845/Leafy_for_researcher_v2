@@ -84,6 +84,7 @@ async function getSearchValue(req, res) {
         searchResponse.tags = tags.map(tag => ({
             _id: tag._id,
             name: tag.name,
+            group: tag.group,
         }));
 
         const postAuthors = await UserModel.find({
@@ -206,7 +207,6 @@ async function getPost(req, res) {
         return res.json({ success: false, error: err.message });
     }
 }
-        
 
 
 export { getContentCards, getSearchValue, getPostForEdit, getPost };

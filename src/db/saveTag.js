@@ -21,15 +21,51 @@ async function saveTag(tags) {
 }
 
 let tags = ['AI',
-        'Data Science',
-        'Machine Learning',
-
-    ]
-let groups = [['Hot'],
-          ['Club', 'Hot'],
-          ['Trending'],
-
-        ]
+            'Data Science',
+            'Machine Learning',
+            'Deep Learning',
+            'AI Club',
+            'Research Club',
+            'Data Science Club',
+            'Machine Learning Club',
+            'First Prize Award',
+            'Second Prize Award',
+            'Third Prize Award',
+            'Best Paper Award',
+            'Lượng tử',
+            'Học máy',
+            'Nơ-ron',
+            'Công nghệ',
+            'Khoa học',
+            'Nhận diện',
+            'Hành vi',
+            'Người học',
+            'Lớp học',
+            'Hệ thống',
+            ]
+let groups=['Hot',
+            'Hot',
+            'Hot',
+            'Hot',
+            'Club',
+            'Club',
+            'Club',
+            'Club',
+            'Award',
+            'Award',
+            'Award',
+            'Award',
+            'Hot',
+            'Club',
+            'Award',
+            'Hot',
+            'Club',
+            'Award',
+            'Hot',
+            'Club',
+            'Award',
+            'Hot',
+            ]
 
 saveTag(tags.map((tag, index) => ({ name: tag, group: groups[index] })))
 .then(() => {
