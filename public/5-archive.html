@@ -8,7 +8,6 @@
     <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto Serif:wght@500&display=swap" />
     <link rel="stylesheet" href="components/component-styles.css">
-    <link rel="stylesheet" href="components/component-styles.css">
     <link rel="stylesheet" href="styles/5-archive.css">
     <style>
         #tab-navigator span{
@@ -49,12 +48,10 @@
     <div class="container">
         <div class = topic-nav>
             <div id = tab-navigator>   
-                <span class = "active" onclick = "switch_tab(this, 'tab-newest')">Mới nhất</span>
-                <span onclick = "switch_tab(this, 'tab-hotest')">Hot nhất</span>
-                <span onclick = "switch_tab(this, 'tab-from-follower')">Từ người theo dõi</span>
+                <span class = "active" id = 'newest-btn'>Mới nhất</span>
+                <span id = hotest-ntm>Hot nhất</span>
+                <span id = from-follower-btn>Từ người theo dõi</span>
             </div>
-
-
             <button class = 'nav-button'>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_294_227)">
@@ -73,161 +70,33 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <span style = "color: var(--color-true-white);">Thêm bài viết</span>
+                <span style = "color: var(--color-true-white);" onclick = "window.location.href = '/edit-post'">Thêm bài viết</span>
             </button>
         </div>
 
         <div class="search-bar-tag">
             <div class="icon-parent">
                 <img class="icon" alt="" src="assets/icons/icFind.svg">
-                <button class="filter">
+                <button class="filter" id="tag-filter">
                         <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.3572 3.25875L19.3497 3.26719L13 10.0472V15.2494C13.0003 15.4968 12.9395 15.7405 12.8229 15.9587C12.7062 16.1769 12.5375 16.3628 12.3315 16.5L9.33154 18.5006C9.10546 18.6512 8.84274 18.7376 8.57141 18.7505C8.30008 18.7635 8.03032 18.7025 7.79095 18.5741C7.55157 18.4457 7.35155 18.2547 7.21225 18.0215C7.07294 17.7883 6.99957 17.5216 6.99998 17.25V10.0472L0.650288 3.26719L0.642788 3.25875C0.44755 3.04389 0.318859 2.77699 0.272325 2.49043C0.225791 2.20387 0.263415 1.90996 0.380632 1.64436C0.497849 1.37876 0.689622 1.15288 0.932686 0.994131C1.17575 0.835378 1.45966 0.750572 1.74997 0.75H18.25C18.5405 0.750028 18.8248 0.834441 19.0683 0.992982C19.3118 1.15152 19.504 1.37737 19.6216 1.64308C19.7391 1.90878 19.777 2.20292 19.7305 2.48973C19.6841 2.77655 19.5554 3.04371 19.36 3.25875H19.3572Z" fill="#87A706"/>
                         </svg>
-                       <span id="filter-text">Lọc</span> 
+                       <span >Lọc</span> 
                 </button>
-                <input id="search" placeholder="Search" type="text"></input>
+                <input id="archive-search" placeholder="Search" type="text"></input>
             </div>
             <div class="search-bar-tag-child"></div>
-        
-        
+
             <div class="tag-parent" id="tag-container"></div>
         </div>
-        
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const tags = [
-                    "Thể thao",
-                    "Di sản văn hóa",
-                    "Khoa học",
-                    "Công nghệ",
-                    "Giáo dục",
-                    "Môi trường",
-                    "Y tế",
-                    "Nghệ thuật",
-                    "Âm nhạc",
-                    "Lịch sử",
-                    "Du lịch",
-                    "Ẩm thực",
-                    "Thời trang",
-                    "Kinh tế",
-                    "Chính trị",
-                    "Xã hội",
-                    "Văn học",
-                    "Điện ảnh",
-                    "Thể hình",
-                    "Sức khỏe",
-                    // Add more tags as needed
-                ];
-        
-                const tagContainer = document.getElementById("tag-container");
-        
-                // Generate tags dynamically
-                tags.forEach((tagText) => {
-                    const tag = document.createElement("div");
-                    tag.className = "tag";
-                    tag.innerHTML = `<div class="tag-text">${tagText}</div>`;
-                    tag.addEventListener("click", () => {
-                        tag.classList.toggle("active");
-                    });
-                    tagContainer.appendChild(tag);
-                    // code backend từ đây nhé quân
-                });
-            });
-        </script>
-        
         <div class = 'research-vault-container'>
 
-            <div id = 'tab-newest' class = 'research-vault-content-card active'>
-                <div class="content-card">
-                    <div class="tag-list">
-                        <div class="tag">
-                            <div class="tag-text">Khám phá</div>
-                        </div>
-                        <div class="tag">
-                            <div class="tag-text">UX/UI Design</div>
-                        </div>
-                        <div class="tag">
-                            <div class="tag-text">Câu lạc bộ Thiết kế</div>
-                        </div>
-                    </div>
-                    <img class="image-icon" alt="" src="assets/images/imgContentCard.jpg">
-                    <div class="content-text">
-                        <div class="title">Figma: Tạo Dựng Giao Diện Người Dùng Đẹp Mắt Và Thân Thiện</div>
-                        <div class="description">Figma là một công cụ thiết kế giao diện người dùng mạnh mẽ, cho phép các nhà thiết
-                            kế tạo ra các mẫu thiết kế tương tác một cách dễ dàng và nhanh chóng. Với tính năng collaborative (hợp
-                            tác), Figma cho phép nhiều người dùng làm việc cùng lúc trên một dự án, giúp tăng cường sự sáng tạo và
-                            hiệu quả trong quá trình thiết kế. Được thành lập vào năm 2012, Figma đã nhanh chóng trở thành một trong
-                            những lựa chọn hàng đầu cho các nhà thiết kế và phát triển sản phẩm. Các tính năng như prototyping (tạo
-                            mẫu) và design systems (hệ thống thiết kế) giúp người dùng chuyển đổi ý tưởng thành sản phẩm thực tế một
-                            cách suôn sẻ.</div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="footer-info">
-                            <img class="account-circle-icon" alt="" src="assets/icons/icAccount.svg">
-                            <div class="author-name">Lê Đăng Tấn</div>
-                        </div>
-                        <div class="footer-info">
-                            <img class="account-circle-icon" alt="" src="assets/icons/icTime.svg">
-                            <div class="author-name">15 tháng 03 2025, 14:00</div>
-                        </div>
-                        <div class="footer-info">
-                            <img class="account-circle-icon" alt="" src="assets/icons/icEye.svg">
-                            <div class="author-name">10,5k</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="number-selector">
-                    <div class="number-options">
-                        <!-- Tạo các button từ 1 đến 100 -->
-                        <button class="number-btn" id="num<" value="1"><</button>
-                        <button class="number-btn active" id="num1" value="1">1</button>
-                        <button class="number-btn" id="num2" value="2">2</button>
-                        <button class="number-btn" id="num3" value="3">3</button>
-                        <button class="number-btn" id="num4" value="4">...</button>
-                        <!-- ... Tiếp tục như vậy cho đến số 100 ... -->
-                        <button class="number-btn" id="num100" value="100">100</button>
-                        <button class="number-btn" id="num>" value="1">></button>
-                    </div>
-                </div>
+            <div id = 'tab-newest' class = 'research-vault-content-card active'></div>
+            <div id = 'tab-hotest' class = 'research-vault-content-card'></div>
+            <div id = 'tab-from-follower' class = 'research-vault-content-card'></div>
+            <div class="number-selector">
+                <div class="number-options"></div>
             </div>
-            <div id = 'tab-hotest' class = 'research-vault-content-card'>
-                <div class="content-card">  
-                </div>
-                <div class="number-selector">
-                    <div class="number-options">
-                        <!-- Tạo các button từ 1 đến 100 -->
-                        <button class="number-btn" id="num<" value="1"><</button>
-                        <button class="number-btn active" id="num1" value="1">1</button>
-                        <button class="number-btn" id="num2" value="2">2</button>
-                        <button class="number-btn" id="num3" value="3">3</button>
-                        <button class="number-btn" id="num4" value="4">...</button>
-                        <!-- ... Tiếp tục như vậy cho đến số 100 ... -->
-                        <button class="number-btn" id="num100" value="100">100</button>
-                        <button class="number-btn" id="num>" value="1">></button>
-                    </div>
-                </div>
-            </div>
-            <div id = 'tab-from-follower' class = 'research-vault-content-card'>
-                <div class="content-card">
-                </div>
-                <div class="number-selector">
-                    <div class="number-options">
-                        <!-- Tạo các button từ 1 đến 100 -->
-                        <button class="number-btn" id="num<" value="1"><</button>
-                        <button class="number-btn active" id="num1" value="1">1</button>
-                        <button class="number-btn" id="num2" value="2">2</button>
-                        <button class="number-btn" id="num3" value="3">3</button>
-                        <button class="number-btn" id="num4" value="4">...</button>
-                        <!-- ... Tiếp tục như vậy cho đến số 100 ... -->
-                        <button class="number-btn" id="num100" value="100">100</button>
-                        <button class="number-btn" id="num>" value="1">></button>
-                    </div>
-                </div>
-            </div>
-
-            
-
             <div class = research-vault-sticky>
                 <div class = 'hot-exploration-tab'>
                     <div style = "display: flex; align-items: center; gap: 8px;">
@@ -245,32 +114,7 @@
                         <span style = "font-size: 24px; font-weight: 500;">Khám phá chủ đề hot</span>
                     </div>
                     <div class = 'still-tags-container' id = "hot-exploration-tab" style = "justify-content: flex-start;"></div>
-
-
-
-                    <script type = "module">
-                        import { still_tags_loader_with_link, still_tags_loader_no_link } from '../scripts/tags_loader.js';
-            
-                        const container = document.getElementById('hot-exploration-tab');
-            
-                        // Thêm 1 tag mới vào container, cú pháp : {text: 'Tên tag', link: 'Đường dẫn đến trang web'}
-            
-                        still_tags_loader_with_link(container, [
-                            {
-                                text: 'Syaro',
-                                link: 'https://www.youtube.com/',
-                            },
-                            {
-                                text: 'Fubuki-chan',
-                                link: 'https://www.youtube.com/',
-                            },
-                        ])
-            
-                        // Hoặc nếu không cần link thì dùng hàm này
-                        still_tags_loader_no_link(container, ['Kaguya', 'Miku', 'Gura', 'Aqua', 'Mori Calliope', 'Nene', 'Pekora', 'Kanata', 'Coco', 'Watame', 'Aki', 'Matsuri']);
-                    </script>
                 </div>
-
                 <div class = 'people-suggestion'>
                     <div style = "display: flex; gap: 8px;">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -333,9 +177,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div> 
     </div>
 </div>    
@@ -343,14 +184,16 @@
 
 <footer id="footer"></footer>
 
-    <script>
+    <script type = "module">
+        import { server } from "./scripts/config.js";
+
         function switch_page(button) {
 
         for (let e of document.querySelectorAll('.number-options .number-btn')) {
             e.classList.remove('active');
         }
-
             button.classList.add('active');
+            render_content_card(current_content_cards);
         }
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -362,47 +205,192 @@
             });
         });
 
+        const currentTagTexts = [];
+        const searchPanelStillTagContainer = document.getElementById("tag-container");
+        function get_tag_template(tag) {
+            const tagElement = document.createElement("div");
+            tagElement.className = "tag";
+            tagElement.innerHTML = `<div class="tag-text">${tag.name}</div>`;
+            tagElement.style.cursor = "pointer";
+            tagElement.addEventListener("click", () => {
+                tagElement.classList.toggle("active");
+                if (tagElement.classList.contains("active")) {
+                    currentTagTexts.push(tag.name);
+                } else {
+                    const index = currentTagTexts.indexOf(tag.name);
+                    if (index > -1) {
+                        currentTagTexts.splice(index, 1);
+                    }
+                }
+            });
+            return tagElement;
+        }
 
-        function switch_tab(elem1, elem2) {
+        async function load_tag() {
+            const url = `${server}/api/v1/get-search-value?value=${document.getElementById("archive-search").value}&limit=20`;
+
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            let data = await response.json();
+
+            data = data.data;
+            if (data.tags.length == 0) {
+                searchPanelStillTagContainer.innerHTML = "<p>Không tìm thấy kết quả nào...<p>";
+            } else {
+                searchPanelStillTagContainer.innerHTML = "";
+                const activeTags = [];
+                const notActiveTags = [];
+                data.tags.forEach((tag) => {
+                    const tagElement = get_tag_template(tag);
+                    if (currentTagTexts.includes(tag.name)) {
+                        tagElement.classList.add("active");
+                        activeTags.push(tagElement);
+                    } else {
+                        notActiveTags.push(tagElement);
+                    }
+                });
+
+                activeTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
+                notActiveTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
+            }
+            return data.tags;
+        }
+        const first_load_tags = await load_tag();
+        first_load_tags.splice(0, 10);
+        const tagContainer = document.getElementById("hot-exploration-tab");
+        first_load_tags.forEach(tag => {
+            let inp_tag = document.createElement("button");
+            inp_tag.className = "still-content-tag";
+            inp_tag.innerText = tag.name;
+            inp_tag.onclick = function () {
+                searchPanelStillTagContainer.querySelectorAll(".tag").forEach(tag => {
+                    if (tag.innerText === inp_tag.innerText) {
+                        tag.click();
+                    }
+                });
+            };
+            tagContainer.appendChild(inp_tag);
+        });
+
+        document.getElementById("archive-search").addEventListener("input", () => load_tag());
+
+        let current_content_cards = [];
+
+        async function get_content_card(post_ids = null) {
+            let tag_query;
+            if (currentTagTexts.length == 0) tag_query = null;
+            else tag_query = currentTagTexts;
+            let response = await fetch(`${server}/api/v1/get-content-card`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    tags: tag_query,
+                    post_id: post_ids,
+                    limit: 999,
+                }),
+            });
+            response = await response.json();
+            return response.content_cards;
+        }
+
+        const numCard = 5
+
+        function split_page_button(content_cards) {
+            const numberOptions = document.querySelector(".number-options");
+            numberOptions.innerHTML = "";
+            const numTab = content_cards.length / numCard;    
+            for (let i = 0; i < numTab; i++) {
+                let inp_num = document.createElement("button");
+                inp_num.className = "number-btn";
+                inp_num.innerText = i + 1;
+                if (i == 0) inp_num.classList.add("active");
+                inp_num.onclick = function () {
+                    switch_page(inp_num);
+                };
+                document.querySelector(".number-options").appendChild(inp_num);
+            }
+        }
+
+        async function content_card_filter() {
+            let data = current_content_cards;
+            const active_tab = document.querySelector(".research-vault-content-card.active");
+            if (active_tab.id === "tab-newest") {
+                data = data.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+            } else if (active_tab.id === "tab-hotest") {
+                data = data.sort((a, b) => b.views - a.views);
+            } else if (active_tab.id === "tab-from-follower") {
+                await fetch(`${server}/user/get-follower-posts`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                }).then(response => response.json()).then(async response => {
+                    if (!response.success) window.location.href = "/login";
+                    data = await get_content_card(response.post_ids);
+                });
+            }
+            split_page_button(data);
+            return data;
+        }
+
+        async function render_content_card(content_cards) {
+            const contentCardContainer = document.querySelector(".research-vault-content-card.active");
+            const current_page = document.querySelector(".number-options .number-btn.active").innerText - 1;
+            content_cards = content_cards.slice(current_page*numCard, (current_page+1)*numCard);
+            console.log(content_cards, current_page*numCard, (current_page+1)*numCard-1);
+            contentCardContainer.innerHTML = "";
+            for (let tag of content_cards) {
+                const div = document.createElement("div");
+                div.className = "content-card";
+                div.innerHTML = tag.template;
+                contentCardContainer.appendChild(div)
+            }
+        }
+
+        current_content_cards = await get_content_card();
+        let filtered_content_cards = await content_card_filter();
+        await render_content_card(filtered_content_cards);
+
+        document.getElementById("newest-btn").onclick = function () {
+            switch_tab(this, "tab-newest");
+        };
+        document.getElementById("hotest-ntm").onclick = function () {
+            switch_tab(this, "tab-hotest");
+        };
+        document.getElementById("from-follower-btn").onclick = function () {
+            switch_tab(this, "tab-from-follower");
+        };
+
+        async function switch_tab(elem1, elem2) {
             for (let e of document.querySelectorAll('#tab-navigator span')) {
                 e.classList.remove('active');
             }
-            // Remove 'active' class from all tagline items
             for (let e of document.querySelectorAll('.tagline .tagline-item')) {
                 e.classList.remove('active');
             }
-
-            // Remove 'active' class from all research vault content cards
             for (let e of document.querySelectorAll('.research-vault-content-card')) {
                 e.classList.remove('active');
             }
-
-            // Add 'active' class to the clicked element and the corresponding content card
             elem1.classList.add('active');
             document.getElementById(elem2).classList.add('active');
+            current_content_cards = await get_content_card();
+            filtered_content_cards = await content_card_filter();
+            render_content_card(filtered_content_cards);
         }
 
+        document.getElementById("tag-filter").addEventListener("click", async function () {
+            current_content_cards = await get_content_card();
+            let filtered_content_cards = await content_card_filter();
+            await render_content_card(filtered_content_cards);            
+        });
 
-        function toggleTagsFilter() {
-            const tagsFilterContainer = document.getElementById("tags-filter-container");
-
-            // Check if the tags-filter is already loaded
-            if (!tagsFilterContainer.innerHTML.trim()) {
-                // Load the tags-filter component dynamically
-                fetch("components/tags-filter.html")
-                    .then((response) => response.text())
-                    .then((data) => {
-                        tagsFilterContainer.innerHTML = data;
-                        tagsFilterContainer.classList.toggle("tags-filter-visible");
-                        tagsFilterContainer.classList.toggle("tags-filter-hidden");
-                    })
-                    .catch((error) => console.error("Error loading tags-filter:", error));
-            } else {
-                // Toggle visibility
-                tagsFilterContainer.classList.toggle("tags-filter-visible");
-                tagsFilterContainer.classList.toggle("tags-filter-hidden");
-            }
-        }
     </script>
     <script type="module" src="./scripts/component.js"></script>
 <script>

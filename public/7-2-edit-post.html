@@ -516,6 +516,9 @@
             formData.append("title", research_name);
             formData.append("subtitle", research_summary);
             formData.append("tags", JSON.stringify(currentTagTexts));
+            if (queryParams.post_id) {
+                formData.append("post_id", queryParams.post_id);
+            }
             
             if (cover_image) {
                 const oldExtension = cover_image.name.split('.').pop();

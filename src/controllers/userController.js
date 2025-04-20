@@ -191,7 +191,8 @@ async function CheckFollow(req, res) {
 
 async function UploadResearch(req, res) {
     try {
-        const new_post = new PostModel({
+        let new_post = await PostModel.findOne({ _id: req.query.post_id });
+        if (!new_post) new_post = new PostModel({
             owned_user_id: req.userId,
             title: '',
             subtitle: '',
@@ -371,6 +372,15 @@ async function checkPostAuthor(req, res) {
     }
 }
 
+async function getFollowerPosts(req, res) {
+    const user = await UserModel.findById(req.userId).populate('followed', 'owned_posts');
+    if (!user) return res.status(404).json({ success: false, error: 'User not found' });
+
+    const posts = await PostModel.find({ owned_user_id: { $in: user.followed } });
+    const post_ids = posts.map(post => post._id.toString());
+    return res.json({ success: true, post_ids: post_ids });
+}
+
 export {
     userCreate,
     userLogin,
@@ -383,5 +393,6 @@ export {
     UploadResearch,
     SubscribeEmail,
     UpdateUserProfile,
-    checkPostAuthor
+    checkPostAuthor,
+    getFollowerPosts,
 }
