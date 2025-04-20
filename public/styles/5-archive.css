@@ -186,8 +186,9 @@ input::placeholder {
 .tag {
 	border-radius: 8px;
 	border: 2px solid var(--color-brand-primary);
-	background-color: transparent;
+	background-color: var(--color-background-primary);
 	display: flex;
+	width: fit-content;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
@@ -203,7 +204,8 @@ input::placeholder {
 	flex-direction: row;
 	align-items: flex-start;
 	justify-content: flex-start;
-	flex-wrap: wrap;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	align-content: flex-start;
 	gap: 8px;
 	text-align: left;
@@ -464,6 +466,7 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
 	color: #ffffff;
 	font-family: "Roboto Serif";
 	font-size: 12px;
+	width: fit-content;
 	font-style: normal;
 	font-weight: 500;
 	line-height: 24px; /* 200% */
