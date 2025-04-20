@@ -1,84 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh mục | Leafy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Kho Nghên Cứu</title>
     <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
-    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto Serif:wght@500&display=swap" />
     <link rel="stylesheet" href="components/component-styles.css">
-
+    <link rel="stylesheet" href="styles/5-archive.css" />
     <style>
-        @import url('tokens.css');
-
-        .t-nhng-phn {
+        .title-divider {
+            width: 100%;
             position: relative;
-            font-size: 32px;
+            font-size: 40px;
+            font-weight: 500;
             font-family: 'Roboto Serif';
             color: #204f0a;
-            text-align: left;
-        }
-
-        .research-title {
-            position: relative;
-        }
-
-        .research-description {
-            width: 727px;
-            position: relative;
-            font-size: 16px;
-            font-weight: 500;
+            text-align: center;
             display: inline-block;
+            max-width: 1240px;
         }
-
-        .research-section {
-            align-self: stretch;
+        body{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 16px;
         }
 
-        .background-image {
-            width: 100%;
-            position: absolute;
-            margin: 0 !important;
-            top: 0px;
-            right: -1440px;
-            left: 0px;
-            height: 440px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 140px 0px 0px;
-            box-sizing: border-box;
-            background-image: url("assets/images/imgKhoNghienCuuHero2.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: top;
-            text-align: left;
-            font-size: 96px;
-            color: #fff;
-            font-family: 'Roboto Serif';
+        @media screen and (max-width: 1079px) {
+            .title-divider {
+                font-size: 20px;
+            }
         }
     </style>
-
 </head>
 
-<body>
+<body style="padding-top:460px;">
     <div class="background-image">
         <div class="research-section">
-            <div class="research-title">Kho nghiên cứu</div>
+            <div class="research-title">Danh mục</div>
             <div class="research-description">Bạn đang tìm kiếm nguồn cảm hứng nghiên cứu nhưng không muốn bị chìm trong
                 những trang tài liệu khô khan? Đừng lo! Kho nghiên cứu Leafy sẽ mang đến cho bạn một không gian xanh
                 mát, nơi kiến thức nảy nở tự nhiên như những chiếc lá non. Hãy cùng khám phá những bài nghiên cứu chất
                 lượng theo cách thú vị nhất!</div>
         </div>
     </div>
-
+    <div class="title-divider">Liên hệ với các thầy cô chất lượng</div>
+    <div class="title-divider">Liên hệ với các thầy cô chất lượng</div>
+    <div class="title-divider">Liên hệ với các thầy cô chất lượng</div>
 
 </body>
 

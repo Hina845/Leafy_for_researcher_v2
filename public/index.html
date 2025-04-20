@@ -264,7 +264,8 @@
         }
 
         .email-parent {
-            width: 616px;
+            width: 100%;
+            max-width: 1440px;
             border-radius: 16px;
             background-color: #f8f8e7;
             border: 1px solid rgba(135, 167, 6, 0.5);
@@ -342,6 +343,7 @@
             left: 0px;
             text-align: center;
             width: 100%;
+            color: var(--color-background-primary)
         }
 
         .name-wrapper {
@@ -443,6 +445,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
             align-content: flex-end;
+            justify-content: center;
             gap: 22px;
             max-width: 1240px;
             text-align: center;
@@ -485,7 +488,7 @@
             border: none;
             outline: none;
             font-weight: 500;
-            font-size: 16px;
+            font-size: 12px;
             line-height: 100%;
             letter-spacing: 0%;
             font-family: inherit;
@@ -531,66 +534,44 @@
             overflow: hidden;
         }
 
+        .trioTree {
+            display: none;
+        }
 
-
-        @media (max-width: 1079px) {
+        @media screen and (max-width: 1079px) {
             .hero-image {
                 content: url(assets/images/imgIndexMobile.png);
             }
-            .kham-pha-tri-thuc{
-                flex-direction: column;
-                align-self: stretch;
-                border-radius: 16px;
-                background-color: rgba(135, 167, 6, 0.1);
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: flex-start;
-                padding: 32px 36px;
-                position: relative;
-                gap: 16px;
+
+            .title-divider {
+                font-size: 24px;
             }
-            .why-parent{
-                flex-direction: column;
-                width: 400px;
-                flex-shrink: 0;
-                flex-grow: 0;
+
+            .why-parent {
+                display: none;
+                width: 0;
+                height: 0;
+                overflow: hidden;
+            }
+
+            .trioTree {
+                width: 100%;
+                display: block;
+                position: relative;
+                max-width: 600px;
+                overflow: hidden;
+                max-height: auto;
+                object-fit: cover;
             }
         }
     </style>
 
 </head>
 
-<body max-width="1440px">
+<body>
     <nav id='navigation'></nav>
     <img class="hero-image" alt="" src="assets/images/imgIndex.png">
 
-
-    <!-- <div class="leaf-poster-7-parent">
-        <img class="leaf-poster-7-icon" alt="" src="assets/images/leaf-poster 7.png">
-        <div class="name-container">
-            <div class="nghin-cu-ging-nh-chm-cy-parent">
-                <div class="nghin-cu-ging-container">
-                    <span>nghiên cứu </span>
-                    <span class="ging-nh">giống như</span>
-                    <span> chăm cây </span>
-                    <span class="ging-nh">vậy</span>
-                </div>
-                <div class="chm-k-s">chăm kĩ sẽ đẹp</div>
-                <div class="leafy-parent">
-                    <div class="leafy">leafy</div>
-                    <img class="leaf-icon" alt="" src="assets/icons/icBrandLogo1.svg">
-                </div>
-                <img class="dracaena-marginata-plant-in-ye-icon" alt=""
-                    src="assets/images/dracaena-marginata-plant-in-yellow-pot-home-decor-indoor-plant-green-leaves-free-png 1.png">
-            </div>
-        </div>
-        <img class="leaf-poster-2-icon" alt="" src="assets/images/leaf-poster 2.png">
-        <img class="leaf-poster-3-icon" alt="" src="assets/images/leaf-poster 3.png">
-        <img class="leaf-poster-4-icon" alt="" src="assets/images/leaf-poster 4.png">
-        <img class="leaf-poster-5-icon" alt="" src="assets/images/leaf-poster 5.png">
-        <img class="leaf-poster-6-icon" alt="" src="assets/images/leaf-poster 6.png">
-    </div> -->
 
     <div class="title-divider">Tại sao nghiên cứu lại cần tham khảo?</div>
 
@@ -599,59 +580,40 @@
             <div class="kham-pha-tri-thuc">
                 <img class="img-kham-pha" alt="" src="assets/images/imgCardTree1.png">
                 <div class="kham-pha-text">Khám Phá Tri Thức Mỗi Ngày</div>
-                <div class="kham-pha-description">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển chọn kỹ lưỡng để
-                    mang đến những thông tin hữu ích, giúp bạn dễ dàng tiếp cận và khám phá thế giới tri thức một cách
+                <div class="kham-pha-description">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển
+                    chọn kỹ lưỡng để
+                    mang đến những thông tin hữu ích, giúp bạn dễ dàng tiếp cận và khám phá thế giới tri thức một
+                    cách
                     trọn vẹn.</div>
             </div>
             <div class="hanh-trinh">
                 <div class="hanh-trinh-title">Hành Trình Kiến Thức Đầy Cảm Hứng</div>
-                <div class="hanh-trinh-text">Chúng tôi tự hào mang đến những bài nghiên cứu chuyên sâu, hỗ trợ bạn trong
+                <div class="hanh-trinh-text">Chúng tôi tự hào mang đến những bài nghiên cứu chuyên sâu, hỗ trợ bạn
+                    trong
                     việc
-                    tìm hiểu và mở rộng hiểu biết. Mỗi bài viết là một cơ hội để bạn học hỏi và phát triển theo cách của
+                    tìm hiểu và mở rộng hiểu biết. Mỗi bài viết là một cơ hội để bạn học hỏi và phát triển theo cách
+                    của
                     riêng mình.</div>
                 <img class="img-hanh-trinh" alt="" src="assets/images/imgCardTree3.png">
             </div>
         </div>
         <div class="hieu-qua">
             <div class="hieu-qua-title">60%</div>
-            <div class="hieu-qua-text">Hiệu quả nghiên cứu tăng lên khi tham khảo các tài liệu đa dạng từ nhiều nguồn
-                đáng tin cậy. Chúng tôi cung cấp nội dung phong phú, giúp bạn có cái nhìn toàn diện và ứng dụng vào thực
+            <div class="hieu-qua-text">Hiệu quả nghiên cứu tăng lên khi tham khảo các tài liệu đa dạng từ nhiều
+                nguồn
+                đáng tin cậy. Chúng tôi cung cấp nội dung phong phú, giúp bạn có cái nhìn toàn diện và ứng dụng vào
+                thực
                 tế.</div>
             <img class="img-hieu-qua" alt="" src="assets/images/imgCardTree2.png">
         </div>
     </div>
 
-    <!-- <div class="why-parent mobile">
-        <div class="why-group">
-            <div class="kham-pha-tri-thuc">
-                <img class="img-kham-pha" alt="" src="assets/images/imgCardTree1.png">
-                <div class="kham-pha-text">Khám Phá Tri Thức Mỗi Ngày</div>
-                <div class="kham-pha-description">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển chọn kỹ lưỡng để
-                    mang đến những thông tin hữu ích, giúp bạn dễ dàng tiếp cận và khám phá thế giới tri thức một cách
-                    trọn vẹn.</div>
-            </div>
-            <div class="hanh-trinh">
-                <div class="hanh-trinh-title">Hành Trình Kiến Thức Đầy Cảm Hứng</div>
-                <div class="hanh-trinh-text">Chúng tôi tự hào mang đến những bài nghiên cứu chuyên sâu, hỗ trợ bạn trong
-                    việc
-                    tìm hiểu và mở rộng hiểu biết. Mỗi bài viết là một cơ hội để bạn học hỏi và phát triển theo cách của
-                    riêng mình.</div>
-                <img class="img-hanh-trinh" alt="" src="assets/images/imgCardTree3.png">
-            </div>
-        </div>
-        <div class="hieu-qua">
-            <div class="hieu-qua-title">60%</div>
-            <div class="hieu-qua-text">Hiệu quả nghiên cứu tăng lên khi tham khảo các tài liệu đa dạng từ nhiều nguồn
-                đáng tin cậy. Chúng tôi cung cấp nội dung phong phú, giúp bạn có cái nhìn toàn diện và ứng dụng vào thực
-                tế.</div>
-            <img class="img-hieu-qua" alt="" src="assets/images/imgCardTree2.png">
-        </div>
-    </div> -->
+    <img class="trioTree" alt="" src="assets/images/trioTree.png">
     <!-------------------->
 
     <div class="title-divider">Tham khảo những bài nghiên cứu tốt nhất</div>
     <div class="slideshow-container">
-        <div id = 'content-card-container'>
+        <div id='content-card-container'>
         </div>
         <div class="dots-container">
         </div>
@@ -721,16 +683,15 @@
         </div>
         <div class="receive-noti" style="cursor: pointer; transition: background-color 0.3s, color 0.3s;"
             onmouseover="this.style.backgroundColor='#6b8e23'; this.style.color='#fff';"
-            onmouseout="this.style.backgroundColor='#87a706'; this.style.color='#fff';"
-            id = "receive-noti-button">
+            onmouseout="this.style.backgroundColor='#87a706'; this.style.color='#fff';" id="receive-noti-button">
             <div class="receive-noti-text">Nhận thông báo</div>
         </div>
-        <p id = "error-message" style = "display: none; font-size: 16px;">Vui lòng nhập email của bạn</p>
+        <p id="error-message" style="display: none; font-size: 16px;">Vui lòng nhập email của bạn</p>
     </div>
     <footer id="footer"></footer>
 
     <script type="module" src="./scripts/component.js"></script>
-    <script type = "module">
+    <script type="module">
         import { server } from "./scripts/config.js";
 
         document.getElementById("receive-noti-button").onclick = () => {
