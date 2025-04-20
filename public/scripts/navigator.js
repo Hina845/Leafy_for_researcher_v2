@@ -181,7 +181,7 @@ await fetch(`${server}/user/get-user-info`, {
             for (let content_card of data.posts) {
                 const div = document.createElement("div");
                 div.onclick = () => {
-                    window.location.href = `/posts/${content_card._id}`;
+                    window.location.href = `/post?post_id=${content_card._id}`;
                 };
                 div.className = "content-card-2";
                 div.style.cursor = "pointer";
