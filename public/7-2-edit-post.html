@@ -421,10 +421,7 @@
             if (data.tags.length == 0) {
                 searchPanelStillTagContainer.innerHTML = "<p>Không tìm thấy kết quả nào...<p>";
             } else {
-                searchPanelStillTagContainer.innerHTML = "";
-                const activeTags = [];
-                const notActiveTags = [];
-                data.tags.forEach((tag) => {
+                function get_tag_template(tag) {
                     const tagElement = document.createElement("div");
                     tagElement.className = "tag";
                     tagElement.innerHTML = `<div class="tag-text">${tag.name}</div>`;
@@ -440,6 +437,13 @@
                             }
                         }
                     });
+                    return tagElement;
+                }
+                searchPanelStillTagContainer.innerHTML = "";
+                const activeTags = [];
+                const notActiveTags = [];
+                data.tags.forEach((tag) => {
+                    const tagElement = get_tag_template(tag);
                     if (currentTagTexts.includes(tag.name)) {
                         tagElement.classList.add("active");
                         activeTags.push(tagElement);
@@ -447,6 +451,21 @@
                         notActiveTags.push(tagElement);
                     }
                 });
+
+                // EASTER EGG
+
+                if (notActiveTags.length === 0) {
+                    currentTagTexts.push("???");
+                    activeTags.push(get_tag_template({ name: "???" }));
+                } else {
+                    const index = currentTagTexts.indexOf("???");
+                    if (index > -1) {
+                        currentTagTexts.splice(index, 1);
+                    }
+                }
+
+                //
+
                 activeTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
                 notActiveTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
             }

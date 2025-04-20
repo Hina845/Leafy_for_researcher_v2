@@ -11,5 +11,6 @@ function loadComponent(selector, file) {
   document.addEventListener("DOMContentLoaded", () => {
     loadComponent("#navigation", "../components/navigation.html");
     loadComponent("#footer", "../components/footer.html");
+    loadComponent("#preloader", "../components/preloader.html");
   });
   

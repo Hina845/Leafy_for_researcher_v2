@@ -82,7 +82,7 @@
 .tag {
   display: inline-flex;
   padding: 6px 12px;
-  background-color: #87A706;
+  background-color: #87A706 !important;
   border-radius: 8px;
   font-family: "Roboto Serif", serif;
   font-size: 12px;
@@ -93,9 +93,9 @@
 }
 
 .tag:hover {
-  background-color: var(--color-brand-opacity15, #EAF4DC);
+  background-color: var(--color-brand-opacity15, #EAF4DC) !important;
   border: 2px solid #87A706;
-  color: #87A706;
+  color: #87A706 !important;
   cursor: pointer;
 }
 
