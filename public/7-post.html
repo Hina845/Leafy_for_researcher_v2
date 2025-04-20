@@ -275,11 +275,19 @@
                 });
             }
         })
-        //edit button check
-        const currentUsername = localStorage.getItem('username');
-        if (currentUsername !== data.author_name) {
-            document.getElementById('edit-button').style.display = 'none';
-        }
+        fetch(`${server}/user/check-post-author?post_id=${postId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(response => response.json()).then(data => {
+            if (!data.success || data.is_author === false) {
+                document.getElementById('edit-button').style.display = 'none';
+                return
+            } 
+            document.getElementById('edit-button').onclick = () => window.location.href = `/edit-post?post_id=${postId}`;
+        })
     </script>
 </body>
 </html>

@@ -347,6 +347,18 @@ async function UpdateUserProfile(req, res) {
     }
 }
 
+async function checkPostAuthor(req, res) {
+    const post_id = req.query.post_id;
+    const post = await PostModel.findById(post_id);
+    if (!post) return res.status(404).json({ success: false, error: 'Post not found' });
+
+    if (post.owned_user_id.toString() === req.userId.toString()) {
+        return res.json({ success: true, is_author: true });
+    } else {
+        return res.json({ success: true, is_author: false });
+    }
+}
+
 export {
     userCreate,
     userLogin,
@@ -358,5 +370,6 @@ export {
     CheckFollow,
     UploadResearch,
     SubscribeEmail,
-    UpdateUserProfile
+    UpdateUserProfile,
+    checkPostAuthor
 }
