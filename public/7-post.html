@@ -265,9 +265,14 @@
         }).then(response => response.json()).then(data => {
             if (data.success) {
                 data = data.data;
+                marked.setOptions({
+                    sanitize: false,
+                });
                 document.getElementById('post-image').src = data.image_url;
                 document.getElementById('post-title').innerText = data.title;
-                document.getElementById('post-content').innerHTML = marked.parse(data.md_content || "");
+                const content_container = document.getElementById('post-content');
+                content_container.style.whiteSpace = 'pre-wrap';
+                content_container.innerHTML = marked.parse(data.md_content || "");
                 document.getElementById('author').innerText = data.author_name;
                 document.getElementById('post-time').innerText = data.date_created;
                 document.getElementById('views').innerText = data.view;
