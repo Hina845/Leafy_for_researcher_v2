@@ -142,7 +142,12 @@ await fetch(`${server}/user/get-user-info`, {
         });
         let data = await response.json();
         if (!data.success) {
-            document.getElementById("search-panel").innerHTML = `<div class="headersearch-card">Đã xảy ra lỗi, vui lòng thử lại sau</div>`;
+            searchPanelStillTagHeader.style.display = "none";
+            searchPanelStillTagContainer.innerHTML = "<p>Hãy thêm tag '???' vào bài nghiên cứu của bạn<p>";
+            searchPanelContentCardHeader.style.display = "none";
+            searchPanelContentCardContainer.innerHTML = "";
+            searchPanelProfileCardHeader.style.display = "none";
+            searchPanelProfileCardContainer.innerHTML = "";
             return;
         }
         data = data.data;
