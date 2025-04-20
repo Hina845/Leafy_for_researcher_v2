@@ -14,10 +14,6 @@ pageRouter.get('/forgot-password', (req, res) => {
     res.sendFile(path.join(root, '2-forgot-password.html'));
 });
 
-pageRouter.get('/change-password', verifyPasswordChangeLink, (req, res) => {
-    res.sendFile(path.join(root, '2-3-change-password.html'));
-});
-
 pageRouter.get('/signup', (req, res) => {
     res.sendFile(path.join(root, '3-sign-up.html'));
 });

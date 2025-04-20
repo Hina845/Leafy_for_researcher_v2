@@ -606,6 +606,7 @@
 </head>
 
 <body>
+    <div id="preloader"></div>
     <nav id='navigation'></nav>
     <img class="hero-image" alt="" src="assets/images/imgIndex.png">
 
@@ -772,6 +773,13 @@
             script.type = "module";
             script.src = "./scripts/navigator.js";
             document.body.appendChild(script);
+        });
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 100);
         });
 
         fetch(`${server}/api/v1/get-content-card`, {

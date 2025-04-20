@@ -6,6 +6,7 @@
     <title>Edit profile | Leafy</title>
     <link rel="icon" type="favicon/icon" href="./assets/icons/icBrandLogo1.svg">
     <link href="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./components/component-styles.css">
     <script src="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.js"></script>
 
     <style>
@@ -122,6 +123,16 @@
     </style>
 </head>
 <body>
+    <div id="preloader"></div>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 200);
+        });
+    </script>
     <nav id = 'navigation'></nav>
     <div style="background-color: var(--color-background-primary);" class = "profile-background"><img class="profile-background" alt="background" id = 'edit-profile-background' style="cursor: pointer;"></div>
     <input type="file" id="background-picture-input" accept="image/*" style="display: none;">

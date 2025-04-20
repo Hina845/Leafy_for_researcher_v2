@@ -322,6 +322,16 @@
 </head>
 
 <body>
+	<div id="preloader"></div>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 200);
+        });
+    </script>
 	<nav id = 'navigation'></nav>
 	<img class="profile-background" alt="" src="assets/images/profile-background.png">
 	<div class="profile">
