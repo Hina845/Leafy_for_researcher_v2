@@ -12,6 +12,8 @@ const app = new express();
 
 const server = 'http://localhost:7777';
 
+const __root = path.resolve('public');
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -37,6 +39,10 @@ app.use('/api/v1', apiRouter);
 
 app.get('/public/forgot-password', verifyPasswordChangeLink, (req, res) => {
     res.render('forgot-password', { server });
+});
+
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__root, '0-page-not-found.html'));
 });
 
 export default app;

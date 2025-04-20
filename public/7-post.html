@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, width=device-width">
+    <link rel="stylesheet" href="components/component-styles.css">
     <style>
         @import url('styles/tokens.css');
         #post-image{
@@ -188,6 +189,16 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
+    <div id="preloader"></div>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+    </script>
     <nav id="navigation"></nav>
     <img id="post-image">
     <div class="post">
