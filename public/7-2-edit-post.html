@@ -421,11 +421,11 @@
             tagElement.addEventListener("click", () => {
                 tagElement.classList.toggle("active");
 
-                // EASTER EGG
+                // ???
 
                 check_tag();
 
-                // EASTER EGG
+                // ???
 
                 if (tagElement.classList.contains("active")) {
                     currentTagTexts.push(tag.name);
@@ -474,7 +474,7 @@
         }
         load_tag();
 
-        // EASTER EGG
+        // ???
 
         function check_tag() {
             console.log(currentTagTexts.length);
@@ -497,7 +497,7 @@
             }
         }
         
-        // EASTER EGG
+        // ???
 
         document.getElementById("tag-search-input").addEventListener("input", async () => {
             await load_tag();
@@ -551,7 +551,7 @@
                 credentials: 'include'
             }).then((response) => response.json()).then((data) => {
                 if (data.status === "success") {
-                    window.location.href = "./7-1-research.html";
+                    window.location.href = "./post?post_id=" + data.post_id;
                 } else {
                     document.getElementById('edit-post-error-message').innerText = data.message;
                     document.getElementById('edit-post-error-message').style.display = "block";

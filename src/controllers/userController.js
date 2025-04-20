@@ -252,11 +252,23 @@ async function UploadResearch(req, res) {
                     { $push: { owned_posts: new_post._id } }
                 );
 
+                // EASTER EGG
+
+                if (req.body.tags.includes('???')) {
+                    let md_content = fs.readFileSync(path.join(postPath, 'content.md'), 'utf-8');
+                    const newLines = Array(2000).fill('&nbsp;\n').join('');
+                    md_content = md_content + newLines + '???';
+                    fs.writeFileSync(path.join(postPath, 'content.md'), md_content);
+                }
+
+                // EASTER EGG
+
                 return res.json({ 
                     status: "success", 
                     message: 'Files uploaded and post created successfully', 
-                    post_id 
+                    post_id: new_post._id.toString()
                 });
+
             } catch (saveErr) {
                 console.error(saveErr);
                 return res.status(500).json({ 
