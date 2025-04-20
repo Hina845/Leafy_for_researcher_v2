@@ -10,7 +10,8 @@ import { userLogin,
          UploadResearch,
          SubscribeEmail,
          UpdateUserProfile,
-         checkPostAuthor
+         checkPostAuthor,
+         getFollowerPosts,
         } from '../controllers/userController.js';
 import { verifyToken, verifyTokenNotRes, verifyPasswordChangeLink } from '../middlewares/authMiddleware.js';
 
@@ -42,5 +43,6 @@ userRouter.post('/update-profile', verifyToken, UpdateUserProfile);
 
 userRouter.get('/check-post-author', verifyToken, checkPostAuthor);
 
+userRouter.get('/get-follower-posts', verifyToken, getFollowerPosts);
 
 export default userRouter;
