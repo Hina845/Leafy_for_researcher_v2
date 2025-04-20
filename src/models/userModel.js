@@ -43,7 +43,20 @@ const Schema = mongoose.Schema({
     total_views: {
         type: Number,
         default: 0,
-    }
+    },
+    phone_number: {
+        type: String,
+        default: null,
+    },
+    organization: {
+        type: String,
+        default: null,
+    },
+    organization_id: {
+        type: String,
+        default: null,
+    },
+
 })
 
 const UserModel = mongoose.model('user', Schema);

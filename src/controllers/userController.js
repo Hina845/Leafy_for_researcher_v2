@@ -117,12 +117,17 @@ async function resetPassword(req, res) {
 async function getUserInfo(req, res) {
     const user = await UserModel.findById(req.userId)
     let profile_picture_url = 'assets/images/imgDefaultProfilePicture.png';
+    let background_picture_url = 'assets/images/profile-background.png';
 
     const profilePicturePath = path.join(__dirname, '..', 'public', 'users', user._id.toString())
 
     if (fs.existsSync(profilePicturePath)) {
         const files = fs.readdirSync(profilePicturePath);
-        profile_picture_url = path.join('users', user._id.toString(), files[0]);
+        const profilePic = files.find(file => file.startsWith('profile-picture'));
+        const backgroundPic = files.find(file => file.startsWith('background'));
+        
+        if (profilePic) profile_picture_url = path.join('users', user._id.toString(), profilePic);
+        if (backgroundPic) background_picture_url = path.join('users', user._id.toString(), backgroundPic);
     }
 
     let data = {
@@ -130,10 +135,15 @@ async function getUserInfo(req, res) {
         username: user.username,
         display_name: user.display_name,
         profile_picture_url: profile_picture_url,
+        background_picture_url: background_picture_url,
         owned_posts: user.owned_posts,
         viewed_posts: user.viewed_posts,
+        email: user.email,
         followers: user.followers.length,
         total_views: user.total_views,
+        phone_number: user.phone_number,
+        organization: user.organization,
+        organization_id: user.organization_id,
     }
 
     if (req.is_owner) data.is_owner = req.is_owner;
@@ -279,6 +289,64 @@ async function SubscribeEmail(req, res) {
     });
 }
 
+async function UpdateUserProfile(req, res) {
+    const user = await UserModel.findById(req.userId);
+    if (!user) return res.status(404).json({ success: false, error: 'User not found' });
+
+    try {
+        const userDir = path.join(__dirname, '..', 'public', 'users', req.userId);
+        if (!fs.existsSync(userDir)) {
+            fs.mkdirSync(userDir, { recursive: true });
+        }
+
+        const storage = multer.diskStorage({
+            destination: (req, file, cb) => {
+                cb(null, userDir);
+            },
+            filename: (req, file, cb) => {
+                const fileExt = path.extname(file.originalname);
+                if (file.fieldname === 'profile_picture') {
+                    cb(null, `profile-picture${fileExt}`);
+                } else if (file.fieldname === 'background_picture') {
+                    cb(null, `background${fileExt}`);
+                }
+            }
+        });
+
+        const upload = multer({ storage }).fields([
+            { name: 'profile_picture', maxCount: 1 },
+            { name: 'background_picture', maxCount: 1 }
+        ]);
+
+        upload(req, res, async (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ success: false, error: 'File upload error' });
+            }
+
+            const { display_name, email, phone_number, organization, organization_id } = req.body;
+
+            user.display_name = display_name || user.display_name;
+            if (email && email !== user.email) {
+                const emailExists = await UserModel.findOne({ email });
+                if (emailExists && !emailExists._id.equals(user._id)) {
+                    return res.status(400).json({ success: false, error: 'Email already exists' });
+                }
+                user.email = email;
+            }
+            user.phone_number = phone_number || user.phone_number;
+            user.organization = organization || user.organization;
+            user.organization_id = organization_id || user.organization_id;
+
+            await user.save();
+            return res.json({ success: true, message: 'Profile updated successfully' });
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false, error: 'Server error' });
+    }
+}
+
 export {
     userCreate,
     userLogin,
@@ -289,5 +357,6 @@ export {
     FollowUser,
     CheckFollow,
     UploadResearch,
-    SubscribeEmail
+    SubscribeEmail,
+    UpdateUserProfile
 }

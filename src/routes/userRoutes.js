@@ -8,7 +8,8 @@ import { userLogin,
          FollowUser,
          CheckFollow,
          UploadResearch,
-         SubscribeEmail
+         SubscribeEmail,
+         UpdateUserProfile
         } from '../controllers/userController.js';
 import { verifyToken, verifyTokenNotRes, verifyPasswordChangeLink } from '../middlewares/authMiddleware.js';
 
@@ -35,6 +36,8 @@ userRouter.get('/is-followed', verifyToken, CheckFollow);
 userRouter.post('/upload-research', verifyToken, UploadResearch);
 
 userRouter.post('/subscribe', verifyToken, SubscribeEmail);
+
+userRouter.post('/update-profile', verifyToken, UpdateUserProfile);
 
 
 export default userRouter;
