@@ -54,7 +54,6 @@
     align-items: center;
     justify-content: center;
     padding: 4px var(--spacing-1);
-    width: 100%;
 }
 
 .tag-list {
