@@ -129,6 +129,16 @@
 </head>
 
 <body>
+    <div id="preloader"></div>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 200);
+        });
+    </script>
     <nav id = navigation></nav>
     <div class=edit-research>
         <span style="font-size: var(--spacing-4); line-height: 100%; letter-spacing: 0%;">Thêm/Cập nhật bài nghiên
@@ -461,6 +471,7 @@
                     const index = currentTagTexts.indexOf("???");
                     if (index > -1) {
                         currentTagTexts.splice(index, 1);
+                        
                     }
                 }
 
