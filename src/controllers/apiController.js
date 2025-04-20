@@ -16,7 +16,8 @@ async function getContentCards(req, res) {
 
     let query = [];
     if (post_id != null) query.push({_id: {$in: post_id}});
-    if (owned_user_id) query.push({owned_user_id: owned_user_id});
+    if (typeof(owned_user_id) === 'Array') query.push({owned_user_id: {$in: owned_user_id}});
+    else if (owned_user_id) query.push({owned_user_id: owned_user_id});
     if (tags != null) query.push({tags: { $in: tags }});
     try {
         const posts = await PostModel.find({$and: query}).limit(limit);
@@ -44,7 +45,7 @@ async function getContentCards(req, res) {
                 views: post.views,
                 imageUrl: `${thumbnail_path}`,
             });
-            content_cards.push({template: template, _id: post._id});
+            content_cards.push({template: template, _id: post._id, date_created: post.date_created, views: post.views});
         }
         return res.json({ success: true, content_cards });
     } catch (err) {
