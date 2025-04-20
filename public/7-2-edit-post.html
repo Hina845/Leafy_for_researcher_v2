@@ -412,10 +412,35 @@
         }
 
         const currentTagTexts = [];
+        const searchPanelStillTagContainer = document.getElementById("tag_container");
+        function get_tag_template(tag) {
+            const tagElement = document.createElement("div");
+            tagElement.className = "tag";
+            tagElement.innerHTML = `<div class="tag-text">${tag.name}</div>`;
+            tagElement.style.cursor = "pointer";
+            tagElement.addEventListener("click", () => {
+                tagElement.classList.toggle("active");
+
+                // EASTER EGG
+
+                check_tag();
+
+                // EASTER EGG
+
+                if (tagElement.classList.contains("active")) {
+                    currentTagTexts.push(tag.name);
+                } else {
+                    const index = currentTagTexts.indexOf(tag.name);
+                    if (index > -1) {
+                        currentTagTexts.splice(index, 1);
+                    }
+                }
+            });
+            return tagElement;
+        }
 
         async function load_tag() {
-            const searchPanelStillTagContainer = document.getElementById("tag_container");
-
+            
             const url = `${server}/api/v1/get-search-value?value=${document.getElementById("tag-search-input").value}&limit=100`;
 
             const response = await fetch(url, {
@@ -430,24 +455,6 @@
             if (data.tags.length == 0) {
                 searchPanelStillTagContainer.innerHTML = "<p>Không tìm thấy kết quả nào...<p>";
             } else {
-                function get_tag_template(tag) {
-                    const tagElement = document.createElement("div");
-                    tagElement.className = "tag";
-                    tagElement.innerHTML = `<div class="tag-text">${tag.name}</div>`;
-                    tagElement.style.cursor = "pointer";
-                    tagElement.addEventListener("click", () => {
-                        tagElement.classList.toggle("active");
-                        if (tagElement.classList.contains("active")) {
-                            currentTagTexts.push(tag.name);
-                        } else {
-                            const index = currentTagTexts.indexOf(tag.name);
-                            if (index > -1) {
-                                currentTagTexts.splice(index, 1);
-                            }
-                        }
-                    });
-                    return tagElement;
-                }
                 searchPanelStillTagContainer.innerHTML = "";
                 const activeTags = [];
                 const notActiveTags = [];
@@ -461,26 +468,36 @@
                     }
                 });
 
-                // EASTER EGG
-
-                if (notActiveTags.length === 0) {
-                    currentTagTexts.push("???");
-                    activeTags.push(get_tag_template({ name: "???" }));
-                } else {
-                    const index = currentTagTexts.indexOf("???");
-                    if (index > -1) {
-                        currentTagTexts.splice(index, 1);
-                        
-                    }
-                }
-
-                //
-
                 activeTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
                 notActiveTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
             }
         }
         load_tag();
+
+        // EASTER EGG
+
+        function check_tag() {
+            console.log(currentTagTexts.length);
+            if (currentTagTexts.length >= 20 ) {
+                const current_tag_list = searchPanelStillTagContainer.querySelectorAll(".tag");
+                const is_egg_exist = Array.from(current_tag_list).some(tag => tag.innerText === "???");
+                if (!is_egg_exist) {
+                    searchPanelStillTagContainer.appendChild(get_tag_template({ name: "???" }));
+                }
+            } else {
+                const index = currentTagTexts.indexOf("???");
+                if (index > -1) {
+                    currentTagTexts.splice(index, 1);
+                }
+                searchPanelStillTagContainer.querySelectorAll(".tag").forEach(tag => {
+                    if (tag.innerText === "???") {
+                        tag.remove();
+                    }
+                });
+            }
+        }
+        
+        // EASTER EGG
 
         document.getElementById("tag-search-input").addEventListener("input", async () => {
             await load_tag();
