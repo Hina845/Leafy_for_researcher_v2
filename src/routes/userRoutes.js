@@ -9,7 +9,8 @@ import { userLogin,
          CheckFollow,
          UploadResearch,
          SubscribeEmail,
-         UpdateUserProfile
+         UpdateUserProfile,
+         checkPostAuthor
         } from '../controllers/userController.js';
 import { verifyToken, verifyTokenNotRes, verifyPasswordChangeLink } from '../middlewares/authMiddleware.js';
 
@@ -38,6 +39,8 @@ userRouter.post('/upload-research', verifyToken, UploadResearch);
 userRouter.post('/subscribe', verifyToken, SubscribeEmail);
 
 userRouter.post('/update-profile', verifyToken, UpdateUserProfile);
+
+userRouter.get('/check-post-author', verifyToken, checkPostAuthor);
 
 
 export default userRouter;
