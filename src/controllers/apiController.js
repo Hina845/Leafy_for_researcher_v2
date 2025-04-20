@@ -117,7 +117,8 @@ async function getSearchValue(req, res) {
                 user.profile_image = 'assets/images/imgDefaultProfilePicture.png';
             } else {
                 const files = fs.readdirSync(profilePicturePath);
-                user.profile_image = path.join('users', user._id.toString(), files[0]);
+                const profilePictureFile = files.find(file => /^profile-picture\.(png|jpg|jpeg|gif|bmp|webp)$/i.test(file));
+                user.profile_image = path.join('users', user._id.toString(), profilePictureFile || files[0]);
             }
         }
 
@@ -171,6 +172,8 @@ async function getPost(req, res) {
         await post.save();
 
         const author = await UserModel.findById(post.owned_user_id);
+        author.total_views += 1;
+        await author.save();
         const post_directory = path.resolve('public', 'researches', post._id.toString());
         const thumbnail_files = fs.readdirSync(post_directory);
         const thumbnail_file = thumbnail_files.find(file => /\.(png|jpg|jpeg|gif|bmp|webp)$/i.test(file));
