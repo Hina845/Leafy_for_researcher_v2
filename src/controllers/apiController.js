@@ -55,7 +55,8 @@ async function getContentCards(req, res) {
 }
 
 async function getSearchValue(req, res) {
-    const regex = req.query.value || '';
+    const regex = (req.query.value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
     const limit = parseInt(req.query.limit) || 10;
     let searchResponse = {
         tags: [],
