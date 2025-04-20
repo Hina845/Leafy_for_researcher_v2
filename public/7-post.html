@@ -130,12 +130,34 @@
         #edit-button:hover{
             background-color: var(--color-brand-opacity50);
         }
+        #delete-button{
+            width: 100%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f86364;
+            color: var(--color-true-white);
+            font-weight: 500;
+            font-size: 1.5rem;
+            gap: var(--spacing-1);
+            position: relative;
+            border-radius: 16px;
+            padding: 8px 8px;
+            box-sizing: border-box;
+        }
+        #delete-button:hover{
+            background-color: red;
+        }
         .right{
             display: flex;
             flex-direction: column;
             gap: var(--spacing-3);
             width: 360px;
             flex-shrink: 0;
+            position: sticky;
+            align-self: flex-start;
+            top: 104px;
         }
         .post{
             display: flex;
@@ -144,7 +166,6 @@
         }
         @media (max-width: 1079px){
             #post-image{
-                content: url(assets/images/Doulingo-small.svg);
                 height: 284px;
             }
             #post-title{
@@ -167,6 +188,13 @@
                 align-self: center;
                 font-size: 1.25rem;
                 width: auto;
+                padding: 8px 16px;
+            }
+            #delete-button{
+                order: 5;
+                align-self: center;
+                font-size: 1.25rem;
+                width: 161.69px;
                 padding: 8px 16px;
             }
             .left{
@@ -236,6 +264,9 @@
                 <img src="assets/icons/icEdit.svg">
                 <span class="button-text">Chỉnh sửa</span>
             </button>
+            <button id="delete-button">
+                <span class="button-text">Xóa</span>
+            </button>
         </div>
     </div>
     <footer id="footer"></footer>
@@ -303,6 +334,7 @@
         }).then(response => response.json()).then(data => {
             if (!data.success || data.is_author === false) {
                 document.getElementById('edit-button').style.display = 'none';
+                document.getElementById('delete-button').style.display = 'none';
                 return
             } 
             document.getElementById('edit-button').onclick = () => window.location.href = `/edit-post?post_id=${postId}`;
