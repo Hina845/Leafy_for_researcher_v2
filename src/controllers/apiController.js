@@ -4,7 +4,6 @@ import TagModel from '../models/tagModel.js';
 import ejs from 'ejs';
 import path from 'path';
 import fs from 'fs';
-import { tmpdir } from 'os';
 
 const __dirname = path.resolve('src');
 
@@ -55,7 +54,7 @@ async function getContentCards(req, res) {
 }
 
 async function getSearchValue(req, res) {
-    const regex = (req.query.value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = (req.query.value || '')
     
     const limit = parseInt(req.query.limit) || 10;
     let searchResponse = {
@@ -179,10 +178,9 @@ async function getPost(req, res) {
         const post_directory = path.resolve('public', 'researches', post._id.toString());
         const thumbnail_files = fs.readdirSync(post_directory);
         const thumbnail_file = thumbnail_files.find(file => /\.(png|jpg|jpeg|gif|bmp|webp)$/i.test(file));
-        if (!thumbnail_file) {
-            throw new Error(`Thumbnail not found for post ${post._id}`);
-        }
-        const thumbnail_path = path.join('researches', post._id.toString(), thumbnail_file);
+        let thumbnail_path;
+        if (!thumbnail_file) thumbnail_path = path.join('assets', 'images', 'imgDefaultPostBackground.png');
+        else thumbnail_path = path.join('researches', post._id.toString(), thumbnail_file);
 
         const md_content = fs.readFileSync(path.join(post_directory, 'content.md'), 'utf-8');
 
