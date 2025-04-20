@@ -136,6 +136,7 @@ body {
 }
 
 .search-bar-tag {
+	overflow: hidden;
 	width: 100%;
 	position: relative;
 	border-radius: 8px;
@@ -195,6 +196,7 @@ input::placeholder {
 	padding: 4px 8px;
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
+	flex-shrink: 0;
 }
 
 .tag-parent {
@@ -212,6 +214,7 @@ input::placeholder {
 	font-size: 12px;
 	color: var(--color-brand-primary);
 	font-family: 'Roboto Serif';
+	flex-wrap: wrap;
 }
 
 /*3 cái phần ...*/
@@ -439,7 +442,7 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
 	padding: 12px 18px;
 	box-sizing: border-box;
 	gap: 23px;
-	min-width: 320px;
+	min-width: 300px;
 	text-align: left;
 	font-size: 16px;
 	color: #87a706;
@@ -485,6 +488,9 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
 	background-color: var( --color-brand-opacity15);
 }
 @media (max-width: 1079px) {
+	.hero-image{
+		content: url(../assets/images/imgKhoNghienCuuHero2.png);
+	}
 	.typography-title {
         width: 100%;  /* bắt buộc phải set lại 100% */
          /* giữ khung cao */
@@ -509,6 +515,7 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
     }
 
     .typography-title .title-container .title-main {
+		padding-top: 67px;
         font-size: 48px;
     }
 
@@ -519,7 +526,10 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
 		display: none !important;
 	}
 	.container {
-		padding: 5% 5%; /* Giảm padding ngang cho không gian hiển thị hẹp hơn */
+		padding-top: var(--spacing-2);
+		padding-bottom: var(--spacing-6);
+		gap: var(--spacing-4);
+		max-width: 600px; /* Giảm padding ngang cho không gian hiển thị hẹp hơn */
 	}
 	.topic-nav {
 		flex-direction: row;
@@ -550,22 +560,39 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
 		white-space: nowrap;
 	}
 	.research-vault-container {
+		padding-top: 0;
 		flex-direction: column;
 		gap: 20px;
 	}
-
-	.research-vault-container .hot-exploration-tab {
+	.research-vault-container .research-vault-sticky{
+		width: 100%;
+		position: relative;
+		display: contents;
+	}
+	.hot-exploration-tab {
 		order: 1; 
 		width: 100%; 
 	}
 
 	.research-vault-container .research-vault-content-card {
+		padding-top:var(--spacing-2);
 		order: 2; 
 		width: 100%; 
 	}
 
-	.research-vault-container .research-vault-sticky {
+	.research-vault-container .people-suggestion {
 		order: 3;
 		width: 100%;
+	}
+}
+
+@media (max-width: 440px){
+	.tag-parent{
+		flex-wrap: nowrap;
+		padding-bottom: var(--spacing-1);
+	}
+	.container{
+		padding-left: var(--spacing-3);
+		padding-right: var(--spacing-3);
 	}
 }
