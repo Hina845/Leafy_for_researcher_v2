@@ -60,8 +60,6 @@
                 <input id="search" placeholder="Search" type="text"></input>
             </div>
             <div class="search-bar-tag-child"></div>
-        
-        
             <div class="tag-parent" id="tag-container"></div>
         </div>
         
@@ -583,18 +581,20 @@
 
     <script>
         function switch_tab(elem1, elem2) {
-            // Remove 'active' class from all tagline items
-            for (let e of document.querySelectorAll('.tagline .tagline-item')) {
+            // Xóa 'active' class khỏi tất cả các tab
+            for (let e of document.querySelectorAll('#tab-navigator span')) {
                 e.classList.remove('active');
             }
-
-            // Remove 'active' class from all research vault content cards
+        
+            // Thêm 'active' class vào tab được bấm
+            elem1.classList.add('active');
+        
+            // Xóa 'active' class khỏi tất cả các research vault content cards
             for (let e of document.querySelectorAll('.research-vault-content-card')) {
                 e.classList.remove('active');
             }
-
-            // Add 'active' class to the clicked element and the corresponding content card
-            elem1.classList.add('active');
+        
+            // Thêm 'active' class vào nội dung liên quan
             document.getElementById(elem2).classList.add('active');
         }
 
