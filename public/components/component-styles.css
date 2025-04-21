@@ -220,21 +220,21 @@
     background-color: var(--color-brand-primary-dark);
 }
 
-li {
+.component-footer .naviagation-part li {
     color: #d2e681;
 }
 
-li:hover {
+.component-footer .naviagation-part li:hover {
     color: var(--color-true-white);
     cursor: pointer;
 }
 
-li a {
+.component-footer .naviagation-part li a {
     text-decoration: none;
     color: #d2e681;
 }
 
-li a:hover {
+.component-footer .naviagation-part li a:hover {
     color: var(--color-true-white);
 }
 

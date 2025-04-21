@@ -276,7 +276,7 @@ async function UploadResearch(req, res) {
                 return res.json({ 
                     status: "success", 
                     message: 'Files uploaded and post created successfully', 
-                    post_id: new_post._id.toString()
+                    post_id: new_post._id
                 });
 
             } catch (saveErr) {
