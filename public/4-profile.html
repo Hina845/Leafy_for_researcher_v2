@@ -325,13 +325,10 @@
 <body>
 	<div id="preloader"></div>
     <script>
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            preloader.style.opacity = '0';
-            setTimeout(function() {
-                preloader.style.display = 'none';
-            }, 200);
-        });
+		const preloader = document.getElementById('preloader');
+		setTimeout(function() {
+			preloader.style.display = 'none';
+		}, 2000);
     </script>
 	<nav id = 'navigation'></nav>
 	<img class="profile-background" alt="" src="assets/images/profile-background.png">
@@ -515,13 +512,15 @@
 			} else {
 				console.error('Failed to fetch user data:', data.message);
 			}
-			const check_follow = await fetch(`${server}/user/is-followed?user_id=${params.get('user_id')}`, {
+			let check_follow_data;
+			if (params.get('user_id')) check_follow_data = await fetch(`${server}/user/is-followed?user_id=${params.get('user_id') || "0"}`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				credentials: 'include',
-			});
+			}).then((response) => response.json());
+			else check_follow_data = {success: false, message: 'No user id'};
 			function swicthFollow() {
 				const followText = document.getElementById('follow-text');
 				followText.innerText = isFollowing ? 'Đã theo dõi' : 'Theo dõi';
@@ -533,8 +532,10 @@
 					followButton.classList.add('follow');
 				}
 			}
-			const check_follow_data = await check_follow.json();
-			if (check_follow_data.success) {
+			if (check_follow_data === undefined) {
+				isFollowing = true;
+				swicthFollow();
+			} else if (check_follow_data.success) {
 				isFollowing = check_follow_data.is_followed;
 				swicthFollow();
 			} else {
