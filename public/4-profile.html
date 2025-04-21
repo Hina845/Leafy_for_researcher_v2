@@ -435,6 +435,7 @@
 				return;
 			}
 			document.getElementById('main-profile-picture').src = data.data.profile_picture_url;
+			document.getElementById('profile-background').src = data.data.background_picture_url;
 			if (data.success) {
 				const user = data.data;
 				isLoggedIn = user.is_login;

@@ -259,7 +259,7 @@ async function UploadResearch(req, res) {
                 
                 await UserModel.findByIdAndUpdate(
                     req.userId,
-                    { $push: { owned_posts: new_post._id } }
+                    { $push: { owned_posts: post_id } }
                 );
 
                 // EASTER EGG
@@ -276,7 +276,7 @@ async function UploadResearch(req, res) {
                 return res.json({ 
                     status: "success", 
                     message: 'Files uploaded and post created successfully', 
-                    post_id: new_post._id.toString()
+                    post_id: new_post._id
                 });
 
             } catch (saveErr) {
