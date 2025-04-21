@@ -316,12 +316,18 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
 	padding: var(--spacing-4) 0;
 	gap: var(--spacing-4);
 }
+.number-selector {
+    display: none;
+}
 
+.research-vault-content-card.active .number-selector {
+    display: block;
+}
 .research-vault-container .research-vault-sticky {
     display: flex;
     position: sticky;
 	align-self: flex-start;
-    top: var(--spacing-3);
+    top: 60px;
 	width: 360px;
     flex-direction: column;
     align-items: center;
