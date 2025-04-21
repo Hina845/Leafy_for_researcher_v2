@@ -259,7 +259,7 @@ async function UploadResearch(req, res) {
                 
                 await UserModel.findByIdAndUpdate(
                     req.userId,
-                    { $push: { owned_posts: post_id } }
+                    { $addToSet: { owned_posts: post_id } }
                 );
 
                 // EASTER EGG
