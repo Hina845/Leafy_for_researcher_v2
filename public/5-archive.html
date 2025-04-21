@@ -305,6 +305,7 @@
                     tags: tag_query,
                     post_id: post_ids,
                     limit: 999,
+                    mode: "strict",
                 }),
             });
             response = await response.json();
@@ -362,6 +363,19 @@
                 const div = document.createElement("div");
                 div.className = "content-card";
                 div.innerHTML = tag.template;
+                div.querySelectorAll('.still-content-tag').forEach(tag => {
+                    tag.onclick = function () {
+                        searchPanelStillTagContainer.querySelectorAll(".tag").forEach(sptag => {
+                            if (tag.innerText === sptag.innerText) {
+                                sptag.click();
+                            }
+                        });
+                    };
+                });
+                div.querySelector(".content-text").style.cursor = "pointer";
+                div.querySelector(".content-text").onclick = function () {
+                    window.location.href = `/post?post_id=${tag._id}`;
+                };
                 contentCardContainer.appendChild(div)
             }
         }

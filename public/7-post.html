@@ -224,7 +224,7 @@
             preloader.style.opacity = '0';
             setTimeout(function() {
                 preloader.style.display = 'none';
-            }, 1000);
+            }, 2000);
         });
     </script>
     <nav id="navigation"></nav>
@@ -338,6 +338,20 @@
                 return
             } 
             document.getElementById('edit-button').onclick = () => window.location.href = `/edit-post?post_id=${postId}`;
+            document.getElementById('delete-button').onclick = () => {
+                if (confirm("Bạn có chắc chắn muốn xóa bài viết này?")) {
+                    fetch(`${server}/user/delete-post`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({post_id: postId})
+                    }).then(response => response.json()).then(data => {
+                        if (data.success) window.location.href = '/archive';
+                    })
+                }
+            }
         })
     </script>
 </body>
