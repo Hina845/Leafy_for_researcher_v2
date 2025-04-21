@@ -324,12 +324,6 @@
 
 <body>
 	<div id="preloader"></div>
-    <script>
-		const preloader = document.getElementById('preloader');
-		setTimeout(function() {
-			preloader.style.display = 'none';
-		}, 2000);
-    </script>
 	<nav id = 'navigation'></nav>
 	<img class="profile-background" alt="" src="assets/images/profile-background.png">
 	<div class="profile">
@@ -389,6 +383,14 @@
 	<script type = "module">
 		const actionButton = document.getElementById('edit-button');
 		const followButton = document.getElementById('follow-button');
+		
+		window.addEventListener('load', function() {
+			const preloader = document.getElementById('preloader');
+			setTimeout(function() {
+				preloader.style.display = 'none';
+			}, 1000);
+		});
+
 		function switch_tab(elem1, elem2) {
 			for (let e of document.getElementById("tab-navigator").querySelectorAll("button")) {
 				e.classList.remove("active");
