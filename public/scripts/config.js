@@ -1,3 +1,3 @@
-const server = 'http://localhost:7777'
+const server = 'leafyforresearcherv2-production.up.railway.app'
 
 export { server };
