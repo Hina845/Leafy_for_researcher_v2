@@ -73,7 +73,7 @@
                     div.className = 'tag';
                     div.innerText = tag.name;
                     div.onclick = function() {
-                        window.location.href = `./archive?search=${tag._id}`;
+                        window.location.href = `./archive?search=${tag._name}`;
                     };
                     return div;
                 }

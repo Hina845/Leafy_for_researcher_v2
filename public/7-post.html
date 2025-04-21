@@ -321,7 +321,7 @@
             if (data.success) {
                 data.data.tags.forEach(tag => {
                     const container = document.getElementById('relate-topic-tag');
-                    still_tags_loader_with_link(container, [{text: tag.name, link: `/archive?tag=${tag._id}`}]);
+                    still_tags_loader_with_link(container, [{text: tag.name, link: `/archive?tag=${tag._name}`}]);
                 });
             }
         })
