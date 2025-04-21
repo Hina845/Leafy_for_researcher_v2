@@ -412,8 +412,15 @@ async function deletePost(req, res) {
 
     await UserModel.findByIdAndUpdate(
         req.userId,
-        { $pull: { owned_posts: post_id } }
+        { 
+            $pull: { owned_posts: post_id,
+                     viewed_posts: post_id,
+                    }, 
+            $inc: { total_views: -post.views },
+        },
+        { multi: true }
     );
+
 
     return res.json({ success: true, message: 'Post deleted successfully' });
 }
