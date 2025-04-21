@@ -479,7 +479,7 @@
 
         function check_tag() {
             console.log(currentTagTexts.length);
-            if (currentTagTexts.length >= 20 ) {
+            if (currentTagTexts.length >= 50 ) {
                 const current_tag_list = searchPanelStillTagContainer.querySelectorAll(".tag");
                 const is_egg_exist = Array.from(current_tag_list).some(tag => tag.innerText === "???");
                 if (!is_egg_exist) {
