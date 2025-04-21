@@ -172,7 +172,7 @@ await fetch(`${server}/user/get-user-info`, {
                 still_tags_loader_with_link(searchPanelStillTagContainer, [
                     {
                         text: tag.name,
-                        link: `archive?tag=${tag._id}`,
+                        link: `archive?tag=${tag.name}`,
                     },
                 ])
             }

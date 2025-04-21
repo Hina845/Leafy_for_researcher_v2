@@ -479,7 +479,7 @@
 
         function check_tag() {
             console.log(currentTagTexts.length);
-            if (currentTagTexts.length >= 20 ) {
+            if (currentTagTexts.length >= 50 ) {
                 const current_tag_list = searchPanelStillTagContainer.querySelectorAll(".tag");
                 const is_egg_exist = Array.from(current_tag_list).some(tag => tag.innerText === "???");
                 if (!is_egg_exist) {
@@ -499,6 +499,11 @@
         }
         
         // ???
+
+        let url = `${server}/user/upload-research`;
+        if (queryParams.post_id) {
+            url += `?post_id=${queryParams.post_id}`;
+        }
 
         document.getElementById("tag-search-input").addEventListener("input", async () => {
             await load_tag();
@@ -549,7 +554,7 @@
                 console.log(`${key}:`, value);
             }
 
-            await fetch(`${server}/user/upload-research`, {
+            await fetch(url, {
                 method: "POST",
                 body: formData,
                 credentials: 'include'

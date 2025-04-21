@@ -259,7 +259,7 @@ async function UploadResearch(req, res) {
                 
                 await UserModel.findByIdAndUpdate(
                     req.userId,
-                    { $push: { owned_posts: new_post._id } }
+                    { $addToSet: { owned_posts: post_id } }
                 );
 
                 // EASTER EGG
@@ -267,7 +267,7 @@ async function UploadResearch(req, res) {
                 if (req.body.tags.includes('???')) {
                     let md_content = fs.readFileSync(path.join(postPath, 'content.md'), 'utf-8');
                     const newLines = Array(2000).fill('&nbsp;\n').join('');
-                    md_content = md_content + newLines + '???';
+                    md_content = md_content + newLines + 'QTMQ6-Q368Y-J0QDH';
                     fs.writeFileSync(path.join(postPath, 'content.md'), md_content);
                 }
 
@@ -412,8 +412,15 @@ async function deletePost(req, res) {
 
     await UserModel.findByIdAndUpdate(
         req.userId,
-        { $pull: { owned_posts: post_id } }
+        { 
+            $pull: { owned_posts: post_id,
+                     viewed_posts: post_id,
+                    }, 
+            $inc: { total_views: -post.views },
+        },
+        { multi: true }
     );
+
 
     return res.json({ success: true, message: 'Post deleted successfully' });
 }

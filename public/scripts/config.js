@@ -1,3 +1,3 @@
-const server = 'http://localhost:7777'
+const server = ''
 
 export { server };

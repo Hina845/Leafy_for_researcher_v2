@@ -21,8 +21,7 @@
   "description": "FrontEnd bỏ hết vào public/\r Backend bỏ trong src/",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "start": "node src/server.js"
   },
   "author": "",
   "license": "ISC"
