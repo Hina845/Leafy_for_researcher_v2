@@ -798,9 +798,10 @@
                 const cardElement = document.createElement('div');
                 cardElement.className = 'content-card' + (index === 0 ? ' active' : '');
                 cardElement.innerHTML = card.template;
-                cardElement.onclick = () => {
-                    window.location.href = `/post?post_id=${card._id}`;
+                cardElement.querySelector('.content-text').onclick = function () {
+                    window.location.href = `./post?post_id=${card._id}`;
                 };
+                cardElement.querySelector('.content-text').style.cursor = 'pointer';
                 document.getElementById('content-card-container').appendChild(cardElement);
                 document.querySelector('.dots-container').innerHTML += `<span class="dot ${index === 0 ? 'active' : ''}" onclick="navigateSlide(${index})"></span>`;
             });

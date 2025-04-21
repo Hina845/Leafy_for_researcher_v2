@@ -1,6 +1,6 @@
 <div class="still-tags-container">
     <% tags.forEach(tag => { %>
-        <div class="still-content-tag">
+        <div class="still-content-tag" onclick="window.location.href='/archive?tag=<%= tag %>'">
             <div class="tag-text"><%= tag %></div>
         </div>
     <% }) %>
