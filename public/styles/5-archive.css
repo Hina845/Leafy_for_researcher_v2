@@ -449,6 +449,9 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
     color: var(--color-brand-primary);
 	border: 2px solid var(--color-brand-primary);
 }
+.follow-button.followed path {
+	fill: var(--color-brand-primary);
+}
 .profile-card {
 	width: 100%;
 	position: relative;
