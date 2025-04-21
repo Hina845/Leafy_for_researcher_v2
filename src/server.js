@@ -2,7 +2,7 @@ import app from './app.js';
 import Connect from './db/dbConnect.js';
 import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 
 let db_status = false;
 try {
