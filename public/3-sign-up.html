@@ -143,6 +143,78 @@
             gap: 32px;
             color: var(--color-brand-primary);
         }
+        @media screen and (max-width: 1079px) {
+            @media screen and (max-width: 1079px) {
+                body {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 20px;
+                }
+
+                .left {
+                    display: none;
+                }
+
+                .right {
+                    width: 100%;
+                    max-width: 500px;
+                    height: auto;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 20px 10px;
+                }
+
+                .logo {
+                    margin-top: 32px;
+                    justify-content: center;
+                }
+
+                #welcome {
+                    font-size: 24px;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                #p1 {
+                    font-size: 14px;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .form {
+                    width: 100%;
+                    align-items: center;
+                }
+
+                .form div {
+                    width: 100%;
+                    max-width: 482px;
+                }
+
+                .form input {
+                    width: 100%;
+                }
+
+                button {
+                    width: 100%;
+                    max-width: 482px;
+                    font-size: 16px;
+                    padding: 8px 24px;
+                }
+
+                a,
+                p {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                a[href="2-forgot-password.html"] p {
+                    justify-content: center !important;
+                }
+            }
+
+        }
     </style>
 </head>
 
@@ -164,22 +236,22 @@
         <form class="form">
             <div>
                 <label for="username">Username</label>
-                <input type="text" id="username" required>
+                <input type="text" id="username" placeholder="Nhập username của bạn..." required>
             </div>
 
             <div>
                 <label for="email">Email</label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" placeholder="Nhập email của bạn..." required>
             </div>
 
             <div>
                 <label for="password">Mật khẩu</label>
-                <input type="password" id="password" required>
+                <input type="password" id="password" placeholder="Nhập mật khẩu..." required>
             </div>
 
             <div>
                 <label for="re-password">Nhập lại mật khẩu</label>
-                <input type="password" id="re-password" required>
+                <input type="password" id="re-password" placeholder="Nhập lại mật khẩu..." required>
             </div>
 
             <button type="submit">đăng kí</button>
