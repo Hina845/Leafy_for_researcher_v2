@@ -315,6 +315,7 @@ background: var(--brand-opacity15, rgba(135, 167, 6, 0.10)); /* Hiệu ứng hov
 	align-items: center;
 	padding: var(--spacing-4) 0;
 	gap: var(--spacing-4);
+	width: 100%;
 }
 
 .number-selector {
