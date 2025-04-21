@@ -12,6 +12,67 @@
 
     <style>
         @import url("./styles/tokens.css");
+
+        .image-container {
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00000080;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+        }
+
+        .image-container:hover .overlay {
+            opacity: 1; 
+        }
+
+        .camera-icon {
+            color: white;
+            font-size: 24px;
+            background: none;
+            border: none;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            top: -70px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 10;
+        }
+
+        .avatar .overlay {
+            border-radius: 50%;
+        }
+
+        .profile-background-container {
+            position: relative;
+            width: 100%;
+            height: 310px;
+        }
+
+        .profile-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         @media (min-width: 1080px) {
             .container {
                 padding: 0px 100px 304px 100px;
@@ -21,142 +82,6 @@
                 gap: 32px;
                 position: relative;
                 z-index: 2;
-            }
-
-            .profile-background {
-                width: 100%;
-                position: relative;
-                margin: 0 !important;
-                top: 0px;
-                right: 0px;
-                left: 0px;
-                max-width: 100%;
-                overflow: hidden;
-                height: 310px;
-                flex-shrink: 0;
-                object-fit: cover;
-            }
-            .avatar {
-                width: 140px;
-                position: absolute;
-                top: -70px;
-                border-radius: 50%;
-                max-height: 100%;
-                object-fit: cover;
-                z-index: 10
-            }
-            .profile{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-                position: relative;
-                justify-content: center;
-            }
-            h1 {
-                font-size: 36px;
-                font-weight: 500;
-                color: var(--brand-constrast);
-                text-align: center;
-                margin: 0;
-                padding-top: 100px
-            }
-
-            .form {
-                width: 100%;
-                max-width: 1240px;
-                display: flex;
-                flex-direction: column;
-                gap: 32px;
-            }
-            .form-group {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                width: 100%;
-            }
-            .form-group label {
-                font-size: 16px;
-                font-weight: 500;
-                color: var(--brand-constrast);
-            }
-            .form .form-group input {
-                height: 49px;
-                padding: 0 16px;
-                background: var(--background-primary, #F8F8E7);
-                border-radius: var(--spacing-2);
-                border: 1px solid var(--brand-opacity50, #87A70680);
-                font-size: var(--spacing-2);
-                color: var(--background-primary);
-                outline: none;
-                box-sizing: border-box;
-                width: 100%;
-            }
-            .note {
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 24px;
-                color: var(--brand-constrast);
-                margin: 0;
-            }
-            .submit-button {
-                justify-content: center;
-                font-family: inherit;
-                width: 100%;
-                padding: 16px 32px;
-                background: var(--color-brand-primary);
-                border-radius: 16px;
-                color: var(--color-true-white);
-                font-size: 24px;
-                font-weight: 500;
-                text-align: center;
-                border: none;
-                cursor: pointer;
-                letter-spacing: 0%;
-                box-sizing: border-box;
-            }
-
-            .submit-button-group {
-                display: flex;
-                flex-direction: column;
-                gap: 32px;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 1079px) {
-            .container {
-                padding: 0px 24px 800px 24px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 32px;
-                position: relative;
-                z-index: 2;
-            }
-
-            .profile-background {
-                width: 100%;
-                position: relative;
-                margin: 0 !important;
-                top: 0px;
-                right: 0px;
-                left: 0px;
-                max-width: 100%;
-                overflow: hidden;
-                height: 310px;
-                flex-shrink: 0;
-                object-fit: cover;
-            }
-
-            .avatar {
-                width: 140px;
-                position: absolute;
-                top: -70px;
-                border-radius: 50%;
-                max-height: 100%;
-                object-fit: cover;
-                z-index: 10;
             }
 
             .profile {
@@ -242,7 +167,103 @@
                 gap: 32px;
                 width: 100%;
             }
-     }
+        }
+
+        @media (max-width: 1079px) {
+            .container {
+                padding: 0px 24px 800px 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 32px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .profile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                position: relative;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 36px;
+                font-weight: 500;
+                color: var(--brand-constrast);
+                text-align: center;
+                margin: 0;
+                padding-top: 100px;
+            }
+
+            .form {
+                width: 100%;
+                max-width: 1240px;
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .form-group label {
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--brand-constrast);
+            }
+
+            .form .form-group input {
+                height: 49px;
+                padding: 0 16px;
+                background: var(--background-primary, #F8F8E7);
+                border-radius: var(--spacing-2);
+                border: 1px solid var(--brand-opacity50, #87A70680);
+                font-size: var(--spacing-2);
+                color: var(--background-primary);
+                outline: none;
+                box-sizing: border-box;
+                width: 100%;
+            }
+
+            .note {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 24px;
+                color: var(--brand-constrast);
+                margin: 0;
+            }
+
+            .submit-button {
+                justify-content: center;
+                font-family: inherit;
+                width: 100%;
+                padding: 16px 32px;
+                background: var(--color-brand-primary);
+                border-radius: 16px;
+                color: var(--color-true-white);
+                font-size: 24px;
+                font-weight: 500;
+                text-align: center;
+                border: none;
+                cursor: pointer;
+                letter-spacing: 0%;
+                box-sizing: border-box;
+            }
+
+            .submit-button-group {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -257,19 +278,31 @@
             }, 500);
         });
     </script>
-    <nav id = 'navigation'></nav>
-    <div style="background-color: var(--color-background-primary);" class = "profile-background"><img class="profile-background" alt="background" id = 'edit-profile-background' style="cursor: pointer;"></div>
+    <nav id='navigation'></nav>
+
+    <div style="background-color: var(--color-background-primary);" class="profile-background-container image-container">
+        <img class="profile-background" alt="background" id="edit-profile-background">
+        <div class="overlay">
+           <img src="assets/icons/icCameraPlus.svg">
+        </div>
+    </div>
     <input type="file" id="background-picture-input" accept="image/*" style="display: none;">
-    
+
     <div class="container">
-        <img class="avatar" alt="avatar" id = 'edit-profile-avatar' style = "cursor: pointer;">
+
+        <div class="avatar-container image-container">
+            <img class="avatar" alt="avatar" id="edit-profile-avatar">
+            <div class="overlay">
+                <img src="assets/icons/icCameraPlus.svg">
+            </div>
+        </div>
         <input type="file" id="profile-picture-input" accept="image/*" style="display: none;">
-        <img id="preview" style="display: none;"></canvas>
-        <button id="cropBtn">Crop</button>
+        <img id="preview" style="display: none;">
+
         <div class="profile">
             <h1>Chỉnh sửa thông tin cá nhân</h1>
         </div>
-        
+
         <form class="form">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -295,16 +328,16 @@
                 <label for="org-id">Mã tổ chức (MSV, mã cán bộ, ...)</label>
                 <input type="text" id="org-id">
             </div>
-            <div class="submit-button-group">   
+            <div class="submit-button-group">
                 <p class="note">*Nhấn vào ảnh đại diện hoặc ảnh nền để thay đổi.</p>
                 <button type="submit" class="submit-button">Cập nhật thông tin</button>
             </div>
         </form>
     </div>
-    <footer id = 'footer'></footer>
+    <footer id='footer'></footer>
     <script src="./scripts/component.js"></script>
     <script type="module" src="./scripts/component.js"></script>
-    <script type = "module">
+    <script type="module">
         import { server } from "./scripts/config.js";
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -350,11 +383,11 @@
 
             let cropper;
 
-            avatar.addEventListener("click", function() {
+            avatar.parentElement.addEventListener("click", function() {
                 document.getElementById("profile-picture-input").click();
             });
 
-            background.addEventListener("click", function() {
+            background.parentElement.addEventListener("click", function() {
                 document.getElementById("background-picture-input").click();
             });
 
@@ -429,9 +462,9 @@
                         width: 300,
                         height: 300
                     });
-                    
+
                     avatar.src = canvas.toDataURL();
-                    
+
                     cropper.destroy();
                     document.body.removeChild(modalOverlay);
                 });
@@ -441,6 +474,7 @@
                     document.body.removeChild(modalOverlay);
                 });
             });
+
             document.getElementById("background-picture-input").addEventListener("change", function(event) {
                 const file = event.target.files[0];
                 if (!file) return;
@@ -511,9 +545,9 @@
                         maxWidth: 1920,
                         maxHeight: 800
                     });
-                    
+
                     background.src = canvas.toDataURL();
-                    
+
                     cropper.destroy();
                     document.body.removeChild(modalOverlay);
                 });
@@ -523,12 +557,12 @@
                     document.body.removeChild(modalOverlay);
                 });
             });
-        
+
             const form = document.querySelector(".form");
             form.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 const formData = new FormData();
-                
+
                 formData.append("display_name", displayName.value);
                 formData.append("email", email.value);
                 formData.append("phone_number", phoneNumber.value);
