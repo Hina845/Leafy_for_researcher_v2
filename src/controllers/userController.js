@@ -267,7 +267,7 @@ async function UploadResearch(req, res) {
                 if (req.body.tags.includes('???')) {
                     let md_content = fs.readFileSync(path.join(postPath, 'content.md'), 'utf-8');
                     const newLines = Array(2000).fill('&nbsp;\n').join('');
-                    md_content = md_content + newLines + '???';
+                    md_content = md_content + newLines + 'QTMQ6-Q368Y-J0QDH';
                     fs.writeFileSync(path.join(postPath, 'content.md'), md_content);
                 }
 
