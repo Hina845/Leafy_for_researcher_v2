@@ -1,3 +1,3 @@
-const server = 'leafyforresearcherv2-production.up.railway.app'
+const server = ''
 
 export { server };
