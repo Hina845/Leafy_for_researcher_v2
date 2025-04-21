@@ -12,6 +12,7 @@ import { userLogin,
          UpdateUserProfile,
          checkPostAuthor,
          getFollowerPosts,
+         deletePost,
         } from '../controllers/userController.js';
 import { verifyToken, verifyTokenNotRes, verifyPasswordChangeLink } from '../middlewares/authMiddleware.js';
 
@@ -44,5 +45,7 @@ userRouter.post('/update-profile', verifyToken, UpdateUserProfile);
 userRouter.get('/check-post-author', verifyToken, checkPostAuthor);
 
 userRouter.get('/get-follower-posts', verifyToken, getFollowerPosts);
+
+userRouter.delete('/delete-post', verifyToken, deletePost);
 
 export default userRouter;

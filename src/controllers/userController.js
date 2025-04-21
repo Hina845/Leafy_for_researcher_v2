@@ -381,6 +381,34 @@ async function getFollowerPosts(req, res) {
     return res.json({ success: true, post_ids: post_ids });
 }
 
+async function deletePost(req, res) {
+    const post_id = req.body.post_id;
+    const post = await PostModel.findById(post_id);
+    if (!post) return res.status(404).json({ success: false, error: 'Post not found' });
+
+    if (post.owned_user_id.toString() !== req.userId.toString()) {
+        return res.status(403).json({ success: false, error: 'Unauthorized' });
+    }
+
+    await PostModel.deleteOne({ _id: post_id });
+    const postPath = path.join(__dirname, '..', 'public', 'researches', post_id);
+    if (fs.existsSync(postPath)) {
+        try {
+            fs.rmSync(postPath, { recursive: true, force: true });
+        } catch (err) {
+            console.error(`Error deleting folder for post ${post_id}:`, err);
+            return res.status(500).json({ success: false, error: 'Error deleting post files' });
+        }
+    }
+
+    await UserModel.findByIdAndUpdate(
+        req.userId,
+        { $pull: { owned_posts: post_id } }
+    );
+
+    return res.json({ success: true, message: 'Post deleted successfully' });
+}
+
 export {
     userCreate,
     userLogin,
@@ -395,4 +423,5 @@ export {
     UpdateUserProfile,
     checkPostAuthor,
     getFollowerPosts,
+    deletePost,
 }

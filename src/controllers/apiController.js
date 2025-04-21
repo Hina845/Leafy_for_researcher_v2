@@ -15,10 +15,17 @@ async function getContentCards(req, res) {
     const tags = req.body.tags ;
 
     let query = [];
-    if (post_id != null) query.push({_id: {$in: post_id}});
-    if (typeof(owned_user_id) === 'Array') query.push({owned_user_id: {$in: owned_user_id}});
-    else if (owned_user_id) query.push({owned_user_id: owned_user_id});
-    if (tags != null) query.push({tags: { $in: tags }});
+    if (req.body.mode === 'strict') {
+        if (post_id != null) query.push({_id: post_id});
+        if (owned_user_id) query.push({owned_user_id: owned_user_id});
+        if (tags != null) query.push({tags: { $all: tags }});
+
+    } else {
+        if (post_id != null) query.push({_id: {$in: post_id}});
+        if (typeof(owned_user_id) === 'Array') query.push({owned_user_id: {$in: owned_user_id}});
+        else if (owned_user_id) query.push({owned_user_id: owned_user_id});
+        if (tags != null) query.push({tags: { $in: tags }});
+    }
     try {
         const posts = await PostModel.find({$and: query}).limit(limit);
         if (!posts) return res.status(400).json({ success: false, error: 'post-not-exist' });
@@ -176,6 +183,15 @@ async function getPost(req, res) {
         const author = await UserModel.findById(post.owned_user_id);
         author.total_views += 1;
         await author.save();
+
+        if (req.userId) {
+            const user = await UserModel.findById(req.userId);
+            if (user && !user.viewed_posts.includes(post._id)) {
+                user.viewed_posts.push(post._id.toString());
+                await user.save();
+            }
+        }
+
         const post_directory = path.resolve('public', 'researches', post._id.toString());
         const thumbnail_files = fs.readdirSync(post_directory);
         const thumbnail_file = thumbnail_files.find(file => /\.(png|jpg|jpeg|gif|bmp|webp)$/i.test(file));
