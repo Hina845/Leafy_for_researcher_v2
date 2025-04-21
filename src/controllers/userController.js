@@ -178,15 +178,24 @@ async function FollowUser(req, res) {
 
 async function CheckFollow(req, res) {
     const user = await UserModel.findById(req.userId);
-    let follow_user;
-    if (req.query.user_id != req.userId) follow_user = req.query.user_id;
-
-    if (!user || !follow_user) return res.status(404).json({ success: false, error: 'User not found' });
-
-    if (user.followed.includes(follow_user._id)) {
-        return res.json({ success: true, message: 'Followed', is_followed: true });
+    
+    if (req.query.user_id == req.userId) {
+        return res.status(400).json({ success: true, message: 'is_owner', is_followed: true });
     }
-    return res.json({ success: true, message: 'Not followed', is_followed: false });
+    
+    const follow_user = await UserModel.findById(req.query.user_id);
+    
+    if (!user || !follow_user) {
+        return res.status(404).json({ success: false, error: 'User not found' });
+    }
+    
+    const isFollowed = user.followed.some(id => id.toString() === follow_user._id.toString());
+    
+    return res.json({ 
+        success: true, 
+        message: isFollowed ? 'Followed' : 'Not followed', 
+        is_followed: isFollowed 
+    });
 }
 
 async function UploadResearch(req, res) {
